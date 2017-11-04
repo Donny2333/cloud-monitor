@@ -9,9 +9,27 @@
 
         $stateProvider
           .state('app', {
+            abstract: true,
+            templateUrl: 'js/components/app/App.html',
+            controller: 'AppCtrl'
+
+          })
+          .state('app.home', {
             url: '/app',
-            templateUrl: './tpls/app.html',
-            controller: 'AppController'
+            views: {
+              left: {
+                templateUrl: 'js/components/left/Left.html',
+                controller: 'LeftCtrl'
+              },
+              main: {
+                templateUrl: 'js/components/main/Main.html',
+                controller: 'MainCtrl'
+              },
+              right: {
+                templateUrl: 'js/components/right/Right.html',
+                controller: 'RightCtrl'
+              }
+            }
           })
       }]);
 })(angular);
