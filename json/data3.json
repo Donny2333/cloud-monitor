@@ -1,0 +1,26 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "data": [
+    {
+      "img": "image/icon-01.png",
+      "text": "流入资金",
+      "value": "1001"
+    },
+    {
+      "img": "image/icon-02.png",
+      "text": "流出资金",
+      "value": "2002"
+    },
+    {
+      "img": "image/icon-03.png",
+      "text": "代办资金",
+      "value": "3003"
+    },
+    {
+      "img": "image/icon-04.png",
+      "text": "管理费用",
+      "value": "4004"
+    }
+  ]
+}

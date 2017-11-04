@@ -1,0 +1,61 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "x": "country",
+  "y": [
+    "poor",
+    "rich"
+  ],
+  "data": [
+    {
+      "country": "仙人渡镇",
+      "poor": "500",
+      "rich": "200"
+    },
+    {
+      "country": "酂阳办",
+      "poor": "900",
+      "rich": "200"
+    },
+    {
+      "country": "李楼镇",
+      "poor": "500",
+      "rich": "300"
+    },
+    {
+      "country": "张集镇",
+      "poor": "700",
+      "rich": "300"
+    },
+    {
+      "country": "光化办",
+      "poor": "600",
+      "rich": "300"
+    },
+    {
+      "country": "竹林桥镇",
+      "poor": "500",
+      "rich": "200"
+    },
+    {
+      "country": "薛集镇",
+      "poor": "600",
+      "rich": "200"
+    },
+    {
+      "country": "孟楼镇",
+      "poor": "200",
+      "rich": "100"
+    },
+    {
+      "country": "袁冲乡",
+      "poor": "500",
+      "rich": "100"
+    },
+    {
+      "country": "洪山嘴镇",
+      "poor": "500",
+      "rich": "400"
+    }
+  ]
+}

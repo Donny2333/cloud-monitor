@@ -1,0 +1,62 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "x": "name",
+  "y": [
+    "saleCount"
+  ],
+  "data": [
+    {
+      "name": "特色产业",
+      "saleCount": "50"
+    },
+    {
+      "name": "政府兜底",
+      "saleCount": "68"
+    },
+    {
+      "name": "医疗救助",
+      "saleCount": "36"
+    },
+    {
+      "name": "教育救助",
+      "saleCount": "75"
+    },
+    {
+      "name": "危房改造",
+      "saleCount": "32"
+    },
+    {
+      "name": "党建扶贫",
+      "saleCount": "48"
+    },
+    {
+      "name": "金融扶贫",
+      "saleCount": "10"
+    },
+    {
+      "name": "信息化扶贫",
+      "saleCount": "98"
+    },
+    {
+      "name": "雨露计划",
+      "saleCount": "61"
+    },
+    {
+      "name": "易地搬迁",
+      "saleCount": "15"
+    },
+    {
+      "name": "产业扶贫",
+      "saleCount": "38"
+    },
+    {
+      "name": "整村推进",
+      "saleCount": "49"
+    },
+    {
+      "name": "（国家）金融扶贫",
+      "saleCount": "68"
+    }
+  ]
+}

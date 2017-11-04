@@ -1,0 +1,72 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "x": "country",
+  "y": [
+    "poorCountry",
+    "poorFamily",
+    "poorPeople"
+  ],
+  "data": [
+    {
+      "country": "仙人渡镇",
+      "poorCountry": "241",
+      "poorFamily": "6651",
+      "poorPeople": "20057"
+    },
+    {
+      "country": "酂阳办",
+      "poorCountry": "183",
+      "poorFamily": "4256",
+      "poorPeople": "15477"
+    },
+    {
+      "country": "李楼镇",
+      "poorCountry": "248",
+      "poorFamily": "8856",
+      "poorPeople": "31686"
+    },
+    {
+      "country": "张集镇",
+      "poorCountry": "89",
+      "poorFamily": "2107",
+      "poorPeople": "6992"
+    },
+    {
+      "country": "光化办",
+      "poorCountry": "104",
+      "poorFamily": "10286",
+      "poorPeople": "44045"
+    },
+    {
+      "country": "竹林桥镇",
+      "poorCountry": "240",
+      "poorFamily": "11563",
+      "poorPeople": "40689"
+    },
+    {
+      "country": "薛集镇",
+      "poorCountry": "96",
+      "poorFamily": "897",
+      "poorPeople": "37659"
+    },
+    {
+      "country": "孟楼镇",
+      "poorCountry": "271",
+      "poorFamily": "12060",
+      "poorPeople": "45180"
+    },
+    {
+      "country": "袁冲乡",
+      "poorCountry": "310",
+      "poorFamily": "14901",
+      "poorPeople": "55204"
+    },
+    {
+      "country": "洪山嘴镇",
+      "poorCountry": "194",
+      "poorFamily": "6650",
+      "poorPeople": "21900"
+    }
+  ]
+}

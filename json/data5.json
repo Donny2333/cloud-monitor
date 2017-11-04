@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "x": "country",
+  "y": "value",
+  "data": [
+    {
+      "country": "仙人渡镇",
+      "value": "35"
+    }
+  ]
+}
