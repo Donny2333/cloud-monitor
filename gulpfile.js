@@ -24,8 +24,7 @@ gulp.task('serve', ['js'], function () {
 
     gulp.watch([
       "*.html",
-      "tpls/*.html",
-      "tpls/**/*.html"
+      "js/**/*.html"
     ], ['reload']);
     gulp.watch("css/*.css", ['reload']);
     gulp.watch("js/**/*.js", ['js', 'reload']);

@@ -379,12 +379,12 @@
                 show: false
               },
               series: [{
-                name: '贫困率',
+                name: this.title,
                 type: 'gauge',
                 detail: {formatter: '{value}%'},
                 data: [{
-                  name: res.data.data[0][this.x],
-                  value: res.data.data[0][this.y]
+                  name: res.data.data[0][res.data.x],
+                  value: res.data.data[0][res.data.y]
                 }]
               }]
             };
