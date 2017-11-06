@@ -11,6 +11,7 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background-color: black;
 }
 
 ul,
@@ -44,12 +45,10 @@ a {
   display: flex;
   flex-direction: column;
   width: 25%;
-  border: 1px solid green;
 }
 
 .main {
   width: 50%;
-  border: 1px solid red;
 }
 
 /******************* main *******************/
@@ -57,4 +56,11 @@ a {
 /******************* left *******************/
 
 /******************* right *******************/
+
+/******************* ellipseChart *******************/
+
+.ellipseChart {
+  height: 320px;
+  width: 420px;
+}
 

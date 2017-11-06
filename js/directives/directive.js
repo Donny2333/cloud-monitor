@@ -8,11 +8,11 @@
     .directive('myChart', function () {
       return {
         restrict: 'E',
-        template: '<div ng-style="userStyle"></div>',
+        template: '<div ng-style="myStyle"></div>',
         replace: true,
         scope: {
           data: '=',
-          userStyle: '='
+          myStyle: '='
         },
         link: function (scope, element, attrs) {
           var myChat = null;
@@ -39,7 +39,7 @@
             }
           });
 
-          scope.$watch('userStyle', function (value) {
+          scope.$watch('myStyle', function (value) {
             if (value && myChat) {
               myChat.resize();
             }

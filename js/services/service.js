@@ -33,20 +33,25 @@
           return [d.getMonth() + 1, '月', d.getDate(), '日'].join('');
         },
         lunar: function () {
-          var sWeek = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+          var sWeek = new Array('星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六');
           var dNow = new Date();
           var CalendarData = new Array(100);
           var madd = new Array(12);
-          var tgString = "甲乙丙丁戊己庚辛壬癸";
-          var dzString = "子丑寅卯辰巳午未申酉戌亥";
-          var numString = "一二三四五六七八九十";
-          var monString = "正二三四五六七八九十冬腊";
-          var weekString = "日一二三四五六";
-          var sx = "鼠牛虎兔龙蛇马羊猴鸡狗猪";
+          var tgString = '甲乙丙丁戊己庚辛壬癸';
+          var dzString = '子丑寅卯辰巳午未申酉戌亥';
+          var numString = '一二三四五六七八九十';
+          var monString = '正二三四五六七八九十冬腊';
+          var weekString = '日一二三四五六';
+          var sx = '鼠牛虎兔龙蛇马羊猴鸡狗猪';
           var cYear, cMonth, cDay, TheDate;
-          CalendarData = new Array(0xA4B, 0x5164B, 0x6A5, 0x6D4, 0x415B5, 0x2B6, 0x957, 0x2092F, 0x497, 0x60C96, 0xD4A, 0xEA5, 0x50DA9, 0x5AD, 0x2B6, 0x3126E, 0x92E, 0x7192D, 0xC95, 0xD4A, 0x61B4A, 0xB55, 0x56A, 0x4155B, 0x25D, 0x92D, 0x2192B, 0xA95, 0x71695, 0x6CA, 0xB55, 0x50AB5, 0x4DA, 0xA5B, 0x30A57, 0x52B, 0x8152A, 0xE95, 0x6AA, 0x615AA, 0xAB5, 0x4B6, 0x414AE, 0xA57, 0x526, 0x31D26, 0xD95, 0x70B55, 0x56A, 0x96D, 0x5095D, 0x4AD, 0xA4D, 0x41A4D, 0xD25, 0x81AA5, 0xB54, 0xB6A, 0x612DA, 0x95B,
-            0x49B, 0x41497, 0xA4B, 0xA164B, 0x6A5, 0x6D4, 0x615B4, 0xAB6, 0x957, 0x5092F,
-            0x497, 0x64B, 0x30D4A, 0xEA5, 0x80D65, 0x5AC, 0xAB6, 0x5126D, 0x92E, 0xC96, 0x41A95, 0xD4A, 0xDA5, 0x20B55, 0x56A, 0x7155B, 0x25D, 0x92D, 0x5192B, 0xA95, 0xB4A, 0x416AA, 0xAD5, 0x90AB5, 0x4BA, 0xA5B, 0x60A57, 0x52B, 0xA93, 0x40E95);
+          CalendarData = new Array(0xA4B, 0x5164B, 0x6A5, 0x6D4, 0x415B5, 0x2B6, 0x957, 0x2092F, 0x497, 0x60C96, 0xD4A,
+            0xEA5, 0x50DA9, 0x5AD, 0x2B6, 0x3126E, 0x92E, 0x7192D, 0xC95, 0xD4A, 0x61B4A, 0xB55, 0x56A, 0x4155B, 0x25D,
+            0x92D, 0x2192B, 0xA95, 0x71695, 0x6CA, 0xB55, 0x50AB5, 0x4DA, 0xA5B, 0x30A57, 0x52B, 0x8152A, 0xE95, 0x6AA,
+            0x615AA, 0xAB5, 0x4B6, 0x414AE, 0xA57, 0x526, 0x31D26, 0xD95, 0x70B55, 0x56A, 0x96D, 0x5095D, 0x4AD, 0xA4D,
+            0x41A4D, 0xD25, 0x81AA5, 0xB54, 0xB6A, 0x612DA, 0x95B, 0x49B, 0x41497, 0xA4B, 0xA164B, 0x6A5, 0x6D4, 0x615B4,
+            0xAB6, 0x957, 0x5092F, 0x497, 0x64B, 0x30D4A, 0xEA5, 0x80D65, 0x5AC, 0xAB6, 0x5126D, 0x92E, 0xC96, 0x41A95,
+            0xD4A, 0xDA5, 0x20B55, 0x56A, 0x7155B, 0x25D, 0x92D, 0x5192B, 0xA95, 0xB4A, 0x416AA, 0xAD5, 0x90AB5, 0x4BA,
+            0xA5B, 0x60A57, 0x52B, 0xA93, 0x40E95);
           madd[0] = 0;
           madd[1] = 31;
           madd[2] = 59;
@@ -98,18 +103,18 @@
           }
 
           function GetcDateString() {
-            var tmp = "";
+            var tmp = '';
             // tmp += tgString.charAt((cYear - 4) % 10);
             // tmp += dzString.charAt((cYear - 4) % 12);
-            // tmp += "年 ";
+            // tmp += '年 ';
             if (cMonth < 1) {
-              tmp += "(闰)";
+              tmp += '(闰)';
               tmp += monString.charAt(-cMonth - 1);
             } else {
               tmp += monString.charAt(cMonth - 1);
             }
-            tmp += "月";
-            tmp += (cDay < 11) ? "初" : ((cDay < 20) ? "十" : ((cDay < 30) ? "廿" : "三十"));
+            tmp += '月';
+            tmp += (cDay < 11) ? '初' : ((cDay < 20) ? '十' : ((cDay < 30) ? '廿' : '三十'));
             if (cDay % 10 != 0 || cDay == 10) {
               tmp += numString.charAt((cDay - 1) % 10);
             }
@@ -118,7 +123,7 @@
 
           function GetLunarDay(solarYear, solarMonth, solarDay) {
             if (solarYear < 1921 || solarYear > 2020) {
-              return "";
+              return '';
             } else {
               solarMonth = (parseInt(solarMonth) > 0) ? (solarMonth - 1) : 11;
               e2c(solarYear, solarMonth, solarDay);
@@ -143,7 +148,7 @@
       }
     })
 
-    .factory('Http', ["$q", "$http", '$sce', function ($q, $http, $sce) {
+    .factory('Http', ['$q', '$http', '$sce', function ($q, $http, $sce) {
       function parseParams(url, params) {
         var p = [];
         for (var key in params) {
@@ -269,7 +274,7 @@
               legend: {
                 data: legendData,
                 textStyle: {
-                  color: "#929292"
+                  color: '#929292'
                 }
               },
               grid: {
@@ -323,7 +328,7 @@
             }.bind(this));
 
             series.push({
-              name: "",
+              name: '',
               type: 'line',
               data: seriesData
             });
@@ -345,7 +350,7 @@
                 }
               },
               legend: {
-                data: ""
+                data: ''
               },
               xAxis: {
                 data: xAxisData
@@ -369,7 +374,7 @@
           Http.get(this.dataSource).then(function (res) {
             var option = {
               tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
+                formatter: '{a} <br/>{b} : {c}%'
               },
               toolbox: {
                 feature: {
@@ -379,13 +384,32 @@
                 show: false
               },
               series: [{
-                name: this.title,
                 type: 'gauge',
+                name: this.title,
                 detail: {formatter: '{value}%'},
                 data: [{
                   name: res.data.data[0][res.data.x],
                   value: res.data.data[0][res.data.y]
-                }]
+                }],
+                title: {
+                  // fontSize: 14,
+                  color: '#a5a6bb'
+                },
+                axisLine: {
+                  lineStyle: {
+                    // width: 30,
+                    color: [[0.2, '#ff9510'], [0.8, '#2483cf'], [1, '#57c550']]
+                  }
+                },
+                axisLabel: {
+                  // show: false
+                },
+                pointer: {
+                  // width: 5
+                },
+                splitLine: {
+                  // length: 30
+                }
               }]
             };
 
@@ -414,29 +438,22 @@
             var option = {
               tooltip: {
                 trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
               },
-              visualMap: {
-                show: false,
-                min: 0,
-                max: 200,
-                inRange: {
-                  colorLightness: [0, 1]
-                }
-              },
+              color: ['#f45938', '#ff9510', '#57c550'],
               series: [{
-                name: '销量',
+                name: this.title,
                 type: 'pie',
-                radius: '55%',
+                radius: [20, 80],
                 center: ['50%', '50%'],
                 data: seriesData.sort(function (a, b) {
                   return a.value - b.value
                 }),
-                roseType: 'angle',
+                roseType: 'radius',
                 label: {
                   normal: {
                     textStyle: {
-                      color: 'rgba(255, 255, 255, 0.3)'
+                      color: 'rgba(255, 255, 255, 0.5)'
                     }
                   }
                 },
@@ -448,13 +465,6 @@
                     smooth: 0.2,
                     length: 10,
                     length2: 20
-                  }
-                },
-                itemStyle: {
-                  normal: {
-                    color: '#c23531',
-                    shadowBlur: 200,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
                   }
                 },
                 animationType: 'scale',
@@ -509,7 +519,7 @@
                 left: 'right',
                 data: res.data.y,
                 textStyle: {
-                  color: "#929292"
+                  color: '#929292'
                 }
               },
               tooltip: {
@@ -549,6 +559,7 @@
       };
 
       return function (type) {
+        type = type.toLowerCase();
         return new eChart.type[type];
       };
     }])

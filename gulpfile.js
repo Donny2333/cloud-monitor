@@ -24,10 +24,14 @@ gulp.task('serve', ['js'], function () {
 
     gulp.watch([
       "*.html",
-      "js/**/*.html"
+      "js/**/*.html",
+      "js/**/**/*.html"
     ], ['reload']);
+    gulp.watch([
+      "js/**/*.js",
+      "js/**/**/*.js"
+    ], ['js', 'reload']);
     gulp.watch("css/*.css", ['reload']);
-    gulp.watch("js/**/*.js", ['js', 'reload']);
   }
 );
 

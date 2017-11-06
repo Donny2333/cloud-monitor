@@ -11,7 +11,7 @@
         var charts = [{
           "type": "gauge",
           "id": 0,
-          "title": "脱贫比例",
+          "title": "系统健康度",
           "dataSource": "json/data5.json",
           "style": {
             "height": "350px",
@@ -19,22 +19,12 @@
             "float": "none"
           }
         }, {
-          "type": "gauge",
+          "type": "pie",
           "id": 1,
-          "title": "脱贫比例",
-          "dataSource": "json/data5.json",
+          "title": "主机状态",
+          "dataSource": "json/data3.json",
           "style": {
-            "height": "350px",
-            "width": "100%",
-            "float": "none"
-          }
-        }, {
-          "type": "gauge",
-          "id": 2,
-          "title": "脱贫比例",
-          "dataSource": "json/data5.json",
-          "style": {
-            "height": "350px",
+            "height": "220px",
             "width": "100%",
             "float": "none"
           }
