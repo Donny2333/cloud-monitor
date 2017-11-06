@@ -306,7 +306,6 @@
               .attr("fill", "url(#mygrad_0)");
 
             enterBar.append("rect")
-
               .attr("x", function (d, i) {
                 return x0 + rectStep * i - rectWidth / 2;
               })
