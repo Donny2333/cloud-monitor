@@ -11,7 +11,8 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background-color: black;
+  background-image: url("../images/background.png");
+  background-size: 100%;
 }
 
 ul,
@@ -41,14 +42,12 @@ a {
 }
 
 .top {
-  height: 75%;
+  height: 70%;
 }
 
 .bottom {
-  height: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  height: 30%;
+  padding: 0 30px 20px;
 }
 
 .left,
@@ -72,10 +71,28 @@ a {
 
 /******************* right *******************/
 
+/******************* bottom *******************/
+
+.bottom .bg {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  background-image: url("../images/bottom.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 /******************* ellipseChart *******************/
 
 .ellipseChart {
   height: 160px;
+  width: 400px;
+}
+
+.squareChart {
+  height: 180px;
   width: 400px;
 }
 

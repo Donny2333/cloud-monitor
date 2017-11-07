@@ -25,11 +25,12 @@ gulp.task('serve', ['js'], function () {
     gulp.watch([
       "*.html",
       "js/**/*.html",
-      "js/**/**/*.html"
+      "js/components/**/*.html"
     ], ['reload']);
     gulp.watch([
+      "*.js",
       "js/**/*.js",
-      "js/**/**/*.js"
+      "js/components/**/*.js"
     ], ['js', 'reload']);
     gulp.watch("css/*.css", ['reload']);
   }
