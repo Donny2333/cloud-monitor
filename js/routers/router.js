@@ -28,6 +28,11 @@
               right: {
                 templateUrl: 'js/components/right/Right.html',
                 controller: 'RightCtrl'
+              },
+              bottom: {
+                templateUrl: 'js/components/bottom/Bottom.html',
+                controller: 'BottomCtrl',
+                controllerAs: 'BottomCtrl'
               }
             }
           })

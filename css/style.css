@@ -27,27 +27,42 @@ a {
 
 .app {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 }
 
-.left,
-.right,
-.main {
+.top,
+.bottom {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  width: 100%;
+}
+
+.top {
+  height: 75%;
+}
+
+.bottom {
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .left,
 .right {
   display: flex;
-  flex-direction: column;
+  height: 100%;
   width: 25%;
+  flex-direction: column;
 }
 
 .main {
+  display: flex;
+  align-items: center;
+  height: 100%;
   width: 50%;
 }
 
@@ -60,7 +75,7 @@ a {
 /******************* ellipseChart *******************/
 
 .ellipseChart {
-  height: 320px;
-  width: 420px;
+  height: 160px;
+  width: 400px;
 }
 
