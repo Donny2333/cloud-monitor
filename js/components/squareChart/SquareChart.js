@@ -22,96 +22,173 @@
             deltaX = parseFloat(attrs.deltaX),
             deltaH = parseFloat(attrs.deltaH);
 
-          var dataList = [120, 100, 90, 80, 60],
-            colorList = ['#F7F7F8', '#AEADB3', '#D8D9DD'],
-            barColorList = [
-              ['#0EC17C', '#007552', '#029363'],
-              ['#BF97C4', '#8B518E', '#A068A5'],
-              ['#F47F73', '#F45938', '#EA6853'],
-              ['#F7B686', '#FFA040', '#FFAF66'],
-              ['#8FBAE5', '#638AC1', '#759FD1']
-            ];
+          var dataList, colorList, barColorList;
 
-          var updateG = g.data(dataList),
-            enterG = updateG.enter(),
-            exitG = updateG.exit();
+          function drawsvg() {
+            var updateP, enterP, exitP, _i;
 
-          var bar = enterG.append('g')
-            .attr('style', 'bar');
+            // polygon.bottom
+            for (_i = 0; _i <= 2; _i++) {
+              updateP = svg.selectAll('polygon.bottom_' + _i).data(dataList);
+              enterP = updateP.enter();
+              exitP = updateP.exit();
 
+              updateP.transition()
+                .duration(1000)
+                .ease(d3.easeCubicOut)
+                .attr("points", function (d, i) {
+                  var points = [];
+                  switch (_i) {
+                    case 0:
+                      points = _.concat([a + deltaX * i, h - d],
+                        [2 * a + deltaX * i, h - d + b],
+                        [a + deltaX * i, h - d + 2 * b],
+                        [deltaX * i, h - d + b]);
+                      break;
 
-          for (_i = 0; _i <= 2; _i++) {
-            bar.append('polygon')
-              .attr("fill", (function (d, i) {
-                return barColorList[i][_i];
-              }))
-              .attr("points", function (d, i) {
-                var points = [];
-                switch (_i) {
-                  case 0:
-                    points = _.concat([a + deltaX * i, h - d],
-                      [2 * a + deltaX * i, h - d + b],
-                      [a + deltaX * i, h - d + 2 * b],
-                      [deltaX * i, h - d + b]);
-                    break;
+                    case 1:
+                      points = _.concat([deltaX * i, b + h - d],
+                        [a + deltaX * i, 2 * b + h - d],
+                        [a + deltaX * i, h + b],
+                        [deltaX * i, h]);
+                      break;
 
-                  case 1:
-                    points = _.concat([deltaX * i, b + h - d],
-                      [a + deltaX * i, 2 * b + h - d],
-                      [a + deltaX * i, h + b],
-                      [deltaX * i, h]);
-                    break;
+                    case 2:
+                      points = _.concat([2 * a + deltaX * i, b + h - d],
+                        [a + deltaX * i, 2 * b + h - d],
+                        [a + deltaX * i, h + b],
+                        [2 * a + deltaX * i, h]);
+                      break;
 
-                  case 2:
-                    points = _.concat([2 * a + deltaX * i, b + h - d],
-                      [a + deltaX * i, 2 * b + h - d],
-                      [a + deltaX * i, h + b],
-                      [2 * a + deltaX * i, h]);
-                    break;
+                    default:
+                      break;
+                  }
+                  return points.join(' ');
+                });
 
-                  default:
-                    break;
-                }
-                return points.join(' ');
-              });
+              enterP.append('polygon')
+                .attr("fill", (function (d, i) {
+                  return barColorList[i][_i];
+                }))
+                .attr("points", function (d, i) {
+                  var points = [];
+                  switch (_i) {
+                    case 0:
+                      points = _.concat([a + deltaX * i, h - d],
+                        [2 * a + deltaX * i, h - d + b],
+                        [a + deltaX * i, h - d + 2 * b],
+                        [deltaX * i, h - d + b]);
+                      break;
+
+                    case 1:
+                      points = _.concat([deltaX * i, b + h - d],
+                        [a + deltaX * i, 2 * b + h - d],
+                        [a + deltaX * i, h + b],
+                        [deltaX * i, h]);
+                      break;
+
+                    case 2:
+                      points = _.concat([2 * a + deltaX * i, b + h - d],
+                        [a + deltaX * i, 2 * b + h - d],
+                        [a + deltaX * i, h + b],
+                        [2 * a + deltaX * i, h]);
+                      break;
+
+                    default:
+                      break;
+                  }
+                  return points.join(' ');
+                }).attr('class', 'bottom_' + _i);
+
+              exitP.remove();
+            }
+
+            // polygon.top
+            for (_i = 0; _i <= 2; _i++) {
+              updateP = svg.selectAll('polygon.top_' + _i).data(dataList);
+              enterP = updateP.enter();
+              exitP = updateP.exit();
+
+              updateP.transition()
+                .duration(1000)
+                .ease(d3.easeCubicOut)
+                .attr("points", function (d, i) {
+                  var points = [];
+                  switch (_i) {
+                    case 0:
+                      points = _.concat([a + deltaX * i, 0],
+                        [2 * a + deltaX * i, b],
+                        [a + deltaX * i, 2 * b],
+                        [deltaX * i, b]);
+                      break;
+
+                    case 1:
+                      points = _.concat([deltaX * i, b],
+                        [a + deltaX * i, 2 * b],
+                        [a + deltaX * i, 2 * b + h - d + deltaH],
+                        [deltaX * i, b + h - d + deltaH]);
+                      break;
+
+                    case 2:
+                      points = _.concat([2 * a + deltaX * i, b],
+                        [a + deltaX * i, 2 * b],
+                        [a + deltaX * i, 2 * b + h - d + deltaH],
+                        [2 * a + deltaX * i, b + h - d + deltaH]);
+                      break;
+
+                    default:
+                      break;
+                  }
+                  return points.join(' ');
+                });
+
+              enterP.append('polygon')
+                .attr("fill", (function (d, i) {
+                  return colorList[_i];
+                }))
+                .attr('opacity', 0.3)
+                .attr("points", function (d, i) {
+                  var points = [];
+                  switch (_i) {
+                    case 0:
+                      points = _.concat([a + deltaX * i, 0],
+                        [2 * a + deltaX * i, b],
+                        [a + deltaX * i, 2 * b],
+                        [deltaX * i, b]);
+                      break;
+
+                    case 1:
+                      points = _.concat([deltaX * i, b],
+                        [a + deltaX * i, 2 * b],
+                        [a + deltaX * i, 2 * b + h - d + deltaH],
+                        [deltaX * i, b + h - d + deltaH]);
+                      break;
+
+                    case 2:
+                      points = _.concat([2 * a + deltaX * i, b],
+                        [a + deltaX * i, 2 * b],
+                        [a + deltaX * i, 2 * b + h - d + deltaH],
+                        [2 * a + deltaX * i, b + h - d + deltaH]);
+                      break;
+
+                    default:
+                      break;
+                  }
+                  return points.join(' ');
+                }).attr('class', 'top_' + _i);
+
+              exitP.remove();
+            }
           }
 
-          for (var _i = 0; _i <= 2; _i++) {
-            bar.append('polygon')
-              .attr("fill", (function (d, i) {
-                return colorList[_i];
-              }))
-              .attr('opacity', 0.3)
-              .attr("points", function (d, i) {
-                var points = [];
-                switch (_i) {
-                  case 0:
-                    points = _.concat([a + deltaX * i, 0],
-                      [2 * a + deltaX * i, b],
-                      [a + deltaX * i, 2 * b],
-                      [deltaX * i, b]);
-                    break;
-
-                  case 1:
-                    points = _.concat([deltaX * i, b],
-                      [a + deltaX * i, 2 * b],
-                      [a + deltaX * i, 2 * b + h - d + deltaH],
-                      [deltaX * i, b + h - d + deltaH]);
-                    break;
-
-                  case 2:
-                    points = _.concat([2 * a + deltaX * i, b],
-                      [a + deltaX * i, 2 * b],
-                      [a + deltaX * i, 2 * b + h - d + deltaH],
-                      [2 * a + deltaX * i, b + h - d + deltaH]);
-                    break;
-
-                  default:
-                    break;
-                }
-                return points.join(' ');
-              });
-          }
+          scope.$watch(function () {
+            return ctrl.chart;
+          }, function (value) {
+            dataList = value.dataList;
+            colorList = value.colorList;
+            barColorList = value.barColorList;
+            drawsvg();
+          });
         },
         controller: function () {
 

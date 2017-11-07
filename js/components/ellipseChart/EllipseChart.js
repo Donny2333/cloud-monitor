@@ -24,15 +24,17 @@
           var dataList, colorList, barColorList;
 
           function drawsvg() {
-            var updateE1 = svg.selectAll('ellipse.top').data(dataList),
+            // ellipse.bottom
+            var updateE1 = svg.selectAll('ellipse.bottom').data(dataList),
               enterE1 = updateE1.enter(),
               exitE1 = updateE1.exit();
 
             updateE1.transition()
               .duration(1000)
-              .ease(d3.easeCubicOut).attr("cy", function (d, i) {
-              return h - d;
-            });
+              .ease(d3.easeCubicOut)
+              .attr("cy", function (d, i) {
+                return h - d;
+              });
 
             enterE1.append('ellipse')
               .attr("cx", function (d, i) {
@@ -50,22 +52,24 @@
               .attr("fill", function (d, i) {
                 return colorList[i];
               })
-              .attr('class', 'top');
+              .attr('class', 'bottom');
 
             exitE1.remove();
 
-            var updateP1 = svg.selectAll('path.top').data(dataList),
+            // path.bottom
+            var updateP1 = svg.selectAll('path.bottom').data(dataList),
               enterP1 = updateP1.enter(),
               exitP1 = updateP1.exit();
 
             updateP1.transition()
               .duration(1000)
-              .ease(d3.easeCubicOut).attr("d", function (d, i) {
-              return _.concat(['M', 2 * rx + deltaX * i, h],
-                ['A', rx, ry, 0, 0, 1, deltaX * i, h],
-                ['V', h - d],
-                ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, h - d]).join(' ');
-            });
+              .ease(d3.easeCubicOut)
+              .attr("d", function (d, i) {
+                return _.concat(['M', 2 * rx + deltaX * i, h],
+                  ['A', rx, ry, 0, 0, 1, deltaX * i, h],
+                  ['V', h - d],
+                  ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, h - d]).join(' ');
+              });
 
             enterP1.append('path')
               .attr("fill", function (d, i) {
@@ -77,37 +81,12 @@
                   ['V', h - d],
                   ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, h - d]).join(' ');
               })
-              .attr('class', 'top');
+              .attr('class', 'bottom');
 
             exitP1.remove();
 
-            var updateP2 = svg.selectAll('path.bottom').data(dataList),
-              enterP2 = updateP2.enter(),
-              exitP2 = updateP2.exit();
-
-            updateP2.transition()
-              .duration(1000)
-              .ease(d3.easeCubicOut).attr("d", function (d, i) {
-              return _.concat(['M', 2 * rx + deltaX * i, h - d + deltaH],
-                ['A', rx, ry, 0, 0, 1, deltaX * i, h - d + deltaH],
-                ['V', ry],
-                ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, ry]).join(' ');
-            });
-
-            enterP2.append('path')
-              .attr("fill", "#AEADB3")
-              .attr("opacity", 0.3)
-              .attr("d", function (d, i) {
-                return _.concat(['M', 2 * rx + deltaX * i, h - d + deltaH],
-                  ['A', rx, ry, 0, 0, 1, deltaX * i, h - d + deltaH],
-                  ['V', ry],
-                  ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, ry]).join(' ');
-              })
-              .attr('class', 'bottom');
-
-            exitP2.remove();
-
-            var updateE2 = svg.selectAll('ellipse.bottom').data(dataList),
+            // ellipse.top
+            var updateE2 = svg.selectAll('ellipse.top').data(dataList),
               enterE2 = updateE2.enter(),
               exitE2 = updateE2.exit();
 
@@ -126,9 +105,37 @@
               })
               .attr("fill", '#F7F7F8')
               .attr("opacity", 0.3)
-              .attr('class', 'bottom');
+              .attr('class', 'top');
 
             exitE2.remove();
+
+            // path.top
+            var updateP2 = svg.selectAll('path.top').data(dataList),
+              enterP2 = updateP2.enter(),
+              exitP2 = updateP2.exit();
+
+            updateP2.transition()
+              .duration(1000)
+              .ease(d3.easeCubicOut)
+              .attr("d", function (d, i) {
+                return _.concat(['M', 2 * rx + deltaX * i, h - d + deltaH],
+                  ['A', rx, ry, 0, 0, 1, deltaX * i, h - d + deltaH],
+                  ['V', ry],
+                  ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, ry]).join(' ');
+              });
+
+            enterP2.append('path')
+              .attr("fill", "#AEADB3")
+              .attr("opacity", 0.3)
+              .attr("d", function (d, i) {
+                return _.concat(['M', 2 * rx + deltaX * i, h - d + deltaH],
+                  ['A', rx, ry, 0, 0, 1, deltaX * i, h - d + deltaH],
+                  ['V', ry],
+                  ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, ry]).join(' ');
+              })
+              .attr('class', 'top');
+
+            exitP2.remove();
           }
 
           scope.$watch(function () {
