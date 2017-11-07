@@ -1,3 +1,19 @@
 <div>
-  <svg class="ellipseChart"></svg>
+  <svg class="ellipseChart">
+    <text class="title" x="130" y="20">{{EllipseChartCtrl.chart.title}}</text>
+    <text class="y-ray">
+      <tspan x="30" y="65" text-anchor="end">100</tspan>
+      <tspan x="30" y="135" text-anchor="end">50</tspan>
+      <tspan x="26" y="205" text-anchor="end">0</tspan>
+    </text>
+    <text class="x-ray" x="216" y="240" text-anchor="middle">
+      <tspan dx="32" ng-repeat="name in EllipseChartCtrl.chart.names">{{name}}</tspan>
+    </text>
+    <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="2px" stroke-dasharray="1, 4"
+          stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 60 H 500"/>
+    <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="2px" stroke-dasharray="1, 4"
+          stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 130 H 500"/>
+    <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="2px" stroke-dasharray="1, 4"
+          stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 200 H 500"/>
+  </svg>
 </div>

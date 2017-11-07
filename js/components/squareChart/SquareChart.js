@@ -19,6 +19,8 @@
             a = parseFloat(attrs.a),
             b = parseFloat(attrs.b),
             h = parseFloat(attrs.h),
+            x0 = parseFloat(attrs.x0),
+            y0 = parseFloat(attrs.y0),
             deltaX = parseFloat(attrs.deltaX),
             deltaH = parseFloat(attrs.deltaH);
 
@@ -40,24 +42,24 @@
                   var points = [];
                   switch (_i) {
                     case 0:
-                      points = _.concat([a + deltaX * i, h - d],
-                        [2 * a + deltaX * i, h - d + b],
-                        [a + deltaX * i, h - d + 2 * b],
-                        [deltaX * i, h - d + b]);
+                      points = _.concat([a + deltaX * i + x0, h - d + y0],
+                        [2 * a + deltaX * i + x0, h - d + b + y0],
+                        [a + deltaX * i + x0, h - d + 2 * b + y0],
+                        [deltaX * i + x0, h - d + b + y0]);
                       break;
 
                     case 1:
-                      points = _.concat([deltaX * i, b + h - d],
-                        [a + deltaX * i, 2 * b + h - d],
-                        [a + deltaX * i, h + b],
-                        [deltaX * i, h]);
+                      points = _.concat([deltaX * i + x0, b + h - d + y0],
+                        [a + deltaX * i + x0, 2 * b + h - d + y0],
+                        [a + deltaX * i + x0, h + b + y0],
+                        [deltaX * i + x0, h + y0]);
                       break;
 
                     case 2:
-                      points = _.concat([2 * a + deltaX * i, b + h - d],
-                        [a + deltaX * i, 2 * b + h - d],
-                        [a + deltaX * i, h + b],
-                        [2 * a + deltaX * i, h]);
+                      points = _.concat([2 * a + deltaX * i + x0, b + h - d + y0],
+                        [a + deltaX * i + x0, 2 * b + h - d + y0],
+                        [a + deltaX * i + x0, h + b + y0],
+                        [2 * a + deltaX * i + x0, h + y0]);
                       break;
 
                     default:
@@ -74,24 +76,24 @@
                   var points = [];
                   switch (_i) {
                     case 0:
-                      points = _.concat([a + deltaX * i, h - d],
-                        [2 * a + deltaX * i, h - d + b],
-                        [a + deltaX * i, h - d + 2 * b],
-                        [deltaX * i, h - d + b]);
+                      points = _.concat([a + deltaX * i + x0, h - d + y0],
+                        [2 * a + deltaX * i + x0, h - d + b + y0],
+                        [a + deltaX * i + x0, h - d + 2 * b + y0],
+                        [deltaX * i + x0, h - d + b + y0]);
                       break;
 
                     case 1:
-                      points = _.concat([deltaX * i, b + h - d],
-                        [a + deltaX * i, 2 * b + h - d],
-                        [a + deltaX * i, h + b],
-                        [deltaX * i, h]);
+                      points = _.concat([deltaX * i + x0, b + h - d + y0],
+                        [a + deltaX * i + x0, 2 * b + h - d + y0],
+                        [a + deltaX * i + x0, h + b + y0],
+                        [deltaX * i + x0, h + y0]);
                       break;
 
                     case 2:
-                      points = _.concat([2 * a + deltaX * i, b + h - d],
-                        [a + deltaX * i, 2 * b + h - d],
-                        [a + deltaX * i, h + b],
-                        [2 * a + deltaX * i, h]);
+                      points = _.concat([2 * a + deltaX * i + x0, b + h - d + y0],
+                        [a + deltaX * i + x0, 2 * b + h - d + y0],
+                        [a + deltaX * i + x0, h + b + y0],
+                        [2 * a + deltaX * i + x0, h + y0]);
                       break;
 
                     default:
@@ -116,24 +118,24 @@
                   var points = [];
                   switch (_i) {
                     case 0:
-                      points = _.concat([a + deltaX * i, 0],
-                        [2 * a + deltaX * i, b],
-                        [a + deltaX * i, 2 * b],
-                        [deltaX * i, b]);
+                      points = _.concat([a + deltaX * i + x0, y0],
+                        [2 * a + deltaX * i + x0, b + y0],
+                        [a + deltaX * i + x0, 2 * b + y0],
+                        [deltaX * i + x0, b + y0]);
                       break;
 
                     case 1:
-                      points = _.concat([deltaX * i, b],
-                        [a + deltaX * i, 2 * b],
-                        [a + deltaX * i, 2 * b + h - d + deltaH],
-                        [deltaX * i, b + h - d + deltaH]);
+                      points = _.concat([deltaX * i + x0, b + y0],
+                        [a + deltaX * i + x0, 2 * b + y0],
+                        [a + deltaX * i + x0, 2 * b + h - d + deltaH + y0],
+                        [deltaX * i + x0, b + h - d + deltaH + y0]);
                       break;
 
                     case 2:
-                      points = _.concat([2 * a + deltaX * i, b],
-                        [a + deltaX * i, 2 * b],
-                        [a + deltaX * i, 2 * b + h - d + deltaH],
-                        [2 * a + deltaX * i, b + h - d + deltaH]);
+                      points = _.concat([2 * a + deltaX * i + x0, b + y0],
+                        [a + deltaX * i + x0, 2 * b + y0],
+                        [a + deltaX * i + x0, 2 * b + h - d + deltaH + y0],
+                        [2 * a + deltaX * i + x0, b + h - d + deltaH + y0]);
                       break;
 
                     default:
@@ -151,24 +153,24 @@
                   var points = [];
                   switch (_i) {
                     case 0:
-                      points = _.concat([a + deltaX * i, 0],
-                        [2 * a + deltaX * i, b],
-                        [a + deltaX * i, 2 * b],
-                        [deltaX * i, b]);
+                      points = _.concat([a + deltaX * i + x0, y0],
+                        [2 * a + deltaX * i + x0, b + y0],
+                        [a + deltaX * i + x0, 2 * b + y0],
+                        [deltaX * i + x0, b + y0]);
                       break;
 
                     case 1:
-                      points = _.concat([deltaX * i, b],
-                        [a + deltaX * i, 2 * b],
-                        [a + deltaX * i, 2 * b + h - d + deltaH],
-                        [deltaX * i, b + h - d + deltaH]);
+                      points = _.concat([deltaX * i + x0, b + y0],
+                        [a + deltaX * i + x0, 2 * b + y0],
+                        [a + deltaX * i + x0, 2 * b + h - d + deltaH + y0],
+                        [deltaX * i + x0, b + h - d + deltaH + y0]);
                       break;
 
                     case 2:
-                      points = _.concat([2 * a + deltaX * i, b],
-                        [a + deltaX * i, 2 * b],
-                        [a + deltaX * i, 2 * b + h - d + deltaH],
-                        [2 * a + deltaX * i, b + h - d + deltaH]);
+                      points = _.concat([2 * a + deltaX * i + x0, b + y0],
+                        [a + deltaX * i + x0, 2 * b + y0],
+                        [a + deltaX * i + x0, 2 * b + h - d + deltaH + y0],
+                        [2 * a + deltaX * i + x0, b + h - d + deltaH + y0]);
                       break;
 
                     default:
@@ -192,7 +194,8 @@
         },
         controller: function () {
 
-        }
+        },
+        controllerAs: 'SquareChartCtrl'
       }
     }])
 

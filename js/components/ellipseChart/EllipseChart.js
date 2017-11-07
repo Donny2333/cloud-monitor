@@ -18,10 +18,16 @@
             rx = parseFloat(attrs.rx),
             ry = parseFloat(attrs.ry),
             h = parseFloat(attrs.h),
+            x0 = parseFloat(attrs.x0),
+            y0 = parseFloat(attrs.y0),
             deltaX = parseFloat(attrs.deltaX),
             deltaH = parseFloat(attrs.deltaH);
 
           var dataList, colorList, barColorList;
+
+          function drawText() {
+
+          }
 
           function drawsvg() {
             // ellipse.bottom
@@ -33,15 +39,15 @@
               .duration(1000)
               .ease(d3.easeCubicOut)
               .attr("cy", function (d, i) {
-                return h - d;
+                return y0 + h - d;
               });
 
             enterE1.append('ellipse')
               .attr("cx", function (d, i) {
-                return rx + i * deltaX;
+                return x0 + rx + i * deltaX;
               })
               .attr("cy", function (d, i) {
-                return h - d;
+                return y0 + h - d;
               })
               .attr("rx", function (d, i) {
                 return rx;
@@ -65,10 +71,10 @@
               .duration(1000)
               .ease(d3.easeCubicOut)
               .attr("d", function (d, i) {
-                return _.concat(['M', 2 * rx + deltaX * i, h],
-                  ['A', rx, ry, 0, 0, 1, deltaX * i, h],
-                  ['V', h - d],
-                  ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, h - d]).join(' ');
+                return _.concat(['M', x0 + 2 * rx + deltaX * i, h + y0],
+                  ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h + y0],
+                  ['V', h - d + y0],
+                  ['A', rx, ry, 0, 0, 0, x0 + 2 * rx + deltaX * i, h - d + y0]).join(' ');
               });
 
             enterP1.append('path')
@@ -76,10 +82,10 @@
                 return barColorList[i];
               })
               .attr("d", function (d, i) {
-                return _.concat(['M', 2 * rx + deltaX * i, h],
-                  ['A', rx, ry, 0, 0, 1, deltaX * i, h],
-                  ['V', h - d],
-                  ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, h - d]).join(' ');
+                return _.concat(['M', x0 + 2 * rx + deltaX * i, h + y0],
+                  ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h + y0],
+                  ['V', h - d + y0],
+                  ['A', rx, ry, 0, 0, 0, x0 + 2 * rx + deltaX * i, h - d + y0]).join(' ');
               })
               .attr('class', 'bottom');
 
@@ -92,10 +98,10 @@
 
             enterE2.append('ellipse')
               .attr("cx", function (d, i) {
-                return rx + i * deltaX;
+                return x0 + rx + i * deltaX;
               })
               .attr("cy", function (d, i) {
-                return ry;
+                return y0 + ry;
               })
               .attr("rx", function (d, i) {
                 return rx;
@@ -118,20 +124,20 @@
               .duration(1000)
               .ease(d3.easeCubicOut)
               .attr("d", function (d, i) {
-                return _.concat(['M', 2 * rx + deltaX * i, h - d + deltaH],
-                  ['A', rx, ry, 0, 0, 1, deltaX * i, h - d + deltaH],
-                  ['V', ry],
-                  ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, ry]).join(' ');
+                return _.concat(['M', x0 + 2 * rx + deltaX * i, h - d + deltaH + y0],
+                  ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h - d + deltaH + y0],
+                  ['V', ry + y0],
+                  ['A', rx, ry, 0, 0, 0, x0 + 2 * rx + deltaX * i, ry + y0]).join(' ');
               });
 
             enterP2.append('path')
               .attr("fill", "#AEADB3")
               .attr("opacity", 0.3)
               .attr("d", function (d, i) {
-                return _.concat(['M', 2 * rx + deltaX * i, h - d + deltaH],
-                  ['A', rx, ry, 0, 0, 1, deltaX * i, h - d + deltaH],
-                  ['V', ry],
-                  ['A', rx, ry, 0, 0, 0, 2 * rx + deltaX * i, ry]).join(' ');
+                return _.concat(['M', x0 + 2 * rx + deltaX * i, h - d + deltaH + y0],
+                  ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h - d + deltaH + y0],
+                  ['V', ry + y0],
+                  ['A', rx, ry, 0, 0, 0, x0 + 2 * rx + deltaX * i, ry + y0]).join(' ');
               })
               .attr('class', 'top');
 
@@ -144,12 +150,14 @@
             dataList = value.dataList;
             colorList = value.colorList;
             barColorList = value.barColorList;
+            drawText();
             drawsvg();
           });
         },
         controller: function () {
 
-        }
+        },
+        controllerAs: 'EllipseChartCtrl'
       }
     }])
 })(angular);

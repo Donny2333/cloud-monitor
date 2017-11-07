@@ -87,12 +87,39 @@ a {
 /******************* ellipseChart *******************/
 
 .ellipseChart {
-  height: 160px;
-  width: 400px;
+  height: 250px;
+  width: 450px;
+}
+
+.ellipseChart .title {
+  font-size: 22px;
+  font-family: 'Adobe Heiti Std';
+  fill: rgb(15, 158, 229);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.ellipseChart .y-ray,
+.ellipseChart .x-ray {
+  fill: #a5a6bb;
 }
 
 .squareChart {
-  height: 180px;
-  width: 400px;
+  height: 250px;
+  width: 450px;
 }
+
+.squareChart .title {
+  font-size: 22px;
+  font-family: 'Adobe Heiti Std';
+  fill: rgb(15, 158, 229);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.squareChart .y-ray,
+.squareChart .x-ray {
+  fill: #a5a6bb;
+}
+
 
