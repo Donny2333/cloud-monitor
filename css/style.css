@@ -12,7 +12,7 @@ body {
   width: 100%;
   overflow: hidden;
   background-image: url("../images/background.png");
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 
 ul,
@@ -22,6 +22,44 @@ li {
 
 a {
   text-decoration: none
+}
+
+.green {
+  fill: #57c550;
+  fill-rule: evenodd;
+  stroke: #57c550;
+  stroke-width: 2px;
+}
+
+.red {
+  fill: red;
+  fill-rule: evenodd;
+  stroke: red;
+  stroke-width: 2px;
+}
+
+.orange {
+  fill: #ff9510;
+  fill-rule: evenodd;
+  stroke: #ff9510;
+  stroke-width: 2px;
+}
+
+.breath {
+  transform-origin: 50% 50%;
+  animation: myBreath 5s infinite;
+}
+
+@keyframes myBreath {
+  from {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.3, 1.3);
+  }
+  to {
+    transform: scale(1, 1);
+  }
 }
 
 /******************* app *******************/
@@ -61,11 +99,20 @@ a {
 .main {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   width: 50%;
 }
 
 /******************* main *******************/
+
+.main .bg {
+  height: 525px;
+  width: 525px;
+  background-image: url("../images/main.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 
 /******************* left *******************/
 
@@ -80,46 +127,45 @@ a {
   height: 100%;
   width: 100%;
   background-image: url("../images/bottom.png");
-  background-size: 100%;
   background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 /******************* ellipseChart *******************/
 
-.ellipseChart {
+.ellipseChart,
+.squareChart {
   height: 250px;
   width: 450px;
 }
 
-.ellipseChart .title {
+.ellipseChart .title,
+.squareChart .title {
   font-size: 22px;
-  font-family: 'Adobe Heiti Std';
   fill: rgb(15, 158, 229);
   line-height: 1.2;
   text-align: center;
 }
 
 .ellipseChart .y-ray,
-.ellipseChart .x-ray {
-  fill: #a5a6bb;
-}
-
-.squareChart {
-  height: 250px;
-  width: 450px;
-}
-
-.squareChart .title {
-  font-size: 22px;
-  font-family: 'Adobe Heiti Std';
-  fill: rgb(15, 158, 229);
-  line-height: 1.2;
-  text-align: center;
-}
-
+.ellipseChart .x-ray,
 .squareChart .y-ray,
 .squareChart .x-ray {
   fill: #a5a6bb;
 }
 
+/******************* directedGraph *******************/
+
+.directedGraph {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.directedGraph svg {
+  position: absolute;
+}
 

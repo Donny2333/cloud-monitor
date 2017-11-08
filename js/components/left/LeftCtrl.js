@@ -18,16 +18,6 @@
             "width": "100%",
             "float": "none"
           }
-        }, {
-          "type": "pie",
-          "id": 1,
-          "title": "主机状态",
-          "dataSource": "json/data3.json",
-          "style": {
-            "height": "220px",
-            "width": "100%",
-            "float": "none"
-          }
         }];
 
         charts.map(function (chart) {

@@ -373,9 +373,6 @@
         this.update = function (where) {
           Http.get(this.dataSource).then(function (res) {
             var option = {
-              tooltip: {
-                formatter: '{a} <br/>{b} : {c}%'
-              },
               toolbox: {
                 feature: {
                   restore: {},
@@ -383,17 +380,25 @@
                 },
                 show: false
               },
+              textStyle: {
+                fontSize: '100px'
+              },
               series: [{
                 type: 'gauge',
                 name: this.title,
-                detail: {formatter: '{value}%'},
+                detail: {
+                  formatter: '{value}',
+                  textStyle: {
+                    fontSize: 40,
+                    fontWeight: 'bolder'
+                  }
+                },
                 data: [{
                   name: res.data.data[0][res.data.x],
                   value: res.data.data[0][res.data.y]
                 }],
                 title: {
-                  // fontSize: 14,
-                  color: '#a5a6bb'
+                  show: false
                 },
                 axisLine: {
                   lineStyle: {
@@ -402,7 +407,9 @@
                   }
                 },
                 axisLabel: {
-                  // show: false
+                  textStyle: {
+                    fontSize: 14
+                  }
                 },
                 pointer: {
                   // width: 5
