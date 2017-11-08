@@ -41,33 +41,33 @@
           barColorList: barColorList2
         }];
 
-        $interval(function () {
-          var rand = Math.random() * 20;
-          this.charts = [{
-            title: 'TOP 5主机CPU利用率',
-            names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
-            dataList: [70 + rand, 50 + rand, 40 + rand, 30 + rand, 25 + rand],
-            colorList: colorList1,
-            barColorList: barColorList1
-          }, {
-            title: 'TOP 5主机内存利用率',
-            names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
-            dataList: [70 + rand, 50 + rand, 40 + rand, 30 + rand, 25 + rand],
-            colorList: colorList2,
-            barColorList: barColorList2
-          }, {
-            title: 'TOP 5虚拟机CPU利用率',
-            names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
-            dataList: [50 + rand, 40 + rand, 30 + rand, 25 + rand, 20 + rand],
-            colorList: colorList1,
-            barColorList: barColorList1
-          }, {
-            title: 'TOP 5虚拟机内存利用率',
-            names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
-            dataList: [50 + rand, 40 + rand, 30 + rand, 25 + rand, 20 + rand],
-            colorList: colorList2,
-            barColorList: barColorList2
-          }]
-        }.bind(this), 3000);
+        // $interval(function () {
+        //   var rand = Math.random() * 20;
+        //   this.charts = [{
+        //     title: 'TOP 5主机CPU利用率',
+        //     names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
+        //     dataList: [70 + rand, 50 + rand, 40 + rand, 30 + rand, 25 + rand],
+        //     colorList: colorList1,
+        //     barColorList: barColorList1
+        //   }, {
+        //     title: 'TOP 5主机内存利用率',
+        //     names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
+        //     dataList: [70 + rand, 50 + rand, 40 + rand, 30 + rand, 25 + rand],
+        //     colorList: colorList2,
+        //     barColorList: barColorList2
+        //   }, {
+        //     title: 'TOP 5虚拟机CPU利用率',
+        //     names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
+        //     dataList: [50 + rand, 40 + rand, 30 + rand, 25 + rand, 20 + rand],
+        //     colorList: colorList1,
+        //     barColorList: barColorList1
+        //   }, {
+        //     title: 'TOP 5虚拟机内存利用率',
+        //     names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
+        //     dataList: [50 + rand, 40 + rand, 30 + rand, 25 + rand, 20 + rand],
+        //     colorList: colorList2,
+        //     barColorList: barColorList2
+        //   }]
+        // }.bind(this), 3000);
       }])
 })(angular);

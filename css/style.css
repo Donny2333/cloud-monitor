@@ -169,3 +169,20 @@ a {
   position: absolute;
 }
 
+.radar {
+  position: absolute;
+  top: -50px;
+  left: 270px;
+  transform-origin: 3px 56%;
+  animation: myRotate 2s infinite linear;
+}
+
+@keyframes myRotate {
+  from {
+    transform: rotate(0) scale(1.25);
+  }
+  to {
+    transform: rotate(360deg) scale(1.25);
+  }
+}
+
