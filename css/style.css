@@ -11,7 +11,6 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-
 }
 
 ul,
@@ -25,6 +24,15 @@ a {
 
 .blue {
   color: #0f9ee5;
+  fill: rgb(15, 158, 229);
+}
+
+.white {
+  color: white;
+}
+
+.gray {
+  color: #a5a6bb;
 }
 
 .yellow {
@@ -72,6 +80,10 @@ a {
   }
 }
 
+.title {
+  font-size: 22px;
+}
+
 /******************* app *******************/
 
 .app {
@@ -101,10 +113,9 @@ a {
 .left,
 .right {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 25%;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .main {
@@ -127,15 +138,14 @@ a {
 
 /******************* left *******************/
 
-.system,
-.state {
-  height: 50%;
-  padding: 10% 12%;
+.system {
+  height: 40%;
+  padding: 10%;
 }
 
-.system .title,
-.state .title {
-  font-size: 22px;
+.state {
+  height: 60%;
+  padding: 15% 10% 20%;
 }
 
 .state {
@@ -267,6 +277,77 @@ a {
 
 /******************* right *******************/
 
+.alert {
+  height: 30%;
+  padding: 10% 20% 0;
+}
+
+.alert .detail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-around;
+  margin-top: 20px;
+  height: 120px;
+  width: 100%;
+}
+
+.detail .disaster,
+.detail .serious,
+.detail .warning,
+.detail .information {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  width: 180px;
+  border-radius: 4px;
+  padding-left: 20px;
+  padding-right: 40px;
+  font-size: 18px;
+}
+
+.detail .disaster {
+  background-color: #f45938;
+}
+
+.detail .serious {
+  background-color: #ffa040;
+}
+
+.detail .warning {
+  background-color: #029363;
+}
+
+.detail .information {
+  background-color: #638ac1;
+}
+
+.detail .disaster:before {
+  content: '紧急';
+}
+
+.detail .serious:before {
+  content: '次要';
+}
+
+.detail .warning:before {
+  content: '重要';
+}
+
+.detail .information:before {
+  content: '提示';
+}
+
+.usage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 60%;
+  padding: 0 12%;
+}
+
 /******************* bottom *******************/
 
 .bottom .bg {
@@ -288,19 +369,22 @@ a {
   width: 450px;
 }
 
-.ellipseChart .title,
-.squareChart .title {
-  font-size: 22px;
-  fill: rgb(15, 158, 229);
-  line-height: 1.2;
-  text-align: center;
-}
-
 .ellipseChart .y-ray,
 .ellipseChart .x-ray,
 .squareChart .y-ray,
 .squareChart .x-ray {
   fill: #a5a6bb;
+}
+
+/******************* circleChart *******************/
+
+.circleChart {
+  display: flex;
+  align-items: center;
+}
+
+.circleChart .info {
+  width: 80%;
 }
 
 /******************* directedGraph *******************/

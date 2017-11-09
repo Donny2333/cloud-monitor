@@ -1,22 +1,28 @@
-<div>
-  <svg height="300px" width="300px" viewBox="0,0,500,500">
+<div class="circleChart">
+  <svg height="150px" width="150px" viewBox="0,0,300,300">
     <circle fill="none" stroke="rgba(225, 231, 240, .12)" stroke-width="20" stroke-miterlimit="10" cx="131.288"
             cy="130.569" r="119.5"/>
-    <linearGradient id="grad_red" gradientUnits="userSpaceOnUse" x1="1.7884" y1="130.5692" x2="260.7884" y2="130.5692">
-      <stop offset="0" style="stop-color:#FE3F58"/>
-      <stop offset="1" style="stop-color:#FF980D"/>
+    <linearGradient id="grad_green" gradientUnits="userSpaceOnUse" x1="1.7884" y1="130.5692" x2="260.7884"
+                    y2="130.5692">
+      <stop offset="0" style="stop-color:#58c84d"/>
+      <stop offset="1" style="stop-color:#5486ae"/>
     </linearGradient>
     <linearGradient id="grad_orange" gradientUnits="userSpaceOnUse" x1="1.7884" y1="130.5692" x2="260.7884"
                     y2="130.5692">
-      <stop offset="0" style="stop-color:#FE3F58"/>
-      <stop offset="1" style="stop-color:#FF980D"/>
+      <stop offset="0" style="stop-color:#fe4453"/>
+      <stop offset="1" style="stop-color:#ff9b0a"/>
     </linearGradient>
-    <linearGradient id="grad_green" gradientUnits="userSpaceOnUse" x1="1.7884" y1="130.5692" x2="260.7884"
+    <linearGradient id="grad_blue" gradientUnits="userSpaceOnUse" x1="1.7884" y1="130.5692" x2="260.7884"
                     y2="130.5692">
-      <stop offset="0" style="stop-color:#FE3F58"/>
-      <stop offset="1" style="stop-color:#FF980D"/>
+      <stop offset="0" style="stop-color:#228cd4"/>
+      <stop offset="1" style="stop-color:#09c8f4"/>
     </linearGradient>
-    <path fill="none" stroke="url(#grad_red)" stroke-width="20" stroke-linecap="round" stroke-miterlimit="10" d="M250.788,130.569
+    <path fill="none" stroke="url(#grad_blue)" stroke-width="20" stroke-linecap="round" stroke-miterlimit="10" d="M250.788,130.569
 	c0,65.998-53.502,119.5-119.5,119.5s-119.5-53.502-119.5-119.5s53.502-119.5,119.5-119.5"/>
   </svg>
+  <div class="info">
+    <div class="title blue">CPU使用情况</div>
+    <div class="total gray">物理总数：200</div>
+    <div class="gray">分配数量：100</div>
+  </div>
 </div>
