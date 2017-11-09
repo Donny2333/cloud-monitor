@@ -19,7 +19,8 @@
             views: {
               left: {
                 templateUrl: 'js/components/left/Left.html',
-                controller: 'LeftCtrl'
+                controller: 'LeftCtrl',
+                controllerAs: 'LeftCtrl'
               },
               main: {
                 templateUrl: 'js/components/main/Main.html',

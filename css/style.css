@@ -23,24 +23,35 @@ a {
   text-decoration: none
 }
 
+.blue {
+  color: #0f9ee5;
+}
+
+.yellow {
+  color: #ffde00;
+}
+
 .green {
+  color: #57c550;
   fill: #57c550;
-  fill-rule: evenodd;
   stroke: #57c550;
+  fill-rule: evenodd;
   stroke-width: 2px;
 }
 
 .red {
-  fill: red;
+  color: #f45938;
+  fill: #f45938;
+  stroke: #f45938;
   fill-rule: evenodd;
-  stroke: red;
   stroke-width: 2px;
 }
 
 .orange {
+  color: #ff9510;
   fill: #ff9510;
-  fill-rule: evenodd;
   stroke: #ff9510;
+  fill-rule: evenodd;
   stroke-width: 2px;
 }
 
@@ -93,6 +104,7 @@ a {
   height: 100%;
   width: 25%;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .main {
@@ -115,6 +127,144 @@ a {
 
 /******************* left *******************/
 
+.system,
+.state {
+  height: 50%;
+  padding: 10% 12%;
+}
+
+.system .title,
+.state .title {
+  font-size: 22px;
+}
+
+.state {
+  display: flex;
+}
+
+.state .host,
+.state .virtual {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  padding-right: 20px;
+}
+
+.state .chart {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.chart .detail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 18px;
+}
+
+.chart .detail :before {
+  height: 50px;
+  content: '';
+}
+
+.detail .running,
+.detail .trouble,
+.detail .stopped {
+  display: block;
+  position: relative;
+}
+
+.detail .running:before,
+.detail .trouble:before,
+.detail .stopped:before {
+  position: absolute;
+  left: -15px;
+  width: 100%;
+  content: ' ';
+  border-left: 2px solid;
+}
+
+.detail .running:after {
+  display: block;
+  content: '运行';
+}
+
+.detail .trouble:after {
+  display: block;
+  content: '故障';
+}
+
+.detail .stopped:after {
+  display: block;
+  content: '停止';
+}
+
+.host .value,
+.virtual .value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -38px;
+  margin-left: -15px;
+  font-size: 26px;
+}
+
+.value:before,
+.value:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.value:before {
+  animation: circleRotate 5s infinite linear;
+}
+
+.value:after {
+  animation: _circleRotate 2s infinite linear;
+}
+
+@keyframes circleRotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes _circleRotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.value:before {
+  height: 64px;
+  width: 64px;
+  margin-top: -15.5px;
+  margin-left: -16.5px;
+  background-image: url("../images/circle_inner.png");
+}
+
+.value:after {
+  height: 200px;
+  width: 200px;
+  margin-top: -80px;
+  margin-left: -89px;
+  background-image: url("../images/circle_outer.png");
+}
+
 /******************* right *******************/
 
 /******************* bottom *******************/
@@ -127,7 +277,7 @@ a {
   width: 100%;
   background-image: url("../images/bottom.png");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 
 /******************* ellipseChart *******************/
@@ -173,7 +323,7 @@ a {
   top: -50px;
   left: 270px;
   transform-origin: 3px 56%;
-  animation: myRotate 2s infinite linear;
+  animation: myRotate 20s infinite linear;
 }
 
 @keyframes myRotate {

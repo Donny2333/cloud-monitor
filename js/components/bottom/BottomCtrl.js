@@ -69,5 +69,6 @@
         //     barColorList: barColorList2
         //   }]
         // }.bind(this), 3000);
+
       }])
 })(angular);

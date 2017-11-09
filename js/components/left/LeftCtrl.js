@@ -4,15 +4,33 @@
   angular.module('cloud-monitor.controllers')
     .controller('LeftCtrl', ['$scope', '$http', '$timeout', 'URL_CFG', 'Http', 'EChartsFactory',
       function ($scope, $http, $timeout, URL_CFG, Http, EChartsFactory) {
-        var vm = $scope.vm = {
-          charts: []
-        };
+        this.charts = [];
 
         var charts = [{
           "type": "gauge",
           "id": 0,
           "title": "系统健康度",
           "dataSource": "json/data5.json",
+          "style": {
+            "height": "350px",
+            "width": "100%",
+            "float": "none"
+          }
+        }, {
+          "type": "pie",
+          "id": 3,
+          "title": "主机状态",
+          "dataSource": "json/data3.json",
+          "style": {
+            "height": "350px",
+            "width": "100%",
+            "float": "none"
+          }
+        }, {
+          "type": "pie",
+          "id": 3,
+          "title": "虚拟机状态",
+          "dataSource": "json/data3.json",
           "style": {
             "height": "350px",
             "width": "100%",
@@ -31,7 +49,7 @@
           newChart.style = chart.style;
 
           newChart.update(chart);
-          vm.charts.push(newChart);
-        })
+          this.charts.push(newChart);
+        }.bind(this))
       }])
 })(angular);

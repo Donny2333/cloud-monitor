@@ -443,41 +443,24 @@
             }.bind(this));
 
             var option = {
-              tooltip: {
-                trigger: 'item',
-                formatter: '{a} <br/>{b} : {c} ({d}%)'
-              },
               color: ['#f45938', '#ff9510', '#57c550'],
               series: [{
                 name: this.title,
                 type: 'pie',
-                radius: [20, 80],
+                radius: [60, 80],
                 center: ['50%', '50%'],
                 data: seriesData.sort(function (a, b) {
                   return a.value - b.value
                 }),
-                roseType: 'radius',
                 label: {
                   normal: {
-                    textStyle: {
-                      color: 'rgba(255, 255, 255, 0.5)'
-                    }
+                    show: false
                   }
                 },
                 labelLine: {
                   normal: {
-                    lineStyle: {
-                      color: 'rgba(255, 255, 255, 0.3)'
-                    },
-                    smooth: 0.2,
-                    length: 10,
-                    length2: 20
+                    show: false
                   }
-                },
-                animationType: 'scale',
-                animationEasing: 'elasticOut',
-                animationDelay: function (idx) {
-                  return Math.random() * 200;
                 }
               }]
             };

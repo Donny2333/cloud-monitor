@@ -10,6 +10,7 @@
         restrict: 'E',
         template: '<div ng-style="myStyle"></div>',
         replace: true,
+        transclude: true,
         scope: {
           data: '=',
           myStyle: '='
