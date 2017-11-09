@@ -2,10 +2,10 @@
   'use strict';
 
   angular.module('cloud-monitor.directives')
-    .directive('pieChart', ['$interval', function ($interval) {
+    .directive('circleChart', ['$interval', function ($interval) {
       return {
         restrict: 'E',
-        templateUrl: 'js/components/pieChart/PieChart.html',
+        templateUrl: 'js/components/circleChart/CircleChart.html',
         replace: true,
         bindToController: true,
         link: function (scope, element, attrs, ctrl) {
@@ -14,7 +14,7 @@
         controller: function () {
 
         },
-        controllerAs: 'PieChartCtrl'
+        controllerAs: 'CircleChartCtrl'
       }
     }])
 })(angular);
