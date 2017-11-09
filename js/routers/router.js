@@ -28,7 +28,8 @@
               },
               right: {
                 templateUrl: 'js/components/right/Right.html',
-                controller: 'RightCtrl'
+                controller: 'RightCtrl',
+                controllerAs: 'RightCtrl'
               },
               bottom: {
                 templateUrl: 'js/components/bottom/Bottom.html',

@@ -8,7 +8,6 @@
   </div>
 </div>
 <div class="usage">
-  <circle-chart></circle-chart>
-  <circle-chart></circle-chart>
-  <circle-chart></circle-chart>
+  <circle-chart ng-repeat="usage in RightCtrl.usageList" title="usage.title" color="usage.color"
+                detail="usage.detail"></circle-chart>
 </div>
