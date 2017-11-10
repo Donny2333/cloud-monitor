@@ -27,7 +27,10 @@ a {
 
 .blue {
   color: #0f9ee5;
-  fill: rgb(15, 158, 229);
+  fill: #0f9ee5;
+  stroke: #0f9ee5;
+  fill-rule: evenodd;
+  stroke-width: 2px;
 }
 
 .white {
@@ -528,8 +531,8 @@ a {
   flex-direction: column;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  padding-left: 10%;
   font-size: 14px;
+  padding: 20px 0 20px 10%;
 }
 
 /******************* directedGraph *******************/

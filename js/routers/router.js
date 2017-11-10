@@ -24,7 +24,8 @@
               },
               main: {
                 templateUrl: 'js/components/main/Main.html',
-                controller: 'MainCtrl'
+                controller: 'MainCtrl',
+                controllerAs: 'MainCtrl'
               },
               right: {
                 templateUrl: 'js/components/right/Right.html',

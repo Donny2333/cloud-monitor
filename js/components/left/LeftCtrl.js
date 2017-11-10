@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('LeftCtrl', ['$scope', '$http', '$timeout', 'URL_CFG', 'Http', 'EChartsFactory',
-      function ($scope, $http, $timeout, URL_CFG, Http, EChartsFactory) {
+    .controller('LeftCtrl', ['$scope', 'Monitor', '$timeout', 'EChartsFactory',
+      function ($scope, Monitor, $timeout, EChartsFactory) {
         this.charts = [];
 
         var charts = [{
