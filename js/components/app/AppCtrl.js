@@ -100,7 +100,7 @@
 
           renderer.render(scene, camera);
 
-          count += 0.1;
+          count += 0.02;
         }
       }])
 })(angular);
