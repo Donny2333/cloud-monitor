@@ -11,7 +11,7 @@
             totalName: '物理总数',
             totalValue: 100,
             usageName: '虚拟总数',
-            usageValue: 30
+            usageValue: 15
           }
         }, {
           title: '内存使用情况',
@@ -20,7 +20,7 @@
             totalName: '物理内存',
             totalValue: 100,
             usageName: '分配数量',
-            usageValue: 30
+            usageValue: 60
           }
         }, {
           title: '存储使用情况',
@@ -29,7 +29,7 @@
             totalName: '存储总数',
             totalValue: 100,
             usageName: '可用总数',
-            usageValue: 30
+            usageValue: 80
           }
         }]
       }])

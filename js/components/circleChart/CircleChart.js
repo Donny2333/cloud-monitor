@@ -34,9 +34,9 @@
               return 'url(' + ctrl.color + ')';
             })
             .attr('d', function (d, i) {
-
-              return _.concat(['M', cx + r, r],
-                ['A', r, r, 0, 0, 1, cx + Math.cos(360 * d / 100) * r, cy + Math.sin(360 * d / 100) * r]
+              var angle = 2 * Math.PI * d / 100;
+              return _.concat(['M', cx + r, cy],
+                ['A', r, r, 0, Math.floor(d / 50), 1, cx + Math.cos(angle) * r, cy + Math.sin(angle) * r]
               ).join(' ');
             });
 
