@@ -10,8 +10,8 @@
         bindToController: true,
         link: function (scope, element, attrs, ctrl) {
           var svg = d3.select(element[0]).selectAll('svg.directed'),
-            rx = 500,
-            ry = 400,
+            rx = 480,
+            ry = 360,
             cr = 120,
             r = 30,
             v = [[0.5, 0.25], [0.75, 0.18], [1, 0.15], [1.25, 0.18], [1.5, 0.25],
@@ -108,7 +108,7 @@
                 return rx * d[0];
               })
               .attr('y', function (d, i) {
-                return ry * d[1] + 10;
+                return ry * d[1] + 7;
               })
               .text(function (d, i) {
                 return i;
@@ -119,14 +119,14 @@
                 return rx * d[0];
               })
               .attr('y', function (d, i) {
-                return ry * d[1] + 10;
+                return ry * d[1] + 7;
               })
               .text(function (d, i) {
                 return i + 1;
               })
               .attr('text-anchor', 'middle')
               .style('fill', 'white')
-              .style('font-size', '20px');
+              .style('font-size', '14px');
 
             exitT.remove();
           }

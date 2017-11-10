@@ -11,7 +11,6 @@
         var container;
         var camera, scene, renderer;
 
-
         var particles, particle, count = 0;
 
         var windowHalfX = window.innerWidth / 2;
@@ -36,7 +35,6 @@
 
           var PI2 = Math.PI * 2;
           var material = new THREE.SpriteCanvasMaterial({
-
             color: 0x3399cc,
             program: function (context) {
               context.beginPath();
@@ -62,8 +60,6 @@
 
           container.appendChild(renderer.domElement);
 
-          //
-
           window.addEventListener('resize', onWindowResize, false);
         }
 
@@ -76,8 +72,6 @@
 
           renderer.setSize(window.innerWidth, window.innerHeight);
         }
-
-        //
 
         function animate() {
           requestAnimationFrame(animate);

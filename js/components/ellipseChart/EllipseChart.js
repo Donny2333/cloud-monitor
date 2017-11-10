@@ -6,7 +6,7 @@
     .directive('ellipseChart', ['$timeout', function ($timeout) {
       return {
         restrict: 'E',
-        templateUrl: 'js/components/ellipseChart/ellipseChart.html',
+        templateUrl: 'js/components/ellipseChart/EllipseChart.html',
         transclude: true,
         replace: true,
         scope: {
