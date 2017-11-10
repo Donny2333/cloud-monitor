@@ -269,6 +269,7 @@ a {
   width: 100%;
   content: ' ';
   border-left: 2px solid;
+  height: 40px;
 }
 
 .detail .running:after {

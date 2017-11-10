@@ -10,7 +10,7 @@
           "type": "gauge",
           "id": 0,
           "title": "系统健康度",
-          "dataSource": "json/data5.json",
+          "dataSource": "http://10.127.3.38:8088/monitor/v1.0/systemstate/statistics",
           "style": {
             "height": "350px",
             "width": "100%",
@@ -18,9 +18,9 @@
           }
         }, {
           "type": "pie",
-          "id": 3,
+          "id": 1,
           "title": "主机状态",
-          "dataSource": "json/data3.json",
+          "dataSource": "http://10.127.3.38:8088/monitor/v1.0/hoststate/statistics",
           "style": {
             "height": "350px",
             "width": "100%",
@@ -30,7 +30,7 @@
           "type": "pie",
           "id": 3,
           "title": "虚拟机状态",
-          "dataSource": "json/data3.json",
+          "dataSource": "http://10.127.3.38:8088/monitor/v1.0/vm/statistics",
           "style": {
             "height": "350px",
             "width": "100%",
@@ -49,6 +49,10 @@
           newChart.style = chart.style;
 
           newChart.update(chart);
+          chart.total = newChart.total;
+          chart.normal = newChart.normal;
+          chart.abnormal = newChart.abnormal;
+          chart.poweroff = newChart.poweroff;
           this.charts.push(newChart);
         }.bind(this))
       }])

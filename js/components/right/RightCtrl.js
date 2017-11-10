@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('RightCtrl', ['$scope', '$http', '$interval', 'URL_CFG',
-      function ($scope, $http, $interval, URL_CFG) {
+    .controller('RightCtrl', ['$scope', '$http', '$interval', 'Monitor',
+      function ($scope, $http, $interval, Monitor) {
         this.usageList = [{
           title: 'CPU使用情况',
           color: '#grad_green',
@@ -33,10 +33,14 @@
           }
         }];
 
-        $interval(function () {
-          _.map(this.usageList, function (usage) {
-            usage.detail.usageValue = Math.floor(Math.random() * 100);
-          })
-        }.bind(this), 5000);
+        // $interval(function () {
+        //   _.map(this.usageList, function (usage) {
+        //     usage.detail.usageValue = Math.floor(Math.random() * 100);
+        //   })
+        // }.bind(this), 5000);
+
+        Monitor.hyperVisors().then(function(res) {
+          console.log(res.data);
+        })
       }])
 })(angular);

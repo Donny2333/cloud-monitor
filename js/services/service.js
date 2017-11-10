@@ -76,6 +76,15 @@
         },
         hostHealth: function () {
           return Http.get(URL_CFG.api + 'hosthealth/statistics/32');
+        },
+        hostState: function () {
+          return Http.get(URL_CFG.api + 'hoststate/statistics');
+        },
+        vm: function () {
+          return Http.get(URL_CFG.api + 'vm/statistics');
+        },
+        hyperVisors: function () {
+          return Http.get(URL_CFG.api + 'hypervisors/statistics');
         }
       }
     }])
@@ -245,8 +254,8 @@
                   }
                 },
                 data: [{
-                  name: res.data.data[0][res.data.x],
-                  value: res.data.data[0][res.data.y]
+                  name: '系统健康度',
+                  value: res.data.systemstate
                 }],
                 title: {
                   show: false
@@ -277,25 +286,30 @@
         this.update = function (where) {
 
           Http.get(this.dataSource).then(function (res) {
-            var seriesData = [];
-
-            res.data.data.map(function (item) {
-              seriesData.push({
-                name: item[res.data.x],
-                value: item[res.data.y]
-              });
-            }.bind(this));
+            var seriesData = [
+              {
+                name: '运行',
+                value: res.data.normal
+              }, {
+                name: '故障',
+                value: res.data.abnormal
+              }, {
+                name: '停止',
+                value: res.data.poweroff
+              }];
 
             var option = {
-              color: ['#f45938', '#ff9510', '#57c550'],
+              color: ['#57c550', '#ff9510', '#f45938'],
+              tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+              },
               series: [{
                 name: this.title,
                 type: 'pie',
                 radius: [60, 80],
                 center: ['50%', '50%'],
-                data: seriesData.sort(function (a, b) {
-                  return a.value - b.value
-                }),
+                data: seriesData,
                 label: {
                   normal: {
                     show: false
@@ -310,6 +324,10 @@
             };
 
             this.data = option;
+            this.total = res.data.normal + res.data.abnormal + res.data.poweroff;
+            this.normal = res.data.normal;
+            this.abnormal = res.data.abnormal;
+            this.poweroff = res.data.poweroff;
             return where.data = option;
           }.bind(this), function (err) {
             console.log(err);
