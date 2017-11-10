@@ -121,6 +121,7 @@ a {
 }
 
 .main {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -136,6 +137,12 @@ a {
   background-image: url("../images/main.png");
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.main .bg .title {
+  position: absolute;
+  top: 7%;
+  left: 5%;
 }
 
 /******************* left *******************/
@@ -302,7 +309,7 @@ a {
   align-items: center;
   justify-content: space-between;
   height: 40px;
-  width: 200px;
+  width: 45%;
   border-radius: 4px;
   padding-left: 20px;
   padding-right: 40px;
@@ -394,7 +401,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding-left: 40px;
+  padding-left: 10%;
 }
 
 /******************* directedGraph *******************/
