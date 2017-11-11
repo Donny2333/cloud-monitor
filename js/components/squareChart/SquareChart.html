@@ -1,21 +1,23 @@
-<div>
+<div class="squareChartBox">
   <svg class="squareChart" viewBox="80,-30,300,300">
-    <text class="blue" x="150" y="15">
-      <tspan>{{SquareChartCtrl.chart.title}}</tspan>
+    <text class="title blue" x="150" y="20" style="font-size: 16px;font-weight: lighter">
+      {{SquareChartCtrl.chart.title}}
     </text>
     <text class="y-ray">
-      <tspan x="30" y="75" text-anchor="end">100</tspan>
+      <tspan x="30" y="75" text-anchor="end" style="">100</tspan>
       <tspan x="30" y="140" text-anchor="end">50</tspan>
       <tspan x="26" y="205" text-anchor="end">0</tspan>
-    </text>
-    <text class="x-ray" x="216" y="240" text-anchor="middle">
-      <tspan dx="32" ng-repeat="name in SquareChartCtrl.chart.names">{{name}}</tspan>
     </text>
     <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="2px" stroke-dasharray="1, 4"
           stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 70 H 460"/>
     <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="2px" stroke-dasharray="1, 4"
-          stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 135 H 460"/>
+          stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 127.5 H 460"/>
     <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="2px" stroke-dasharray="1, 4"
-          stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 200 H 460"/>
+          stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 190 H 460"/>
   </svg>
+  <div class="x-ray">
+    <span ng-repeat="name in SquareChartCtrl.chart.names">
+      {{name}}
+    </span>
+  </div>
 </div>

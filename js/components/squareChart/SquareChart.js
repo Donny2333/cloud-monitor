@@ -189,6 +189,7 @@
             dataList = value.dataList;
             colorList = value.colorList;
             barColorList = value.barColorList;
+            console.log(dataList);
             drawsvg();
           });
         },

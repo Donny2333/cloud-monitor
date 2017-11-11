@@ -2,45 +2,61 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('RightCtrl', ['$scope', '$http', '$interval', 'Monitor',
-      function ($scope, $http, $interval, Monitor) {
-        this.usageList = [{
-          title: 'CPU使用情况',
-          color: '#grad_green',
-          detail: {
-            totalName: '物理总数',
-            totalValue: 100,
-            usageName: '虚拟总数',
-            usageValue: 15
-          }
-        }, {
-          title: '内存使用情况',
-          color: '#grad_orange',
-          detail: {
-            totalName: '物理内存',
-            totalValue: 100,
-            usageName: '分配数量',
-            usageValue: 60
-          }
-        }, {
-          title: '存储使用情况',
-          color: '#grad_blue',
-          detail: {
-            totalName: '存储总数',
-            totalValue: 100,
-            usageName: '可用总数',
-            usageValue: 80
-          }
-        }];
+    .controller('RightCtrl', ['$interval', 'Monitor', function ($interval, Monitor) {
+      this.detail = {
+        disaster: 0,
+        serious: 0,
+        warning: 0,
+        information: 0
+      };
 
-        // $interval(function () {
-        //   _.map(this.usageList, function (usage) {
-        //     usage.detail.usageValue = Math.floor(Math.random() * 100);
-        //   })
-        // }.bind(this), 5000);
+      this.usageList = [{
+        title: 'CPU使用情况',
+        color: '#grad_green',
+        detail: {
+          totalName: '物理总数',
+          totalValue: 100,
+          usageName: '虚拟总数',
+          usageValue: 0
+        }
+      }, {
+        title: '内存使用情况',
+        color: '#grad_orange',
+        detail: {
+          totalName: '物理内存',
+          totalValue: 100,
+          usageName: '分配数量',
+          usageValue: 0
+        }
+      }, {
+        title: '存储使用情况',
+        color: '#grad_blue',
+        detail: {
+          totalName: '存储总数',
+          totalValue: 100,
+          usageName: '可用总数',
+          usageValue: 0
+        }
+      }];
 
-        Monitor.hyperVisors().then(function(res) {
-          console.log(res.data);
-        })
-      }])
+      Monitor.alarm().then(function (res) {
+        this.detail = {
+          disaster: res.data.disaster,
+          serious: res.data.serious,
+          warning: res.data.warning,
+          information: res.data.information
+        };
+      }.bind(this));
+
+      Monitor.hyperVisors().then(function (res) {
+        this.usageList[0].detail.totalValue = res.data.vcpus;
+        this.usageList[0].detail.usageValue = res.data.vcpus_used;
+
+        this.usageList[1].detail.totalValue = res.data.memory_mb;
+        this.usageList[1].detail.usageValue = res.data.memory_mb_used;
+
+        this.usageList[2].detail.totalValue = res.data.local_gb;
+        this.usageList[2].detail.usageValue = res.data.local_gb_used;
+      }.bind(this))
+    }])
 })(angular);

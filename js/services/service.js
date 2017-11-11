@@ -83,8 +83,23 @@
         vm: function () {
           return Http.get(URL_CFG.api + 'vm/statistics');
         },
+        alarm: function () {
+          return Http.get(URL_CFG.api + 'alarm/statistics');
+        },
         hyperVisors: function () {
           return Http.get(URL_CFG.api + 'hypervisors/statistics');
+        },
+        cpu: function () {
+          return Http.get(URL_CFG.api + 'cpu/topn');
+        },
+        mem: function () {
+          return Http.get(URL_CFG.api + 'mem/topn');
+        },
+        vm_cpu: function () {
+          return Http.get(URL_CFG.api + 'vm_cpu/topn');
+        },
+        vm_mem: function () {
+          return Http.get(URL_CFG.api + 'vm_mem/topn');
         }
       }
     }])
