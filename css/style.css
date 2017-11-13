@@ -145,8 +145,9 @@ a {
 }
 
 .bottom {
+  position: relative;
   height: 30%;
-  padding: 0 30px 20px;
+  display: flex;
 }
 
 .left,
@@ -383,7 +384,7 @@ a {
 /******************* right *******************/
 
 .alert {
-  height: 30%;
+  height: 35%;
   padding: 10% 20% 0 10%;
 }
 
@@ -477,7 +478,19 @@ a {
 /******************* bottom *******************/
 
 .bottom .bg {
+  padding: 0 30px 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.bottom .inner {
   position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-image: url("../images/bottom.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -486,11 +499,6 @@ a {
   align-items: center;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  height: 100%;
-  width: 100%;
-  background-image: url("../images/bottom.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 /******************* ellipseChart *******************/
@@ -498,13 +506,15 @@ a {
 .ellipseChartBox,
 .squareChartBox {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .ellipseChart,
 .squareChart {
   position: relative;
-  height: 250px;
-  width: 450px;
+  height: 100%;
+  width: 100%;
 }
 
 .ellipseChart .y-ray,
@@ -518,18 +528,18 @@ a {
   position: absolute;
   display: flex;
   bottom: 8%;
-  left: 10%;
-  width: 80%;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5px 0 30px;
   color: #a5a6bb;
   font-size: 12px;
+  padding-left: 12%;
+  padding-right: 5%;
 }
 
 .x-ray span {
   display: block;
-  width: 50px;
+  width: 20%;
   white-space: nowrap;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
@@ -543,12 +553,11 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 150px;
+  height: 100%;
   width: 100%;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding-left: 10px;
 }
 
 .circleChart .info {
@@ -572,7 +581,6 @@ a {
 /******************* directedGraph *******************/
 
 .directedGraph {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -585,15 +593,18 @@ a {
   -ms-flex-pack: center;
   justify-content: center;
 }
-.radar-ball{
-  width:200px ;
-  height:200px ;
+
+.radar-ball {
+  width: 200px;
+  height: 200px;
 }
+
 .directedGraph svg {
   position: absolute;
 
 }
-.directedGraph-circle{
+
+.directedGraph-circle {
   background: transparent;
   position: absolute;
   width: 260px;
@@ -608,6 +619,7 @@ a {
   -moz-animation: directedGraph-circle 10s infinite linear;
 
 }
+
 @-webkit-keyframes directedGraph-circle {
   from {
     -webkit-transform: rotate(0);
@@ -618,7 +630,8 @@ a {
     transform: rotate(-360deg);
   }
 }
-.directedGraph-circle1{
+
+.directedGraph-circle1 {
   background: transparent;
   position: absolute;
   width: 220px;
@@ -644,6 +657,7 @@ a {
     transform: rotate(180deg);
   }
 }
+
 .radar {
   position: absolute;
   width: 600px;

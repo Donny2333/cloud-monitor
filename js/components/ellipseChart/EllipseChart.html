@@ -1,5 +1,5 @@
 <div class="ellipseChartBox">
-  <svg class="ellipseChart" viewBox="80,-30,300,300">
+  <svg class="ellipseChart" viewBox="80,-30,300,300" height="100%" width="100%">
     <text class="title blue" x="150" y="20" style="font-size: 16px;font-weight: lighter">
       {{EllipseChartCtrl.chart.title}}
     </text>
@@ -16,8 +16,6 @@
           stroke-linecap="round" stroke-linejoin="miter" opacity="0.2" fill="rgb(20, 20, 20)" d="M40, 200 H 460"/>
   </svg>
   <div class="x-ray">
-    <span ng-repeat="name in EllipseChartCtrl.chart.names">
-      {{name}}
-    </span>
+    <span ng-repeat="name in EllipseChartCtrl.chart.names">{{name}}</span>
   </div>
 </div>

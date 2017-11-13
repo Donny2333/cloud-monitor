@@ -14,6 +14,12 @@
         },
         bindToController: true,
         link: function (scope, element, attrs, ctrl) {
+          var height = $(element[0]).height();
+          var width = $(element[0]).width();
+
+          console.log(height);
+          console.log(width);
+
           var svg = d3.select(element[0]).selectAll('.squareChart'),
             g = svg.selectAll('g.bar'),
             a = parseFloat(attrs.a),
