@@ -14,8 +14,8 @@
         link: function (scope, element, attrs, ctrl) {
           var svg = d3.select(element[0]).selectAll('svg.directed'),
             rx = 480,
-            ry = 360,
-            cr = 120,
+            ry = 300,
+            cr = 80,
             r = 30,
             v = [[0.5, 0.25], [0.75, 0.18], [1, 0.15], [1.25, 0.18], [1.5, 0.25],
               [0.3, 0.4], [0.5, 0.5], [0.75, 0.35], [1.25, 0.35], [1.5, 0.5], [1.7, 0.4],

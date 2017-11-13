@@ -316,8 +316,8 @@ a {
 }
 
 .value:after {
-  -webkit-animation: _circleRotate 2s infinite linear;
-  animation: _circleRotate 2s infinite linear;
+  -webkit-animation: _circleRotate 8s infinite linear;
+  animation: _circleRotate 8s infinite linear;
 }
 
 @-webkit-keyframes circleRotate {
@@ -585,17 +585,71 @@ a {
   -ms-flex-pack: center;
   justify-content: center;
 }
-
+.radar-ball{
+  width:200px ;
+  height:200px ;
+}
 .directedGraph svg {
   position: absolute;
+
+}
+.directedGraph-circle{
+  background: transparent;
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border: 5px solid transparent;
+  border-left-color: rgba(225, 231, 240, 0.12);
+  border-right-color: rgba(225, 231, 240, 0.12);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: directedGraph-circle 10s infinite linear;
+  -webkit-animation: directedGraph-circle 10s infinite linear;
+  -moz-animation: directedGraph-circle 10s infinite linear;
+
+}
+@-webkit-keyframes directedGraph-circle {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+.directedGraph-circle1{
+  background: transparent;
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 10px solid transparent;
+  border-left-color: rgba(225, 231, 240, 0.12);
+  border-right-color: rgba(225, 231, 240, 0.12);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: directedGraph-circle1 5s infinite linear;
+  -webkit-animation: directedGraph-circle1 5s infinite linear;
+  -moz-animation: directedGraph-circle1 5s infinite linear;
+
 }
 
+@-webkit-keyframes directedGraph-circle1 {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}
 .radar {
   position: absolute;
-  top: -50px;
-  left: 270px;
-  -webkit-transform-origin: 3px 56%;
-  transform-origin: 3px 56%;
+  width: 600px;
+  height: 600px;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
   -webkit-animation: myRotate 20s infinite linear;
   animation: myRotate 20s infinite linear;
 }
