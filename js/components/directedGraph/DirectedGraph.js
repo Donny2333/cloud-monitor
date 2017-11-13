@@ -13,9 +13,9 @@
         bindToController: true,
         link: function (scope, element, attrs, ctrl) {
           var svg = d3.select(element[0]).selectAll('svg.directed'),
-            x0 = 30,
-            y0 = 60,
-            rx = 450,
+            x0 = 0,
+            y0 = 0,
+            rx = 480,
             ry = 300,
             cr = 120,
             r = 25,
