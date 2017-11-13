@@ -35,7 +35,9 @@
 
           var PI2 = Math.PI * 2;
           var material = new THREE.SpriteCanvasMaterial({
-            color: 0x3399cc,
+            //color: 0x3399cc,
+            color: new THREE.Color(0x3399cc),
+            opacity: 0.2,
             program: function (context) {
               context.beginPath();
               context.arc(0, 0, 0.5, 0, PI2, true);
@@ -94,7 +96,7 @@
 
           renderer.render(scene, camera);
 
-          count += 0.005;
+          count += 0.01;
         }
       }])
 })(angular);

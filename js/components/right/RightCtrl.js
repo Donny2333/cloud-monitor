@@ -14,27 +14,27 @@
         title: 'CPU使用情况',
         color: '#grad_green',
         detail: {
-          totalName: '物理总数',
+          totalName: '总数',
           totalValue: 100,
-          usageName: '虚拟总数',
+          usageName: '已分配',
           usageValue: 0
         }
       }, {
         title: '内存使用情况',
         color: '#grad_orange',
         detail: {
-          totalName: '物理内存',
+          totalName: '总数',
           totalValue: 100,
-          usageName: '分配数量',
+          usageName: '已分配',
           usageValue: 0
         }
       }, {
         title: '存储使用情况',
         color: '#grad_blue',
         detail: {
-          totalName: '存储总数',
+          totalName: '总数',
           totalValue: 100,
-          usageName: '可用总数',
+          usageName: '已分配',
           usageValue: 0
         }
       }];
