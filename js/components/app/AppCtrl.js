@@ -94,7 +94,7 @@
 
           renderer.render(scene, camera);
 
-          count += 0.02;
+          count += 0.005;
         }
       }])
 })(angular);
