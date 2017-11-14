@@ -264,25 +264,30 @@
                 detail: {
                   formatter: '{value}',
                   textStyle: {
-                    fontSize: 40,
+                    fontSize: 25,
                     fontWeight: 'bolder'
                   }
                 },
                 data: [{
                   name: '系统健康度',
-                  value: res.data.systemstate
+                  // value: res.data.systemstate
+                  value: 90
                 }],
                 title: {
                   show: false
                 },
                 axisLine: {
                   lineStyle: {
+                    width: 20,
                     color: [[0.2, '#ff9510'], [0.8, '#2483cf'], [1, '#57c550']]
                   }
                 },
+                splitLine: {
+                  length: 20
+                },
                 axisLabel: {
                   textStyle: {
-                    fontSize: 14
+                    fontSize: 10
                   }
                 }
               }]
@@ -322,7 +327,7 @@
               series: [{
                 name: this.title,
                 type: 'pie',
-                radius: [60, 80],
+                radius: [40, 55],
                 center: ['50%', '50%'],
                 data: seriesData,
                 label: {
