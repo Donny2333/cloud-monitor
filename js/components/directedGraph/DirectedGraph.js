@@ -78,8 +78,9 @@
                 }
               });
 
-            enterC.append('circle')
-              .attr('cx', function (d, i) {
+            var circle = enterC.append('circle');
+
+            circle.attr('cx', function (d, i) {
                 return rx * d[0] + x0;
               })
               .attr('cy', function (d, i) {
@@ -91,7 +92,6 @@
               .attr('r', function (d, i) {
                 return r * Math.sqrt(Math.pow(d[0] - 1, 2) + Math.pow(d[1] - 1, 2));
               })
-              .attr('class', 'breath')
               .attr('stroke', function (d, i) {
                 if (dataList[i] < 20) {
                   return 'url(#grad_orange)';
@@ -109,8 +109,16 @@
                 } else {
                   return 'url(#grad_green)';
                 }
-
               });
+
+            circle.append('animate')
+              .attr('attributeName', 'r')
+              .attr('dur', '5s')
+              .attr('values', function (d, i) {
+                var _r = r * Math.sqrt(Math.pow(d[0] - 1, 2) + Math.pow(d[1] - 1, 2));
+                return [_r, 1.3 * _r, _r].join(';');
+              })
+              .attr('repeatCount', 'indefinite');
 
             exitC.remove();
 
