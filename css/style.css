@@ -410,7 +410,7 @@ a {
   -ms-flex-line-pack: distribute;
   align-content: space-around;
   margin-top: 20px;
-  height: 120px;
+  height: 100px;
   width: 100%;
 }
 
@@ -427,7 +427,7 @@ a {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  height: 40px;
+  height: 36px;
   width: 45%;
   border-radius: 4px;
   padding-left: 20px;
@@ -527,6 +527,16 @@ a {
   width: 100%;
 }
 
+.ellipseChartBox .title,
+.squareChartBox .title {
+  top: 10%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  position: absolute;
+}
+
 .ellipseChart .y-ray,
 .ellipseChart .x-ray,
 .squareChart .y-ray,
@@ -584,7 +594,7 @@ a {
   flex-direction: column;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  font-size: 14px;
+  font-size: 12px;
   padding: 20px 0 20px 10%;
 }
 
