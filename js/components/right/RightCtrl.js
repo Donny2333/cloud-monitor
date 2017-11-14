@@ -12,7 +12,7 @@
 
       this.usageList = [{
         title: 'CPU使用情况',
-        color: '#grad_green',
+        color: '#58c84d',
         detail: {
           totalName: '总数',
           totalValue: 100,
@@ -21,7 +21,7 @@
         }
       }, {
         title: '内存使用情况',
-        color: '#grad_orange',
+        color: '#ff9b0a',
         detail: {
           totalName: '总数',
           totalValue: 100,
@@ -30,7 +30,7 @@
         }
       }, {
         title: '存储使用情况',
-        color: '#grad_blue',
+        color: '#09c8f4',
         detail: {
           totalName: '总数',
           totalValue: 100,

@@ -9,11 +9,10 @@
         "type": "gauge",
         "id": 0,
         "title": "系统健康度",
-        "dataSource": "http://10.127.3.38:8088/monitor/v1.0/systemstate/statistics",
+        "dataSource": "json/data1.json",
         "style": {
-          "height": "350px",
-          "width": "100%",
-          "float": "none"
+          "height": "100%",
+          "width": "100%"
         }
       }, {
         "type": "pie",
@@ -21,9 +20,8 @@
         "title": "主机状态",
         "dataSource": "http://10.127.3.38:8088/monitor/v1.0/hoststate/statistics",
         "style": {
-          "height": "350px",
-          "width": "100%",
-          "float": "none"
+          "height": "100%",
+          "width": "100%"
         }
       }, {
         "type": "pie",
@@ -31,9 +29,8 @@
         "title": "虚拟机状态",
         "dataSource": "http://10.127.3.38:8088/monitor/v1.0/vm/statistics",
         "style": {
-          "height": "350px",
-          "width": "100%",
-          "float": "none"
+          "height": "100%",
+          "width": "100%"
         }
       }];
 

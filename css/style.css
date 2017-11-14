@@ -197,27 +197,32 @@ a {
 /******************* left *******************/
 
 .system {
-  height: 40%;
-  padding: 10%;
-}
-
-.state {
-  height: 60%;
-  padding: 15% 10% 20%;
+  height: 50%;
+  padding: 10% 10% 0 10%;
 }
 
 .state {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 50%;
+  width: 100%;
+
+}
+
+.state .inner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 0 10%;
 }
 
 .state .host,
 .state .virtual {
-  position: relative;
   height: 100%;
   width: 50%;
-  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .state .virtual {
@@ -233,25 +238,29 @@ a {
   -ms-flex-direction: column;
   flex-direction: column;
   position: relative;
-  height: 100%;
+  flex: auto;
+  height: 70%;
   width: 100%;
 }
 
-.chart .detail {
+.state .detail {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  font-size: 14px;
+  font-size: 10px;
+  height: 30%;
+  padding-left: 10px;
+  padding-right: 5px;
 }
 
-.chart .detail :before {
-  height: 50px;
+.state .detail :before {
+  height: 32px;
   content: '';
 }
 
@@ -260,17 +269,18 @@ a {
 .detail .stopped {
   display: block;
   position: relative;
+  font-size: 10px;
 }
 
 .detail .running:before,
 .detail .trouble:before,
 .detail .stopped:before {
   position: absolute;
-  left: -15px;
+  left: -10px;
   width: 100%;
   content: ' ';
-  border-left: 2px solid;
-  height: 40px;
+  border-left: 1px solid;
+  height: 35px;
 }
 
 .detail .running:after {
@@ -291,13 +301,15 @@ a {
 .host .value,
 .virtual .value {
   display: block;
-  width: 30px;
+  line-height: 50px;
+  height: 50px;
+  width: 50px;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -22px;
-  margin-left: -12px;
-  font-size: 14px;
+  margin-top: -25px;
+  margin-left: -25px;
+  font-size: 16px;
   text-align: center;
 }
 
@@ -309,6 +321,20 @@ a {
   content: '';
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.value:before {
+  height: 100%;
+  width: 100%;
+  background-image: url("../images/circle_inner.png");
+}
+
+.value:after {
+  height: 260%;
+  width: 260%;
+  margin-top: -40px;
+  margin-left: -40px;
+  background-image: url("../images/circle_outer.png");
 }
 
 .value:before {
@@ -365,22 +391,6 @@ a {
   }
 }
 
-.value:before {
-  height: 64px;
-  width: 64px;
-  margin-top: -23px;
-  margin-left: -17px;
-  background-image: url("../images/circle_inner.png");
-}
-
-.value:after {
-  height: 200px;
-  width: 200px;
-  margin-top: -90px;
-  margin-left: -88px;
-  background-image: url("../images/circle_outer.png");
-}
-
 /******************* right *******************/
 
 .alert {
@@ -400,7 +410,7 @@ a {
   -ms-flex-line-pack: distribute;
   align-content: space-around;
   margin-top: 20px;
-  height: 120px;
+  height: 100px;
   width: 100%;
 }
 
@@ -417,7 +427,7 @@ a {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  height: 40px;
+  height: 36px;
   width: 45%;
   border-radius: 4px;
   padding-left: 20px;
@@ -517,6 +527,16 @@ a {
   width: 100%;
 }
 
+.ellipseChartBox .title,
+.squareChartBox .title {
+  top: 10%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  position: absolute;
+}
+
 .ellipseChart .y-ray,
 .ellipseChart .x-ray,
 .squareChart .y-ray,
@@ -574,7 +594,7 @@ a {
   flex-direction: column;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  font-size: 14px;
+  font-size: 12px;
   padding: 20px 0 20px 10%;
 }
 

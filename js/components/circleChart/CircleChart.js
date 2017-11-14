@@ -41,7 +41,7 @@
               .attr('stroke-linecap', 'round')
               .attr('stroke-miterlimit', 10)
               .attr('stroke', function (d, i) {
-                return 'url(' + ctrl.color + ')';
+                return ctrl.color;
               })
               .attr('d', function (d, i) {
                 var angle = 2 * Math.PI * d / 100;
