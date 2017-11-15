@@ -3,6 +3,8 @@
 
   angular.module('cloud-monitor.controllers')
     .controller('BottomCtrl', ['$interval', 'Monitor', function ($interval, Monitor) {
+      var that = this;
+
       var colorList1 = ['#F7F7F8', '#AEADB3', '#D8D9DD'],
         colorList2 = ['#0EC17C', '#C085C6', '#F47F73', '#F7B686', '#8FBAE5'],
         barColorList1 = [
@@ -14,7 +16,7 @@
         ],
         barColorList2 = ['#007552', '#8B518E', '#F45938', '#FFA040', '#638AC1'];
 
-      this.charts = [{
+      that.charts = [{
         title: 'TOP 5 主机CPU利用率',
         names: ['主机一', '主机二', '主机三', '主机四', '主机五'],
         dataList: [30, 30, 30, 30, 30],
@@ -40,85 +42,84 @@
         barColorList: barColorList2
       }];
 
-      Monitor.cpu().then(function (res) {
-        var that = this;
+      function reload() {
+        Monitor.cpu().then(function (res) {
+          var names = [];
+          var dataList = [];
 
-        var names = [];
-        var dataList = [];
+          res.data.json.map(function (item) {
+            names.push(item.name);
+            dataList.push(30 + item.value * 1.2);
+          });
 
-        res.data.json.map(function (item) {
-          names.push(item.name);
-          dataList.push(30 + item.value * 1.2);
+          that.charts[0] = {
+            title: that.charts[0].title,
+            names: names,
+            dataList: dataList,
+            colorList: colorList1,
+            barColorList: barColorList1
+          }
         });
 
-        that.charts[0] = {
-          title: that.charts[0].title,
-          names: names,
-          dataList: dataList,
-          colorList: colorList1,
-          barColorList: barColorList1
-        }
-      }.bind(this));
+        Monitor.mem().then(function (res) {
+          var names = [];
+          var dataList = [];
 
-      Monitor.mem().then(function (res) {
-        var that = this;
+          res.data.json.map(function (item) {
+            names.push(item.name);
+            dataList.push(15 + item.value * 1.25);
+          });
 
-        var names = [];
-        var dataList = [];
-
-        res.data.json.map(function (item) {
-          names.push(item.name);
-          dataList.push(15 + item.value * 1.25);
+          that.charts[1] = {
+            title: that.charts[1].title,
+            names: names,
+            dataList: dataList,
+            colorList: colorList2,
+            barColorList: barColorList2
+          }
         });
 
-        that.charts[1] = {
-          title: that.charts[1].title,
-          names: names,
-          dataList: dataList,
-          colorList: colorList2,
-          barColorList: barColorList2
-        }
-      }.bind(this));
+        Monitor.vm_cpu().then(function (res) {
+          var names = [];
+          var dataList = [];
 
-      Monitor.vm_cpu().then(function (res) {
-        var that = this;
+          res.data.json.map(function (item) {
+            names.push(item.name);
+            dataList.push(30 + item.value * 1.2);
+          });
 
-        var names = [];
-        var dataList = [];
-
-        res.data.json.map(function (item) {
-          names.push(item.name);
-          dataList.push(30 + item.value * 1.2);
+          that.charts[2] = {
+            title: that.charts[2].title,
+            names: names,
+            dataList: dataList,
+            colorList: colorList1,
+            barColorList: barColorList1
+          }
         });
 
-        that.charts[2] = {
-          title: that.charts[2].title,
-          names: names,
-          dataList: dataList,
-          colorList: colorList1,
-          barColorList: barColorList1
-        }
-      }.bind(this));
+        Monitor.vm_mem().then(function (res) {
+          var names = [];
+          var dataList = [];
 
-      Monitor.vm_mem().then(function (res) {
-        var that = this;
+          res.data.json.map(function (item) {
+            names.push(item.name);
+            dataList.push(15 + item.value * 1.25);
+          });
 
-        var names = [];
-        var dataList = [];
-
-        res.data.json.map(function (item) {
-          names.push(item.name);
-          dataList.push(15 + item.value * 1.25);
+          that.charts[3] = {
+            title: that.charts[3].title,
+            names: names,
+            dataList: dataList,
+            colorList: colorList2,
+            barColorList: barColorList2
+          }
         });
+      }
 
-        that.charts[3] = {
-          title: that.charts[3].title,
-          names: names,
-          dataList: dataList,
-          colorList: colorList2,
-          barColorList: barColorList2
-        }
-      }.bind(this));
+      reload();
 
+      $interval(function () {
+        reload();
+      }, 30000);
     }])
 })(angular);

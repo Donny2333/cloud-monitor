@@ -2,8 +2,10 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('LeftCtrl', ['Monitor', '$timeout', 'EChartsFactory', function (Monitor, $timeout, EChartsFactory) {
-      this.charts = [];
+    .controller('LeftCtrl', ['Monitor', '$interval', 'EChartsFactory', function (Monitor, $interval, EChartsFactory) {
+      var that = this;
+
+      that.charts = [];
 
       var charts = [{
         "type": "gauge",
@@ -34,22 +36,30 @@
         }
       }];
 
-      charts.map(function (chart) {
-        var newChart = EChartsFactory(chart.type);
-        newChart.id = chart.id;
-        newChart.title = chart.title;
-        newChart.type = chart.type;
-        newChart.dataSource = chart.dataSource;
-        newChart.x = chart.x;
-        newChart.y = chart.y;
-        newChart.style = chart.style;
+      function reload() {
+        charts.map(function (chart) {
+          var newChart = EChartsFactory(chart.type);
+          newChart.id = chart.id;
+          newChart.title = chart.title;
+          newChart.type = chart.type;
+          newChart.dataSource = chart.dataSource;
+          newChart.x = chart.x;
+          newChart.y = chart.y;
+          newChart.style = chart.style;
 
-        newChart.update(chart);
-        chart.total = newChart.total;
-        chart.normal = newChart.normal;
-        chart.abnormal = newChart.abnormal;
-        chart.poweroff = newChart.poweroff;
-        this.charts.push(newChart);
-      }.bind(this))
+          newChart.update(chart);
+          chart.total = newChart.total;
+          chart.normal = newChart.normal;
+          chart.abnormal = newChart.abnormal;
+          chart.poweroff = newChart.poweroff;
+          that.charts.push(newChart);
+        })
+      }
+
+      reload();
+
+      $interval(function () {
+        reload();
+      }, 30000);
     }])
 })(angular);

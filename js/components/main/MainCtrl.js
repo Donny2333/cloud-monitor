@@ -3,23 +3,13 @@
 
   angular.module('cloud-monitor.controllers')
     .controller('MainCtrl', ['$interval', 'Monitor', function ($interval, Monitor) {
-      // for (var i = 0, list = []; i < 32; i++) {
-      //   list.push(Math.random() * 100);
-      // }
-      //
-      // this.data = list;
+      var that = this;
+      that.data = [];
 
-      // $interval(function () {
-      //   for (var i = 0, list = []; i < 32; i++) {
-      //     list[i] = Math.random() * 100;
-      //   }
-      //
-      //   this.data = list;
-      // }.bind(this), 10000);
-      this.data = [];
-
-      Monitor.hostHealth().then(function (res) {
-        this.data = res.data.json;
-      }.bind(this));
+      $interval(function () {
+        Monitor.hostHealth().then(function (res) {
+          that.data = res.data.json;
+        });
+      }, 5000);
     }])
 })(angular);

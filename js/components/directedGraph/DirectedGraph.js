@@ -28,13 +28,18 @@
               [0.5, 1.75], [0.75, 1.82], [1, 1.85], [1.25, 1.82], [1.5, 1.75]],
             _d = [],
             dataList = ctrl.data,
-            i;
+            i, j, flag;
 
           function move() {
             for (i = 0; i < v.length; i++) {
               _d[i] = [];
               _d[i][0] = v[i][0] + (Math.random() - 1) % 0.1;
               _d[i][1] = v[i][1] + (Math.random() - 1) % 0.1;
+
+              for (j = 0; j < _d[i].length; j++) {
+                flag = _d[i][j] < 1 ? 1 : -1;
+                _d[i][j] = _d[i][j] + flag * Math.log(Math.abs(_d[i][j] - 1)) / Math.log(Math.pow(10, 50));
+              }
             }
           }
 
@@ -81,8 +86,8 @@
             var circle = enterC.append('circle');
 
             circle.attr('cx', function (d, i) {
-                return rx * d[0] + x0;
-              })
+              return rx * d[0] + x0;
+            })
               .attr('cy', function (d, i) {
                 return ry * d[1] + y0;
               })

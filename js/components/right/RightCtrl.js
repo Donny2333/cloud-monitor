@@ -3,14 +3,16 @@
 
   angular.module('cloud-monitor.controllers')
     .controller('RightCtrl', ['$interval', 'Monitor', function ($interval, Monitor) {
-      this.detail = {
+      var that = this;
+
+      that.detail = {
         disaster: 0,
         serious: 0,
         warning: 0,
         information: 0
       };
 
-      this.usageList = [{
+      that.usageList = [{
         title: 'CPU使用情况',
         color: '#58c84d',
         detail: {
@@ -39,24 +41,32 @@
         }
       }];
 
-      Monitor.alarm().then(function (res) {
-        this.detail = {
-          disaster: res.data.disaster,
-          serious: res.data.serious,
-          warning: res.data.warning,
-          information: res.data.information
-        };
-      }.bind(this));
+      function reload() {
+        Monitor.alarm().then(function (res) {
+          that.detail = {
+            disaster: res.data.disaster,
+            serious: res.data.serious,
+            warning: res.data.warning,
+            information: res.data.information
+          };
+        });
 
-      Monitor.hyperVisors().then(function (res) {
-        this.usageList[0].detail.totalValue = res.data.vcpus;
-        this.usageList[0].detail.usageValue = res.data.vcpus_used;
+        Monitor.hyperVisors().then(function (res) {
+          that.usageList[0].detail.totalValue = res.data.vcpus;
+          that.usageList[0].detail.usageValue = res.data.vcpus_used;
 
-        this.usageList[1].detail.totalValue = res.data.memory_mb;
-        this.usageList[1].detail.usageValue = res.data.memory_mb_used;
+          that.usageList[1].detail.totalValue = res.data.memory_mb;
+          that.usageList[1].detail.usageValue = res.data.memory_mb_used;
 
-        this.usageList[2].detail.totalValue = res.data.local_gb;
-        this.usageList[2].detail.usageValue = res.data.local_gb_used;
-      }.bind(this))
+          that.usageList[2].detail.totalValue = res.data.local_gb;
+          that.usageList[2].detail.usageValue = res.data.local_gb_used;
+        })
+      }
+
+      reload();
+
+      $interval(function () {
+        reload();
+      }, 30000);
     }])
 })(angular);
