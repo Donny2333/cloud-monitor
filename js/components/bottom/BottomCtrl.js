@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('BottomCtrl', ['$interval', 'Monitor', function ($interval, Monitor) {
+    .controller('BottomCtrl', ['$interval', 'Monitor', 'Http', function ($interval, Monitor, Http) {
       var that = this;
 
       var colorList1 = ['#F7F7F8', '#AEADB3', '#D8D9DD'],
@@ -59,6 +59,24 @@
             colorList: colorList1,
             barColorList: barColorList1
           }
+        }, function (err) {
+          Http.get('json/top5_cpu_usage.json').then(function (res) {
+            var names = [];
+            var dataList = [];
+
+            res.data.json.map(function (item) {
+              names.push(item.name);
+              dataList.push(30 + item.value * 1.2);
+            });
+
+            that.charts[0] = {
+              title: that.charts[0].title,
+              names: names,
+              dataList: dataList,
+              colorList: colorList1,
+              barColorList: barColorList1
+            }
+          })
         });
 
         Monitor.mem().then(function (res) {
@@ -77,6 +95,24 @@
             colorList: colorList2,
             barColorList: barColorList2
           }
+        }, function (err) {
+          Http.get('json/top5_memory_usage.json').then(function (res) {
+            var names = [];
+            var dataList = [];
+
+            res.data.json.map(function (item) {
+              names.push(item.name);
+              dataList.push(15 + item.value * 1.25);
+            });
+
+            that.charts[1] = {
+              title: that.charts[1].title,
+              names: names,
+              dataList: dataList,
+              colorList: colorList2,
+              barColorList: barColorList2
+            }
+          });
         });
 
         Monitor.vm_cpu().then(function (res) {
@@ -95,6 +131,24 @@
             colorList: colorList1,
             barColorList: barColorList1
           }
+        }, function (err) {
+          Http.get('json/top5_vm_cpu_usage.json').then(function (res) {
+            var names = [];
+            var dataList = [];
+
+            res.data.json.map(function (item) {
+              names.push(item.name);
+              dataList.push(30 + item.value * 1.2);
+            });
+
+            that.charts[2] = {
+              title: that.charts[2].title,
+              names: names,
+              dataList: dataList,
+              colorList: colorList1,
+              barColorList: barColorList1
+            }
+          })
         });
 
         Monitor.vm_mem().then(function (res) {
@@ -113,6 +167,24 @@
             colorList: colorList2,
             barColorList: barColorList2
           }
+        }, function (err) {
+          Http.get('json/top5_vm_memory_usage.json').then(function (res) {
+            var names = [];
+            var dataList = [];
+
+            res.data.json.map(function (item) {
+              names.push(item.name);
+              dataList.push(15 + item.value * 1.25);
+            });
+
+            that.charts[3] = {
+              title: that.charts[3].title,
+              names: names,
+              dataList: dataList,
+              colorList: colorList2,
+              barColorList: barColorList2
+            }
+          })
         });
       }
 
@@ -121,5 +193,7 @@
       $interval(function () {
         reload();
       }, 30000);
-    }])
+    }
+
+    ])
 })(angular);

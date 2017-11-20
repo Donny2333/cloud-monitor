@@ -99,11 +99,11 @@
               })
               .attr('stroke', function (d, i) {
                 if (dataList[i] < 20) {
-                  return 'url(#grad_orange)';
+                  return '#ff9510';
                 } else if (dataList[i] < 80) {
-                  return 'url(#blue)';
+                  return '#0f9ee5';
                 } else {
-                  return 'url(#grad_green)';
+                  return '#57c550';
                 }
               })
               .attr('fill', function (d, i) {

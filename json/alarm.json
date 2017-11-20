@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "data": [
+    {
+      "disaster": 0,
+      "serious": 2,
+      "warning": 0,
+      "information": 3
+    }
+  ]
+}

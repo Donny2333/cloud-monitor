@@ -1,12 +1,10 @@
 {
   "status": "success",
   "msg": "请求成功",
-  "x": "country",
-  "y": "value",
   "data": [
     {
       "country": "系统健康度",
-      "value": "85"
+      "value": "95"
     }
   ]
 }

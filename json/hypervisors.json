@@ -1,0 +1,36 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "data": [
+    {
+      "title": "CPU使用情况",
+      "color": "#58c84d",
+      "detail": {
+        "totalName": "总数",
+        "totalValue": 256,
+        "usageName": "已分配",
+        "usageValue": 128
+      }
+    },
+    {
+      "title": "内存使用情况",
+      "color": "#ff9b0a",
+      "detail": {
+        "totalName": "总数",
+        "totalValue": 7680,
+        "usageName": "已分配",
+        "usageValue": 3600
+      }
+    },
+    {
+      "title": "存储使用情况",
+      "color": "#09c8f4",
+      "detail": {
+        "totalName": "总数",
+        "totalValue": 81920,
+        "usageName": "已分配",
+        "usageValue": 35340
+      }
+    }
+  ]
+}
