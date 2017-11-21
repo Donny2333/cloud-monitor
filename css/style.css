@@ -115,9 +115,10 @@ a {
 
 /******************* app *******************/
 .monitor-title{
-  padding:10px 20px;
   color: #0f9ee5;
   font-size: 42px;
+  position: absolute;
+  top:5px;
 }
 
 
@@ -181,7 +182,7 @@ a {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  height: 100%;
+  height: 90%;
   width: 50%;
 }
 
@@ -197,7 +198,7 @@ a {
 
 .main .bg .title {
   position: absolute;
-  top: 7%;
+  top: 6%;
   left: 5%;
 }
 
@@ -205,7 +206,7 @@ a {
 
 .system {
   height: 50%;
-  padding: 5% 10% 0 10%;
+  padding: 10% 10% 0 10%;
 }
 
 .state {
@@ -629,7 +630,7 @@ a {
 .directedGraph svg {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 10px;
 }
 
 .directedGraph-circle {
