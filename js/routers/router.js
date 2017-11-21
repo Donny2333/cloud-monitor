@@ -5,7 +5,7 @@
     .config(['$urlRouterProvider', '$locationProvider', '$stateProvider',
       function ($urlRouterProvider, $locationProvider, $stateProvider) {
         $urlRouterProvider.otherwise('/app');
-        // $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
         $stateProvider
           .state('app', {

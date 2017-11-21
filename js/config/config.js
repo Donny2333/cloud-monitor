@@ -2,7 +2,7 @@
   "use strict";
 
   var prodURL = 'https://0.0.0.0/',
-    devURL = 'http://10.127.3.38:8088/',
+    devURL = '',
     Urls = {
       Prod_Cfg: {
         api: prodURL + 'apis/monitor/v1.0/'
