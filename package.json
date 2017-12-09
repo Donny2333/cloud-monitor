@@ -3,14 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "dev": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Donny",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.18.8",
+    "eslint": "^4.13.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
-    "gulp-uglify": "^2.1.2"
+    "gulp-uglify": "^2.1.2",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "angular": "^1.6.7",
+    "angular-animate": "^1.6.7",
+    "angular-route": "^1.6.7",
+    "angular-ui-router": "^0.4.3",
+    "d3": "^4.12.0",
+    "echarts": "^3.8.5",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "three.js": "^0.77.1"
   }
 }

@@ -5,12 +5,12 @@
     .config(['$urlRouterProvider', '$locationProvider', '$stateProvider',
       function ($urlRouterProvider, $locationProvider, $stateProvider) {
         $urlRouterProvider.otherwise('/app');
-        $locationProvider.html5Mode(true);
+        // $locationProvider.html5Mode(true);
 
         $stateProvider
           .state('app', {
             abstract: true,
-            templateUrl: 'js/components/app/App.html',
+            templateUrl: 'src/js/components/app/App.html',
             controller: 'AppCtrl'
 
           })
@@ -18,22 +18,22 @@
             url: '/app',
             views: {
               left: {
-                templateUrl: 'js/components/left/Left.html',
+                templateUrl: 'src/js/components/left/Left.html',
                 controller: 'LeftCtrl',
                 controllerAs: 'LeftCtrl'
               },
               main: {
-                templateUrl: 'js/components/main/Main.html',
+                templateUrl: 'src/js/components/main/Main.html',
                 controller: 'MainCtrl',
                 controllerAs: 'MainCtrl'
               },
               right: {
-                templateUrl: 'js/components/right/Right.html',
+                templateUrl: 'src/js/components/right/Right.html',
                 controller: 'RightCtrl',
                 controllerAs: 'RightCtrl'
               },
               bottom: {
-                templateUrl: 'js/components/bottom/Bottom.html',
+                templateUrl: 'src/js/components/bottom/Bottom.html',
                 controller: 'BottomCtrl',
                 controllerAs: 'BottomCtrl'
               }

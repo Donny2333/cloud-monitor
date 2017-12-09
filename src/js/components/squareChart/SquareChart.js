@@ -6,7 +6,7 @@
     .directive('squareChart', ['$timeout', function ($timeout) {
       return {
         restrict: 'E',
-        templateUrl: 'js/components/squareChart/SquareChart.html',
+        templateUrl: 'src/js/components/squareChart/SquareChart.html',
         transclude: true,
         replace: true,
         scope: {

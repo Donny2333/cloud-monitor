@@ -1,9 +1,7 @@
 {
   "name": "cloud-monitor",
   "description": "cloud-monitor project",
-  "authors": [
-    "Donny"
-  ],
+  "authors": ["Donny"],
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.3",

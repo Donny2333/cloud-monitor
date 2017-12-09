@@ -50,7 +50,7 @@
             information: res.data.information
           };
         }, function (err) {
-          Http.get('json/alarm.json').then(function (res) {
+          Http.get('src/json/alarm.json').then(function (res) {
             that.detail = res.data.data[0];
           });
         });
@@ -65,7 +65,7 @@
           that.usageList[2].detail.totalValue = res.data.local_gb;
           that.usageList[2].detail.usageValue = res.data.local_gb_used;
         }, function (err) {
-          Http.get('json/hypervisors.json').then(function (res) {
+          Http.get('src/json/hypervisors.json').then(function (res) {
             that.usageList = res.data.data;
           })
         })
