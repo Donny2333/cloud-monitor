@@ -5,7 +5,15 @@ let uglify = require('gulp-uglify')
 
 gulp.task('js', function() {
   return (gulp
-      .src(['src/js/**/*.js', 'src/js/*.js'])
+      .src([
+        'src/config/*.js',
+        'src/routers/*.js',
+        'src/directives/*.js',
+        'src/services/*.js',
+        'src/components/*/*.js',
+        'src/modules/*/*.js',
+        'src/*.js'
+      ])
       .pipe(concat('bundle.js'))
       // .pipe(uglify())
       .pipe(gulp.dest('src/build/')) )
@@ -24,10 +32,7 @@ gulp.task('serve', ['js'], function() {
     ['*.html', 'src/js/**/*.html', 'src/js/components/**/*.html'],
     ['reload']
   )
-  gulp.watch(
-    ['src/*.js', 'src/js/**/*.js', 'src/js/components/**/*.js'],
-    ['js', 'reload']
-  )
+  gulp.watch(['src/*.js', 'src/**/*.js', 'src/**/**/*.js'], ['js', 'reload'])
   gulp.watch('src/css/*.css', ['reload'])
 })
 
