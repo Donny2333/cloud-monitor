@@ -3,12 +3,12 @@ import _ from 'lodash'
 
 const LeftCtrl = (EChartsFactory, $interval) => {
   console.log('LeftCtrl mounted.')
-  var that = this
+  let that = this
 
   that = that || {}
   that.charts = []
 
-  var charts = [
+  const charts = [
     {
       type: 'gauge',
       id: 0,
@@ -56,9 +56,9 @@ const LeftCtrl = (EChartsFactory, $interval) => {
 
   reload()
 
-  $interval(function() {
-    reload()
-  }, 30000)
+  // $interval(function() {
+  //   reload()
+  // }, 30000)
 }
 
 LeftCtrl.$inject = ['EChartsFactory', '$interval']

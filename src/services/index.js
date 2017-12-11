@@ -1,4 +1,5 @@
 import angular from 'angular'
+import { URL_CFG } from '@/api'
 
 const services = angular
   .module('cloud-monitor.services', [])
@@ -94,8 +95,7 @@ const services = angular
 
   .factory('Monitor', [
     'Http',
-    'URL_CFG',
-    function(Http, URL_CFG) {
+    function(Http) {
       return {
         systemState: function() {
           return Http.get(URL_CFG.api + 'systemstate/statistics')
