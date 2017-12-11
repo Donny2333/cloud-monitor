@@ -3,7 +3,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: "Microsoft YaHei";
+  font-family: 'Microsoft YaHei';
 }
 
 html,
@@ -12,8 +12,8 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  /*background-image: url("../images/background.png");*/
-  /*background-size: 100% 100%;*/
+  background-image: url('../images/background.png');
+  background-size: 100% 100%;
 }
 
 ul,
@@ -22,7 +22,7 @@ li {
 }
 
 a {
-  text-decoration: none
+  text-decoration: none;
 }
 
 .blue {
@@ -110,17 +110,15 @@ a {
 
 .title {
   font-size: 18px;
-
 }
 
 /******************* app *******************/
-.monitor-title{
+.monitor-title {
   color: #0f9ee5;
   font-size: 42px;
   position: absolute;
-  top:5px;
+  top: 5px;
 }
-
 
 .app {
   display: -webkit-box;
@@ -191,7 +189,7 @@ a {
 .main .bg {
   height: 525px;
   width: 525px;
-  background-image: url("../images/main.png");
+  background-image: url('../images/main.png');
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -215,7 +213,6 @@ a {
   display: flex;
   height: 50%;
   width: 100%;
-
 }
 
 .state .inner {
@@ -334,7 +331,7 @@ a {
 .value:before {
   height: 100%;
   width: 100%;
-  background-image: url("../images/circle_inner.png");
+  background-image: url('../images/circle_inner.png');
 }
 
 .value:after {
@@ -342,7 +339,7 @@ a {
   width: 260%;
   margin-top: -40px;
   margin-left: -40px;
-  background-image: url("../images/circle_outer.png");
+  background-image: url('../images/circle_outer.png');
 }
 
 .value:before {
@@ -506,7 +503,7 @@ a {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background-image: url("../images/bottom.png");
+  background-image: url('../images/bottom.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   display: -webkit-box;
@@ -650,7 +647,6 @@ a {
   animation: directedGraph-circle 10s infinite linear;
   -webkit-animation: directedGraph-circle 10s infinite linear;
   -moz-animation: directedGraph-circle 10s infinite linear;
-
 }
 
 @-webkit-keyframes directedGraph-circle {
@@ -681,7 +677,6 @@ a {
   animation: directedGraph-circle1 5s infinite linear;
   -webkit-animation: directedGraph-circle1 5s infinite linear;
   -moz-animation: directedGraph-circle1 5s infinite linear;
-
 }
 
 @-webkit-keyframes directedGraph-circle1 {
@@ -737,6 +732,6 @@ a {
   position: absolute;
   top: 0;
   z-index: -1;
-  background-image: url("../images/background.png");
+  background-image: url('../images/background.png');
   background-size: 100% 100%;
 }

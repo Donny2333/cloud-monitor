@@ -1,12 +1,10 @@
-const prodURL = '',
-  devURL = 'http://10.127.3.38:8088/',
-  Urls = {
-    Prod_Cfg: {
-      api: prodURL + 'apis/monitor/v1.0/'
-    },
-    Dev_Cfg: {
-      api: devURL + 'monitor/v1.0/'
-    }
-  }
+import angular from 'angular'
 
-export const URL_CFG = Urls.Dev_Cfg
+const config = $httpProvider => {
+  $httpProvider.defaults.useXDomain = true
+  $httpProvider.defaults.withCredentials = true
+}
+
+config.$inject = ['$httpProvider']
+
+export default angular.module('config', []).config(config).name

@@ -1,7 +1,10 @@
-;(function(angular) {
-  'use strict'
+import angular from 'angular'
+import _ from 'lodash'
+import d3 from 'd3'
 
-  angular.module('cloud-monitor.directives').directive('circleChart', [
+const CircleChart = angular
+  .module('cloud-monitor.directives')
+  .directive('circleChart', [
     '$interval',
     function($interval) {
       return {
@@ -15,17 +18,17 @@
           detail: '='
         },
         link: function(scope, element, attrs, ctrl) {
-          var svg = d3.select(element[0]).selectAll('svg'),
-            cx = 150,
-            cy = 150,
-            r = 120
+          const svg = d3.select(element[0]).selectAll('svg')
+          const cx = 150
+          const cy = 150
+          const r = 120
 
           ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100
 
           function drawsvg() {
-            var updateP = svg.selectAll('path').data([ctrl.percent]),
-              enterP = updateP.enter(),
-              exitP = updateP.exit()
+            const updateP = svg.selectAll('path').data([ctrl.percent])
+            const enterP = updateP.enter()
+            const exitP = updateP.exit()
 
             updateP.attr('d', function(d, i) {
               var angle = 2 * Math.PI * d / 100
@@ -90,4 +93,5 @@
       }
     }
   ])
-})(angular)
+
+module.exports = CircleChart.name

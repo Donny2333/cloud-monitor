@@ -1,79 +1,83 @@
-;(function(angular) {
-  'use strict'
+import angular from 'angular'
+import d3 from 'd3'
+import $ from 'jquery'
+import _ from 'lodash'
 
-  angular.module('cloud-monitor.directives').directive('directedGraph', [
+const DirectedGraph = angular
+  .module('cloud-monitor.directives')
+  .directive('directedGraph', [
     '$interval',
     function($interval) {
       return {
         restrict: 'E',
-        templateUrl: 'src/components/directedGraph/DirectedGraph.html',
+        templateUrl: '@/components/directedGraph/DirectedGraph.html',
         replace: true,
         scope: {
           data: '='
         },
         bindToController: true,
         link: function(scope, element, attrs, ctrl) {
-          var svg = d3.select(element[0]).selectAll('svg.directed'),
-            x0 = 20,
-            y0 = 20,
-            rx =
-              $(element[0])
-                .children('svg')
-                .width() /
-                2 -
-              x0,
-            ry =
-              $(element[0])
-                .children('svg')
-                .height() /
-                2 -
-              y0,
-            cr =
-              $(element[0])
-                .children('img.radar-ball')
-                .height() /
-                2 -
-              20,
-            r = 25,
-            v = [
-              [0.5, 0.25],
-              [0.75, 0.18],
-              [1, 0.15],
-              [1.25, 0.18],
-              [1.5, 0.25],
-              [0.3, 0.4],
-              [0.5, 0.5],
-              [0.75, 0.35],
-              [1.25, 0.35],
-              [1.5, 0.5],
-              [1.7, 0.4],
-              [0.18, 0.7],
-              [0.35, 0.75],
-              [1.65, 0.75],
-              [1.88, 0.7],
-              [0.15, 1],
-              [1.85, 1],
-              [0.18, 1.3],
-              [0.35, 1.25],
-              [1.7, 1.25],
-              [1.88, 1.3],
-              [0.3, 1.6],
-              [0.45, 1.5],
-              [0.75, 1.65],
-              [1.25, 1.65],
-              [1.5, 1.5],
-              [1.7, 1.6],
-              [0.5, 1.75],
-              [0.75, 1.82],
-              [1, 1.85],
-              [1.25, 1.82],
-              [1.5, 1.75]
-            ],
-            _d = [],
-            dataList = ctrl.data,
-            i,
-            j,
-            flag
+          const svg = d3.select(element[0]).selectAll('svg.directed')
+          const x0 = 20
+          const y0 = 20
+          const rx =
+            $(element[0])
+              .children('svg')
+              .width() /
+              2 -
+            x0
+          const ry =
+            $(element[0])
+              .children('svg')
+              .height() /
+              2 -
+            y0
+          const cr =
+            $(element[0])
+              .children('img.radar-ball')
+              .height() /
+              2 -
+            20
+          const r = 25
+          const v = [
+            [0.5, 0.25],
+            [0.75, 0.18],
+            [1, 0.15],
+            [1.25, 0.18],
+            [1.5, 0.25],
+            [0.3, 0.4],
+            [0.5, 0.5],
+            [0.75, 0.35],
+            [1.25, 0.35],
+            [1.5, 0.5],
+            [1.7, 0.4],
+            [0.18, 0.7],
+            [0.35, 0.75],
+            [1.65, 0.75],
+            [1.88, 0.7],
+            [0.15, 1],
+            [1.85, 1],
+            [0.18, 1.3],
+            [0.35, 1.25],
+            [1.7, 1.25],
+            [1.88, 1.3],
+            [0.3, 1.6],
+            [0.45, 1.5],
+            [0.75, 1.65],
+            [1.25, 1.65],
+            [1.5, 1.5],
+            [1.7, 1.6],
+            [0.5, 1.75],
+            [0.75, 1.82],
+            [1, 1.85],
+            [1.25, 1.82],
+            [1.5, 1.75]
+          ]
+          let _d = []
+          let dataList = ctrl.data
+          let i
+          let j
+          let flag
 
           function move() {
             for (i = 0; i < v.length; i++) {
@@ -94,9 +98,9 @@
 
           function drawsvg() {
             // circle
-            var updateC = svg.selectAll('circle').data(_d),
-              enterC = updateC.enter(),
-              exitC = updateC.exit()
+            const updateC = svg.selectAll('circle').data(_d)
+            const enterC = updateC.enter()
+            const exitC = updateC.exit()
 
             updateC
               .transition()
@@ -185,32 +189,15 @@
             exitC.remove()
 
             // line
-            var updateL = svg.selectAll('path').data(_d),
-              enterL = updateL.enter(),
-              exitL = updateL.exit()
+            const updateL = svg.selectAll('path').data(_d)
+            const enterL = updateL.enter()
+            const exitL = updateL.exit()
 
             updateL
               .transition()
               .duration(3000)
               .ease(d3.easeCubicOut)
               .attr('d', function(d, i) {
-                var _x0 = rx + cr * (d[0] - 1),
-                  _y0 = ry + cr * (d[1] - 1),
-                  _delta_x = _x0 - rx,
-                  _delta_y = _y0 - ry,
-                  _x1 =
-                    r *
-                    Math.acos(
-                      _delta_x /
-                        Math.sqrt(Math.pow(_delta_x, 2) + Math.pow(_delta_y, 2))
-                    ),
-                  _y1 =
-                    r *
-                    Math.asin(
-                      _delta_y /
-                        Math.sqrt(Math.pow(_delta_x, 2) + Math.pow(_delta_y, 2))
-                    )
-
                 return _.concat(
                   ['M', rx * d[0] + x0, ry * d[1] + y0],
                   ['L', rx + cr * (d[0] - 1) + x0, ry + cr * (d[1] - 1) + y0]
@@ -232,23 +219,6 @@
             enterL
               .append('path')
               .attr('d', function(d, i) {
-                var _x0 = rx + cr * (d[0] - 1),
-                  _y0 = ry + cr * (d[1] - 1),
-                  _delta_x = _x0 - rx,
-                  _delta_y = _y0 - ry,
-                  _x1 =
-                    r *
-                    Math.acos(
-                      _delta_x /
-                        Math.sqrt(Math.pow(_delta_x, 2) + Math.pow(_delta_y, 2))
-                    ),
-                  _y1 =
-                    r *
-                    Math.asin(
-                      _delta_y /
-                        Math.sqrt(Math.pow(_delta_x, 2) + Math.pow(_delta_y, 2))
-                    )
-
                 return _.concat(
                   ['M', rx * d[0] + x0, ry * d[1] + y0],
                   ['L', rx + cr * (d[0] - 1) + x0, ry + cr * (d[1] - 1) + y0]
@@ -270,9 +240,9 @@
             exitL.remove()
 
             // text
-            var updateT = svg.selectAll('text').data(dataList),
-              enterT = updateT.enter(),
-              exitT = updateT.exit()
+            const updateT = svg.selectAll('text').data(dataList)
+            const enterT = updateT.enter()
+            const exitT = updateT.exit()
 
             updateT
               .transition()
@@ -331,4 +301,5 @@
       }
     }
   ])
-})(angular)
+
+module.exports = DirectedGraph.name
