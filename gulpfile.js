@@ -6,17 +6,17 @@ let uglify = require('gulp-uglify')
 gulp.task('js', function() {
   return (gulp
       .src([
-        'src/config/*.js',
-        'src/routers/*.js',
-        'src/directives/*.js',
-        'src/services/*.js',
-        'src/components/*/*.js',
-        'src/modules/*/*.js',
-        'src/*.js'
+        './src/config/*.js',
+        './src/routers/*.js',
+        './src/directives/*.js',
+        './src/services/*.js',
+        './src/components/*/*.js',
+        './src/modules/*/*.js',
+        './src/*.js'
       ])
       .pipe(concat('bundle.js'))
       // .pipe(uglify())
-      .pipe(gulp.dest('src/build/')) )
+      .pipe(gulp.dest('./src/build/')) )
 })
 
 // 静态服务器
@@ -28,12 +28,9 @@ gulp.task('serve', ['js'], function() {
     port: '3000'
   })
 
-  gulp.watch(
-    ['*.html', 'src/js/**/*.html', 'src/js/components/**/*.html'],
-    ['reload']
-  )
-  gulp.watch(['src/*.js', 'src/**/*.js', 'src/**/**/*.js'], ['js', 'reload'])
-  gulp.watch('src/css/*.css', ['reload'])
+  gulp.watch(['./*.html', './src/**/*.html'], ['reload'])
+  gulp.watch(['./src/*.js', './src/**/*.js'], ['js', 'reload'])
+  gulp.watch('./src/css/*.css', ['reload'])
 })
 
 gulp.task('reload', function() {

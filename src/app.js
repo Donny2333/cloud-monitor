@@ -1,21 +1,13 @@
-;(function(angular) {
-  'use strict'
+import angular from 'angular'
+import uiRoute from 'angular-ui-router'
+import app from '@/modules/app'
 
-  angular
-    .module('cloud-monitor', [
-      'ngAnimate',
-      'ngRoute',
-      'cloud-monitor.config',
-      'cloud-monitor.routers',
-      'cloud-monitor.directives',
-      'cloud-monitor.services',
-      'cloud-monitor.controllers'
-    ])
-    .config([
-      '$httpProvider',
-      function($httpProvider) {
-        $httpProvider.defaults.useXDomain = true
-        $httpProvider.defaults.withCredentials = true
-      }
-    ])
-})(angular)
+import '@/common/css/style.css'
+
+angular.module('cloud-monitor', [uiRoute, app]).config([
+  '$httpProvider',
+  $httpProvider => {
+    $httpProvider.defaults.useXDomain = true
+    $httpProvider.defaults.withCredentials = true
+  }
+])

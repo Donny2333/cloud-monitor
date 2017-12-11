@@ -3,28 +3,54 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "gulp",
+    "dev": "node ./build/dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Donny",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Donny2333/cloud-monitor.git"
+  },
   "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-eslint": "^8.0.3",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
     "browser-sync": "^2.18.8",
+    "css-loader": "^0.28.7",
     "eslint": "^4.13.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^4.0.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eventsource-polyfill": "^0.9.6",
+    "express": "^4.16.2",
+    "file-loader": "^1.1.4",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-uglify": "^2.1.2",
-    "webpack": "^3.10.0"
+    "html-webpack-plugin": "^2.30.1",
+    "opn": "^5.1.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^2.7.0",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.19.1"
   },
   "dependencies": {
     "angular": "^1.6.7",
     "angular-animate": "^1.6.7",
-    "angular-route": "^1.6.7",
     "angular-ui-router": "^0.4.3",
     "d3": "^4.12.0",
     "echarts": "^3.8.5",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
+    "path": "^0.12.7",
     "three.js": "^0.77.1"
   }
 }

@@ -1,34 +1,57 @@
-var path = require('path')
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
-  entry: './src/js/app.js', //项目入口文件
+  entry: ['./src/app.js', './build/dev-client'],
   output: {
-    path: './dist/public',
-    publicPath: './public/',
-    filename: 'bundle.js'
+    filename: '[name].js',
+    path: path.resolve(__dirname, '../src/dist'),
+    publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js', '.json'],
     alias: {
-      src: path.resolve(__dirname, '../source')
+      '@': path.resolve(__dirname, '../src')
     }
-  },
-  resolveLoader: {
-    root: path.join(__dirname, 'node_modules')
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules|lib/,
-        loader: 'babel-loader?stage=0',
-        query: { compact: false }
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: ['./src'],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
       },
       {
-        test: /\.html$/,
-        exclude: /node_modules/,
-        loader: 'raw-loader?stage=0'
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css/,
+        loader: 'css-loader'
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    // https://github.com/ampedandwired/html-webpack-plugin
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true
+    }),
+    new FriendlyErrorsPlugin()
+  ]
 }
