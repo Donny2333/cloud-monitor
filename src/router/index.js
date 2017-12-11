@@ -1,4 +1,4 @@
-const router = ($urlRouterProvider, $locationProvider, $stateProvider) => {
+export default ($urlRouterProvider, $stateProvider) => {
   $urlRouterProvider.otherwise('/app')
   // $locationProvider.html5Mode(true)
 
@@ -34,7 +34,3 @@ const router = ($urlRouterProvider, $locationProvider, $stateProvider) => {
       }
     })
 }
-
-router.$inject = ['$urlRouterProvider', '$locationProvider', '$stateProvider']
-
-module.exports = router
