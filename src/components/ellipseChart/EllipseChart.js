@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-import _ from 'lodash'
 
 export default class EllipseChart {
   constructor($timeout) {
@@ -71,7 +70,7 @@ export default class EllipseChart {
             .duration(1000)
             .ease(d3.easeCubicOut)
             .attr('d', function(d, i) {
-              return _.concat(
+              return [].concat(
                 ['M', x0 + 2 * rx + deltaX * i, h + y0],
                 ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h + y0],
                 ['V', h - d + y0],
@@ -85,7 +84,7 @@ export default class EllipseChart {
               return barColorList[i]
             })
             .attr('d', function(d, i) {
-              return _.concat(
+              return [].concat(
                 ['M', x0 + 2 * rx + deltaX * i, h + y0],
                 ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h + y0],
                 ['V', h - d + y0],
@@ -131,7 +130,7 @@ export default class EllipseChart {
             .duration(1000)
             .ease(d3.easeCubicOut)
             .attr('d', function(d, i) {
-              return _.concat(
+              return [].concat(
                 ['M', x0 + 2 * rx + deltaX * i, h - d + deltaH + y0],
                 ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h - d + deltaH + y0],
                 ['V', ry + y0],
@@ -144,7 +143,7 @@ export default class EllipseChart {
             .attr('fill', '#AEADB3')
             .attr('opacity', 0.3)
             .attr('d', function(d, i) {
-              return _.concat(
+              return [].concat(
                 ['M', x0 + 2 * rx + deltaX * i, h - d + deltaH + y0],
                 ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h - d + deltaH + y0],
                 ['V', ry + y0],
