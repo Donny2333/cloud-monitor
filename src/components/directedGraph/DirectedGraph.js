@@ -30,7 +30,7 @@ export default class DirectedGraph {
           y0
         const cr =
           $(element[0])
-            .children('img.radar-ball')
+            .children('.radar-ball')
             .height() /
             2 -
           20
