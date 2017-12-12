@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/app.js', './build/dev-client'],
+  entry: ['./src/app', './build/dev-client'],
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, '../src/dist'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
   resolve: {
