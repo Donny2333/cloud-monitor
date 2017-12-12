@@ -11,7 +11,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: ['.js'],
     alias: {
       '@': path.resolve(__dirname, '../src')
     }

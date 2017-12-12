@@ -620,8 +620,11 @@ a {
 }
 
 .radar-ball {
+  display: inline-block;
   width: 200px;
   height: 200px;
+  background-image: url('../images/icosahedron.png');
+  background-size: 100% 100%;
 }
 
 .directedGraph svg {
@@ -692,6 +695,7 @@ a {
 
 .radar {
   position: absolute;
+  display: inline-block;
   left: 50%;
   top: 50%;
   margin-left: -300px;
@@ -702,6 +706,8 @@ a {
   transform-origin: 50% 50%;
   -webkit-animation: myRotate 20s infinite linear;
   animation: myRotate 20s infinite linear;
+  background-image: url('../images/radar.png');
+  background-size: 100% 100%;
 }
 
 @-webkit-keyframes myRotate {
