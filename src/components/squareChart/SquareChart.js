@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-import _ from 'lodash'
 
 export default class SquareChart {
   constructor($timeout) {
@@ -41,7 +40,7 @@ export default class SquareChart {
                 var points = []
                 switch (_i) {
                   case 0:
-                    points = _.concat(
+                    points = [].concat(
                       [a + deltaX * i + x0, h - d + y0],
                       [2 * a + deltaX * i + x0, h - d + b + y0],
                       [a + deltaX * i + x0, h - d + 2 * b + y0],
@@ -50,7 +49,7 @@ export default class SquareChart {
                     break
 
                   case 1:
-                    points = _.concat(
+                    points = [].concat(
                       [deltaX * i + x0, b + h - d + y0],
                       [a + deltaX * i + x0, 2 * b + h - d + y0],
                       [a + deltaX * i + x0, h + b + y0],
@@ -59,7 +58,7 @@ export default class SquareChart {
                     break
 
                   case 2:
-                    points = _.concat(
+                    points = [].concat(
                       [2 * a + deltaX * i + x0, b + h - d + y0],
                       [a + deltaX * i + x0, 2 * b + h - d + y0],
                       [a + deltaX * i + x0, h + b + y0],
@@ -82,7 +81,7 @@ export default class SquareChart {
                 var points = []
                 switch (_i) {
                   case 0:
-                    points = _.concat(
+                    points = [].concat(
                       [a + deltaX * i + x0, h - d + y0],
                       [2 * a + deltaX * i + x0, h - d + b + y0],
                       [a + deltaX * i + x0, h - d + 2 * b + y0],
@@ -91,7 +90,7 @@ export default class SquareChart {
                     break
 
                   case 1:
-                    points = _.concat(
+                    points = [].concat(
                       [deltaX * i + x0, b + h - d + y0],
                       [a + deltaX * i + x0, 2 * b + h - d + y0],
                       [a + deltaX * i + x0, h + b + y0],
@@ -100,7 +99,7 @@ export default class SquareChart {
                     break
 
                   case 2:
-                    points = _.concat(
+                    points = [].concat(
                       [2 * a + deltaX * i + x0, b + h - d + y0],
                       [a + deltaX * i + x0, 2 * b + h - d + y0],
                       [a + deltaX * i + x0, h + b + y0],
@@ -132,7 +131,7 @@ export default class SquareChart {
                 var points = []
                 switch (_i) {
                   case 0:
-                    points = _.concat(
+                    points = [].concat(
                       [a + deltaX * i + x0, y0],
                       [2 * a + deltaX * i + x0, b + y0],
                       [a + deltaX * i + x0, 2 * b + y0],
@@ -141,7 +140,7 @@ export default class SquareChart {
                     break
 
                   case 1:
-                    points = _.concat(
+                    points = [].concat(
                       [deltaX * i + x0, b + y0],
                       [a + deltaX * i + x0, 2 * b + y0],
                       [a + deltaX * i + x0, 2 * b + h - d + deltaH + y0],
@@ -150,7 +149,7 @@ export default class SquareChart {
                     break
 
                   case 2:
-                    points = _.concat(
+                    points = [].concat(
                       [2 * a + deltaX * i + x0, b + y0],
                       [a + deltaX * i + x0, 2 * b + y0],
                       [a + deltaX * i + x0, 2 * b + h - d + deltaH + y0],
@@ -174,7 +173,7 @@ export default class SquareChart {
                 var points = []
                 switch (_i) {
                   case 0:
-                    points = _.concat(
+                    points = [].concat(
                       [a + deltaX * i + x0, y0],
                       [2 * a + deltaX * i + x0, b + y0],
                       [a + deltaX * i + x0, 2 * b + y0],
@@ -183,7 +182,7 @@ export default class SquareChart {
                     break
 
                   case 1:
-                    points = _.concat(
+                    points = [].concat(
                       [deltaX * i + x0, b + y0],
                       [a + deltaX * i + x0, 2 * b + y0],
                       [a + deltaX * i + x0, 2 * b + h - d + deltaH + y0],
@@ -192,7 +191,7 @@ export default class SquareChart {
                     break
 
                   case 2:
-                    points = _.concat(
+                    points = [].concat(
                       [2 * a + deltaX * i + x0, b + y0],
                       [a + deltaX * i + x0, 2 * b + y0],
                       [a + deltaX * i + x0, 2 * b + h - d + deltaH + y0],

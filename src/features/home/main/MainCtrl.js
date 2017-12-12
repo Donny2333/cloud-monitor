@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 export default class MainCtrl {
   constructor(Monitor, $interval) {
     console.log('MainCtrl mounted.')
@@ -18,7 +16,7 @@ export default class MainCtrl {
     function reload() {
       Monitor.hostHealth().then(
         res => {
-          that.data = _.concat(
+          that.data = [].concat(
             res.data.json,
             equipData(32 - res.data.json.length)
           )

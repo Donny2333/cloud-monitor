@@ -78,21 +78,6 @@ a {
   animation: myBreath 5s infinite;
 }
 
-@-webkit-keyframes myBreath {
-  from {
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
-  50% {
-    -webkit-transform: scale(1.3, 1.3);
-    transform: scale(1.3, 1.3);
-  }
-  to {
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
-}
-
 @keyframes myBreath {
   from {
     -webkit-transform: scale(1, 1);
@@ -352,17 +337,6 @@ a {
   animation: _circleRotate 8s infinite linear;
 }
 
-@-webkit-keyframes circleRotate {
-  from {
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes circleRotate {
   from {
     -webkit-transform: rotate(0);
@@ -371,17 +345,6 @@ a {
   to {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
-  }
-}
-
-@-webkit-keyframes _circleRotate {
-  from {
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
-  }
-  to {
-    -webkit-transform: rotate(-360deg);
-    transform: rotate(-360deg);
   }
 }
 
@@ -652,7 +615,7 @@ a {
   -moz-animation: directedGraph-circle 10s infinite linear;
 }
 
-@-webkit-keyframes directedGraph-circle {
+@keyframes directedGraph-circle {
   from {
     -webkit-transform: rotate(0);
     transform: rotate(0);
@@ -682,7 +645,7 @@ a {
   -moz-animation: directedGraph-circle1 5s infinite linear;
 }
 
-@-webkit-keyframes directedGraph-circle1 {
+@keyframes directedGraph-circle1 {
   from {
     -webkit-transform: rotate(0);
     transform: rotate(0);
@@ -708,17 +671,6 @@ a {
   animation: myRotate 20s infinite linear;
   background-image: url('../images/radar.png');
   background-size: 100% 100%;
-}
-
-@-webkit-keyframes myRotate {
-  from {
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes myRotate {
