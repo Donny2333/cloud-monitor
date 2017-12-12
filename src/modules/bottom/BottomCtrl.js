@@ -1,6 +1,6 @@
 export default class BottomCtrl {
   constructor(Monitor, Http, $interval) {
-    console.log('MainCtrl mounted.')
+    console.log('BottomCtrl mounted.')
     let that = this
     const colorList1 = ['#F7F7F8', '#AEADB3', '#D8D9DD']
     const colorList2 = ['#0EC17C', '#C085C6', '#F47F73', '#F7B686', '#8FBAE5']
@@ -71,7 +71,7 @@ export default class BottomCtrl {
           }
         },
         _ => {
-          Http.get('src/common/json/top5_cpu_usage.json').then(function(res) {
+          Http.get('json/top5_cpu_usage.json').then(function(res) {
             var names = []
             var dataList = []
 
@@ -110,9 +110,7 @@ export default class BottomCtrl {
           }
         },
         _ => {
-          Http.get('src/common/json/top5_memory_usage.json').then(function(
-            res
-          ) {
+          Http.get('json/top5_memory_usage.json').then(function(res) {
             var names = []
             var dataList = []
 
@@ -151,9 +149,7 @@ export default class BottomCtrl {
           }
         },
         _ => {
-          Http.get('src/common/json/top5_vm_cpu_usage.json').then(function(
-            res
-          ) {
+          Http.get('json/top5_vm_cpu_usage.json').then(function(res) {
             var names = []
             var dataList = []
 
@@ -192,9 +188,7 @@ export default class BottomCtrl {
           }
         },
         _ => {
-          Http.get('src/common/json/top5_vm_memory_usage.json').then(function(
-            res
-          ) {
+          Http.get('json/top5_vm_memory_usage.json').then(function(res) {
             var names = []
             var dataList = []
 

@@ -15,7 +15,7 @@ export default class LeftCtrl {
         id: 0,
         title: '系统健康度',
         dataSource: URL_CFG.api + 'systemstate/statistics',
-        localSource: 'src/common/json/system_health.json',
+        localSource: 'json/system_health.json',
         style: {
           height: '100%',
           width: '100%'
@@ -26,7 +26,7 @@ export default class LeftCtrl {
         id: 1,
         title: '主机状态',
         dataSource: URL_CFG.api + 'hoststate/statistics',
-        localSource: 'src/common/json/host_state.json',
+        localSource: 'json/host_state.json',
         style: {
           height: '100%',
           width: '100%'
@@ -37,7 +37,7 @@ export default class LeftCtrl {
         id: 3,
         title: '虚拟机状态',
         dataSource: URL_CFG.api + 'vm/statistics',
-        localSource: 'src/common/json/vm_state.json',
+        localSource: 'json/vm_state.json',
         style: {
           height: '100%',
           width: '100%'

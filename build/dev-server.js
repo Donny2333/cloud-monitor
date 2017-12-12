@@ -1,4 +1,5 @@
 const opn = require('opn')
+const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.config')
@@ -25,6 +26,7 @@ compiler.plugin('compilation', compilation => {
 
 app.use(devMiddleware)
 app.use(hotMiddleware)
+app.use(express.static(path.join(__dirname, '../src/common')))
 
 const uri = 'http://localhost:3000'
 

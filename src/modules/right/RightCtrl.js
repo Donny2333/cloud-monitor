@@ -56,7 +56,7 @@ export default class RightCtrl {
           }
         },
         _ => {
-          Http.get('src/common/json/alarm.json').then(function(res) {
+          Http.get('json/alarm.json').then(function(res) {
             that.detail = res.data.data[0]
           })
         }
@@ -74,7 +74,7 @@ export default class RightCtrl {
           that.usageList[2].detail.usageValue = res.data.local_gb_used
         },
         _ => {
-          Http.get('src/common/json/hypervisors.json').then(function(res) {
+          Http.get('json/hypervisors.json').then(function(res) {
             that.usageList = res.data.data
           })
         }
