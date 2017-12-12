@@ -1,5 +1,5 @@
+import angular from 'angular'
 import { URL_CFG } from '@/api'
-import _ from 'lodash'
 
 export default class LeftCtrl {
   constructor(EChartsFactory, $interval) {
@@ -49,7 +49,7 @@ export default class LeftCtrl {
       charts.map(function(chart) {
         var newChart = EChartsFactory(chart.type)
 
-        _.merge(newChart, chart)
+        angular.merge(newChart, chart)
         newChart.update(chart)
         that.charts.push(newChart)
       })

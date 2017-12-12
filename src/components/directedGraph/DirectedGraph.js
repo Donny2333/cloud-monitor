@@ -1,6 +1,5 @@
 import * as d3 from 'd3'
 import $ from 'jquery'
-import _ from 'lodash'
 
 export default class DirectedGraph {
   constructor() {
@@ -194,7 +193,7 @@ export default class DirectedGraph {
             .duration(3000)
             .ease(d3.easeCubicOut)
             .attr('d', function(d, i) {
-              return _.concat(
+              return [].concat(
                 ['M', rx * d[0] + x0, ry * d[1] + y0],
                 ['L', rx + cr * (d[0] - 1) + x0, ry + cr * (d[1] - 1) + y0]
               ).join(' ')
@@ -215,7 +214,7 @@ export default class DirectedGraph {
           enterL
             .append('path')
             .attr('d', function(d, i) {
-              return _.concat(
+              return [].concat(
                 ['M', rx * d[0] + x0, ry * d[1] + y0],
                 ['L', rx + cr * (d[0] - 1) + x0, ry + cr * (d[1] - 1) + y0]
               ).join(' ')
