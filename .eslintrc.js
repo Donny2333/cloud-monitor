@@ -1,4 +1,4 @@
-// http://eslint.org/docs/user-guide/configuring
+// https://eslint.org/docs/user-guide/configuring
 
 module.exports = {
   root: true,
@@ -9,20 +9,13 @@ module.exports = {
   env: {
     browser: true
   },
-  // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
+  // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   extends: 'standard',
   // required to lint *.vue files
   plugins: ['html'],
   // add your custom rules here
   rules: {
-    'space-before-function-paren': [
-      'error',
-      {
-        anonymous: 'always',
-        named: 'never',
-        asyncArrow: 'never'
-      }
-    ],
+    'space-before-function-paren': 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await

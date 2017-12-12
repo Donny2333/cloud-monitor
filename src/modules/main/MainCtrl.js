@@ -1,39 +1,38 @@
-;(function(angular) {
-  'use strict'
+import _ from 'lodash'
 
-  angular.module('cloud-monitor.controllers').controller('MainCtrl', [
-    '$interval',
-    'Monitor',
-    function($interval, Monitor) {
-      var that = this
-      that.data = []
+export default class MainCtrl {
+  constructor(Monitor, $interval) {
+    console.log('MainCtrl mounted.')
+    var that = this
 
-      function equipData(n) {
-        for (var i = 0, list = []; i < n; i++) {
-          list[i] = Math.random() * 20 + 78
-        }
-        return list
+    that = that || {}
+    that.data = []
+
+    function equipData(n) {
+      for (var i = 0, list = []; i < n; i++) {
+        list[i] = Math.random() * 20 + 78
       }
-
-      function reload() {
-        Monitor.hostHealth().then(
-          function(res) {
-            that.data = _.concat(
-              res.data.json,
-              equipData(32 - res.data.json.length)
-            )
-          },
-          function(err) {
-            that.data = equipData(32)
-          }
-        )
-      }
-
-      reload()
-
-      $interval(function() {
-        reload()
-      }, 5000)
+      return list
     }
-  ])
-})(angular)
+
+    function reload() {
+      Monitor.hostHealth().then(
+        res => {
+          that.data = _.concat(
+            res.data.json,
+            equipData(32 - res.data.json.length)
+          )
+        },
+        _ => {
+          that.data = equipData(32)
+        }
+      )
+    }
+
+    reload()
+
+    // $interval(function() {
+    //   reload()
+    // }, 5000)
+  }
+}
