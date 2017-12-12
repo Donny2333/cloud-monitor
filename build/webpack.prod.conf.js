@@ -50,7 +50,8 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          name: 'static/img/[name].[ext]'
+          limit: 10000,
+          name: 'static/images/[name].[ext]'
         }
       }
     ]
@@ -113,7 +114,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: 'static',
+        to: 'static/..',
         ignore: ['.*']
       }
     ])
