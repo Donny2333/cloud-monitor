@@ -1,8 +1,8 @@
 import angular from 'angular'
 import BottomCtrl from './BottomCtrl'
-import EllipseChart from '@/components/EllipseChart'
-import SquareChart from '@/components/SquareChart'
+import ellipseChart from '@/components/ellipseChart'
+import squareChart from '@/components/squareChart'
 
 export default angular
-  .module('bttom', [EllipseChart, SquareChart])
+  .module('bttom', [ellipseChart, squareChart])
   .controller('BottomCtrl', BottomCtrl).name
