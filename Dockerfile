@@ -13,4 +13,4 @@ ENTRYPOINT ["/bin/bash", "-c", "if [[ ! -d node_modules ]]; then npm install --r
 EXPOSE 3000
 
 # Run app.py when the container launches
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "pm2"]
