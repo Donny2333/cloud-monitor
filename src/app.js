@@ -6,7 +6,7 @@ import features from '@/features'
 import routers from '@/routers'
 import services from '@/services'
 
-import '@/common/css/style.css'
+import './common/style/index.less'
 
 angular.module('cloud-monitor', [
   uiRouter,

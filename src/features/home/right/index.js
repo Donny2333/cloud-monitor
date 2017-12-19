@@ -1,7 +1,6 @@
 import angular from 'angular'
 import RightCtrl from './RightCtrl'
-import circleChart from '@/components/circleChart'
 
 export default angular
-  .module('right', [circleChart])
+  .module('right', [])
   .controller('RightCtrl', RightCtrl).name

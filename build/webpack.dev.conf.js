@@ -37,11 +37,19 @@ module.exports = {
         loader: 'style-loader!css-loader'
       },
       {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!less-loader'
+      },
+      {
         test: /\.html$/,
         loader: 'html-loader'
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader'
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader'
       }
     ]
