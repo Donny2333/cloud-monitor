@@ -6,12 +6,11 @@ export default class CountBoard {
       replace: true,
       bindToController: true,
       scope: {},
-      link: function(scope, element, attrs, ctrl) {
+      link: function (scope, element, attrs, ctrl) {
 
       },
       controller: () => {},
       controllerAs: 'CountBoardCtrl'
-
     }
   }
 }
