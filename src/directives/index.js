@@ -14,7 +14,7 @@ const directives = angular
         myStyle: '='
       },
       link: function(scope, element, attrs) {
-        var myChat = null
+        let myChat = null
 
         if (scope.data) {
           // 基于准备好的dom，初始化echarts实例

@@ -1,4 +1,7 @@
 import angular from 'angular'
 import LeftCtrl from './LeftCtrl'
+import countBoard from '@/components/countBoard'
 
-export default angular.module('left', []).controller('LeftCtrl', LeftCtrl).name
+export default angular.module('left', [countBoard])
+  .controller('LeftCtrl', LeftCtrl)
+  .name
