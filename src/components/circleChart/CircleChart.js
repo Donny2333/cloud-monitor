@@ -56,19 +56,21 @@ export default class CircleChart {
             })
             .attr('d', function(d, i) {
               var angle = 2 * Math.PI * d / 100
-              return [].concat(
-                ['M', cx + r, cy],
-                [
-                  'A',
-                  r,
-                  r,
-                  0,
-                  Math.floor(d / 50),
-                  1,
-                  cx + Math.cos(angle) * r,
-                  cy + Math.sin(angle) * r
-                ]
-              ).join(' ')
+              return []
+                .concat(
+                  ['M', cx + r, cy],
+                  [
+                    'A',
+                    r,
+                    r,
+                    0,
+                    Math.floor(d / 50),
+                    1,
+                    cx + Math.cos(angle) * r,
+                    cy + Math.sin(angle) * r
+                  ]
+                )
+                .join(' ')
             })
 
           exitP.remove()

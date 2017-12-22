@@ -1,3 +1,5 @@
+import * as d3 from 'd3'
+
 export default class DashBoard {
   constructor() {
     return {
@@ -5,9 +7,20 @@ export default class DashBoard {
       template: require('./DashBoard.html'),
       replace: true,
       bindToController: true,
-      scope: {},
-      link: function (scope, element, attrs, ctrl) {
+      scope: {
+        dataList: '='
+      },
+      link: (scope, element, attrs, ctrl) => {
+        const svg = d3.select(element[0]).selectAll('svg')
+        const dataList = [60]
 
+        const updatePointer = svg.selectAll('path').data(dataList)
+        const enterPointer = updatePointer.enter()
+        const exitPointer = updatePointer.exit()
+
+        enterPointer.append('path')
+
+        exitPointer.remove()
       },
       controller: () => {},
       controllerAs: 'DashBoardCtrl'

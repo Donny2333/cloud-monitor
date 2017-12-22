@@ -1,5 +1,10 @@
 export default class LeftCtrl {
   constructor() {
-    console.log('LeftCtrl mounted.')
+    let that = this
+
+    that.counts_of_host = {
+      label: '物理云主机数',
+      value: 124
+    }
   }
 }
