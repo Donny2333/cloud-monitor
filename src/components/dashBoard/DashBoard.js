@@ -8,19 +8,19 @@ export default class DashBoard {
       replace: true,
       bindToController: true,
       scope: {
-        dataList: '='
+        data: '='
       },
       link: (scope, element, attrs, ctrl) => {
         const svg = d3.select(element[0]).selectAll('svg')
         const dataList = [60]
 
-        const updatePointer = svg.selectAll('path').data(dataList)
-        const enterPointer = updatePointer.enter()
-        const exitPointer = updatePointer.exit()
+        // const updatePointer = svg.selectAll('path').data(dataList)
+        // const enterPointer = updatePointer.enter()
+        // const exitPointer = updatePointer.exit()
 
-        enterPointer.append('path')
+        // enterPointer.append('path')
 
-        exitPointer.remove()
+        // exitPointer.remove()
       },
       controller: () => {},
       controllerAs: 'DashBoardCtrl'
