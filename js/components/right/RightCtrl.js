@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('RightCtrl', ['$interval', 'Monitor', 'Http', function ($interval, Monitor, Http) {
+    .controller('RightCtrl', ['$interval', 'Monitor', 'Http', 'OPEN_ANIMATION', function ($interval, Monitor, Http, OPEN_ANIMATION) {
       var that = this;
 
       that.detail = {
@@ -10,6 +10,21 @@
         serious: 0,
         warning: 0,
         information: 0
+      };
+
+      that.detailInfo = {
+        show: true,
+        style: {
+          top: '150px'
+        }
+      };
+
+      that.showDetail = function () {
+        that.detailInfo.show = true;
+      };
+
+      that.hideDetail = function () {
+        that.detailInfo.show = false;
       };
 
       that.usageList = [{
@@ -52,19 +67,19 @@
 
       function bytesToSize(gigabytes, unit) {
         var k = 1000, // or 1024
-            sizes = ['MB', 'GB', 'TB', 'PB'],
-            i = Math.floor(Math.log(gigabytes) / Math.log(k));
+          sizes = ['MB', 'GB', 'TB', 'PB'],
+          i = Math.floor(Math.log(gigabytes) / Math.log(k));
 
         if (gigabytes === 0) return {
           value: 0,
           unit: sizes[0]
         };
 
-       return {
-         value: (gigabytes / Math.pow(k, i)).toPrecision(3),
-         unit: sizes[i]
-       };
-      };
+        return {
+          value: (gigabytes / Math.pow(k, i)).toPrecision(3),
+          unit: sizes[i]
+        };
+      }
 
       function reload() {
         Monitor.alarm().then(function (res) {
@@ -113,7 +128,7 @@
               usageValue: bytesToSize(data[1].detail.usageValue).value,
               usageUnit: bytesToSize(data[1].detail.usageValue).unit,
               percent: (data[1].detail.usageValue / data[1].detail.totalValue * 100).toFixed(1)
-            }
+            };
 
             data[2].detail = {
               totalName: data[2].detail.totalName,
@@ -123,17 +138,17 @@
               usageValue: bytesToSize(data[2].detail.usageValue).value,
               usageUnit: bytesToSize(data[2].detail.usageValue).unit,
               percent: (data[1].detail.usageValue / data[1].detail.totalValue * 100).toFixed(1)
-            }
+            };
 
             that.usageList = data;
-          })
-        })
+          });
+        });
       }
 
       reload();
 
-      $interval(function () {
+      OPEN_ANIMATION && $interval(function () {
         reload();
       }, 30000);
-    }])
+    }]);
 })(angular);

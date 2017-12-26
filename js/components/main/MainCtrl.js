@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('MainCtrl', ['$interval', 'Monitor', function ($interval, Monitor) {
+    .controller('MainCtrl', ['$interval', 'Monitor', 'OPEN_ANIMATION', function ($interval, Monitor, OPEN_ANIMATION) {
       var that = this;
       that.data = [];
 
@@ -23,8 +23,8 @@
 
       reload();
 
-      $interval(function () {
+      OPEN_ANIMATION && $interval(function () {
         reload();
       }, 5000);
-    }])
+    }]);
 })(angular);

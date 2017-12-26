@@ -190,9 +190,9 @@
 
       reload();
 
-      $interval(function () {
-        reload();
-      }, 30000);
+      // $interval(function () {
+      //   reload();
+      // }, 30000);
     }
 
     ])

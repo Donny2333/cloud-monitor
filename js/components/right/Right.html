@@ -1,10 +1,21 @@
 <div class="alert">
   <div class="title blue">系统告警</div>
   <div class="detail white">
-    <div class="disaster">{{RightCtrl.detail.disaster}}</div>
-    <div class="serious">{{RightCtrl.detail.serious}}</div>
-    <div class="warning">{{RightCtrl.detail.warning}}</div>
-    <div class="information">{{RightCtrl.detail.information}}</div>
+    <div class="disaster" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+      {{RightCtrl.detail.disaster}}
+    </div>
+    <div class="serious" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+      {{RightCtrl.detail.serious}}
+    </div>
+    <div class="warning" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+      {{RightCtrl.detail.warning}}
+    </div>
+    <div class="information" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+      {{RightCtrl.detail.information}}
+    </div>
+    <div class="detail-info" ng-style="RightCtrl.detailInfo.style" ng-if="RightCtrl.detailInfo.show">
+      <p>here is detail information</p>
+    </div>
   </div>
 </div>
 <div class="usage">

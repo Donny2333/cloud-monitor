@@ -66,7 +66,7 @@
 
           return deferred.promise;
         }
-      }
+      };
     }])
 
     .factory('Monitor', ['Http', 'URL_CFG', function (Http, URL_CFG) {
@@ -101,7 +101,7 @@
         vm_mem: function () {
           return Http.get(URL_CFG.api + 'vm_mem/topn');
         }
-      }
+      };
     }])
 
     .factory('EChartsFactory', ['Http', function (Http) {
@@ -185,7 +185,7 @@
           }.bind(this), function (err) {
             console.log(err);
           });
-        }
+        };
       };
 
       // 折线图
@@ -240,7 +240,7 @@
           }.bind(this), function (err) {
             console.log(err);
           });
-        }
+        };
       };
 
       // 仪表盘
@@ -304,9 +304,9 @@
 
               that.data = option;
               return where.data = option;
-            })
+            });
           });
-        }
+        };
       };
 
       // 饼图
@@ -378,7 +378,7 @@
               return where.data = option;
             });
           });
-        }
+        };
       };
 
       // 地图
@@ -404,8 +404,8 @@
                 type: 'map',
                 mapType: 'LHK', // 自定义扩展图表类型
                 itemStyle: {
-                  normal: {label: {show: true}},
-                  emphasis: {label: {show: true}}
+                  normal: { label: { show: true } },
+                  emphasis: { label: { show: true } }
                 },
                 data: seriesData
               });
@@ -430,7 +430,7 @@
                 left: 'right',
                 top: 'center',
                 feature: {
-                  dataView: {readOnly: false},
+                  dataView: { readOnly: false },
                   restore: {},
                   saveAsImage: {}
                 }
@@ -453,13 +453,13 @@
           }.bind(this), function (err) {
             // console.log(err);
           });
-        }
+        };
       };
 
       return function (type) {
         type = type.toLowerCase();
         return new eChart.type[type];
       };
-    }])
+    }]);
 
 })(angular);

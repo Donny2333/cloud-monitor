@@ -14,5 +14,6 @@
 
   angular.module('cloud-monitor.config', [])
     .constant('URL_CFG', Urls.Prod_Cfg)
+    .constant('OPEN_ANIMATION', false)
 
 })(angular);

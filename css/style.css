@@ -3,7 +3,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: "Microsoft YaHei";
+  font-family: "Microsoft YaHei", serif;
 }
 
 html,
@@ -12,8 +12,6 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background-image: url("../images/background.png");
-  background-size: 100% 100%;
 }
 
 ul,
@@ -114,13 +112,12 @@ a {
 }
 
 /******************* app *******************/
-.monitor-title{
+.monitor-title {
   color: #0f9ee5;
   font-size: 42px;
   position: absolute;
-  top:5px;
+  top: 5px;
 }
-
 
 .app {
   display: -webkit-box;
@@ -441,6 +438,12 @@ a {
   padding-left: 20px;
   padding-right: 40px;
   font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.detail .detail-info {
+  position: absolute;
 }
 
 .detail .disaster {
@@ -733,9 +736,12 @@ a {
 
 /******************* directedGraph *******************/
 
-.wave canvas {
+.wave {
   position: absolute;
   top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
   z-index: -1;
   background-image: url("../images/background.png");
   background-size: 100% 100%;

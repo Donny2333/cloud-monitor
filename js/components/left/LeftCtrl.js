@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('LeftCtrl', ['Monitor', '$interval', 'EChartsFactory', 'URL_CFG',
-      function (Monitor, $interval, EChartsFactory, URL_CFG) {
+    .controller('LeftCtrl', ['Monitor', '$interval', 'EChartsFactory', 'URL_CFG', 'OPEN_ANIMATION',
+      function (Monitor, $interval, EChartsFactory, URL_CFG, OPEN_ANIMATION) {
         var that = this;
 
         that.charts = [];
@@ -47,13 +47,13 @@
             _.merge(newChart, chart);
             newChart.update(chart);
             that.charts.push(newChart);
-          })
+          });
         }
 
         reload();
 
-        $interval(function () {
+        OPEN_ANIMATION && $interval(function () {
           reload();
         }, 30000);
-      }])
+      }]);
 })(angular);

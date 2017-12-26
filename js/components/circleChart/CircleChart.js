@@ -57,7 +57,6 @@
           scope.$watch(function () {
             return ctrl.detail.usageValue;
           }, function (value) {
-            console.log(ctrl.detail)
             ctrl.percent = ctrl.detail.percent;
             drawsvg();
           });
@@ -66,6 +65,6 @@
 
         },
         controllerAs: 'CircleChartCtrl'
-      }
-    }])
+      };
+    }]);
 })(angular);
