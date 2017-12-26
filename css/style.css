@@ -12,8 +12,8 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  /*background-image: url("../images/background.png");*/
-  /*background-size: 100% 100%;*/
+  background-image: url("../images/background.png");
+  background-size: 100% 100%;
 }
 
 ul,
@@ -109,10 +109,18 @@ a {
 }
 
 .title {
-  font-size: 14px;
+  font-size: 18px;
+
 }
 
 /******************* app *******************/
+.monitor-title{
+  color: #0f9ee5;
+  font-size: 42px;
+  position: absolute;
+  top:5px;
+}
+
 
 .app {
   display: -webkit-box;
@@ -174,7 +182,7 @@ a {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  height: 100%;
+  height: 90%;
   width: 50%;
 }
 
@@ -190,7 +198,7 @@ a {
 
 .main .bg .title {
   position: absolute;
-  top: 7%;
+  top: 6%;
   left: 5%;
 }
 
@@ -622,7 +630,7 @@ a {
 .directedGraph svg {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 10px;
 }
 
 .directedGraph-circle {

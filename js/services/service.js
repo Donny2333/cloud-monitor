@@ -86,7 +86,7 @@
         alarm: function () {
           return Http.get(URL_CFG.api + 'alarm/statistics');
         },
-        hyperVisors: function () {
+        hypervisors: function () {
           return Http.get(URL_CFG.api + 'hypervisors/statistics');
         },
         cpu: function () {
@@ -245,69 +245,121 @@
 
       // 仪表盘
       eChart.type.gauge = function () {
-        this.update = function (where) {
-          Http.get(this.dataSource).then(function (res) {
-            var option = {
-              toolbox: {
-                feature: {
-                  restore: {},
-                  saveAsImage: {}
-                },
+        var that = this;
+
+        that.update = function (where) {
+          var option = {
+            toolbox: {
+              feature: {
+                restore: {},
+                saveAsImage: {}
+              },
+              show: false
+            },
+            textStyle: {
+              fontSize: '100px'
+            },
+            series: [{
+              type: 'gauge',
+              name: this.title || '',
+              detail: {
+                formatter: '{value}',
+                textStyle: {
+                  fontSize: 25,
+                  fontWeight: 'bolder'
+                }
+              },
+              data: [],
+              title: {
                 show: false
               },
-              textStyle: {
-                fontSize: '100px'
-              },
-              series: [{
-                type: 'gauge',
-                name: this.title || '',
-                detail: {
-                  formatter: '{value}',
-                  textStyle: {
-                    fontSize: 25,
-                    fontWeight: 'bolder'
-                  }
-                },
-                data: [{
-                  name: '系统健康度',
-                  // value: res.data.systemstate
-                  value: 90
-                }],
-                title: {
-                  show: false
-                },
-                axisLine: {
-                  lineStyle: {
-                    width: 20,
-                    color: [[0.2, '#ff9510'], [0.8, '#2483cf'], [1, '#57c550']]
-                  }
-                },
-                splitLine: {
-                  length: 20
-                },
-                axisLabel: {
-                  textStyle: {
-                    fontSize: 10
-                  }
+              axisLine: {
+                lineStyle: {
+                  width: 20,
+                  color: [[0.2, '#ff9510'], [0.8, '#2483cf'], [1, '#57c550']]
                 }
-              }]
-            };
+              },
+              splitLine: {
+                length: 20
+              },
+              axisLabel: {
+                textStyle: {
+                  fontSize: 10
+                }
+              }
+            }]
+          };
 
-            this.data = option;
+          Http.get(that.dataSource).then(function (res) {
+            option.series[0].data = [{
+              name: '系统健康度',
+              value: res.data.systemstate
+            }];
+
+            that.data = option;
             return where.data = option;
-          }.bind(this), function (err) {
-            console.log(err);
+          }, function (err) {
+            Http.get(that.localSource).then(function (res) {
+              option.series[0].data = res.data.data;
+
+              that.data = option;
+              return where.data = option;
+            })
           });
         }
       };
 
       // 饼图
       eChart.type.pie = function () {
-        this.update = function (where) {
+        var that = this,
+          option = {
+            color: ['#57c550', '#ff9510', '#f45938'],
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            series: [{
+              name: that.title,
+              type: 'pie',
+              radius: [40, 55],
+              center: ['50%', '50%'],
+              label: {
+                normal: {
+                  show: false
+                }
+              },
+              labelLine: {
+                normal: {
+                  show: false
+                }
+              }
+            }]
+          };
 
-          Http.get(this.dataSource).then(function (res) {
-            var seriesData = [
-              {
+        that.update = function (where) {
+          Http.get(that.dataSource).then(function (res) {
+            option.series[0].data = [{
+              name: '运行',
+              value: res.data.normal
+            }, {
+              name: '故障',
+              value: res.data.abnormal
+            }, {
+              name: '停止',
+              value: res.data.poweroff
+            }];
+
+            that.data = option;
+            that.total = res.data.normal + res.data.abnormal + res.data.poweroff;
+            that.normal = res.data.normal;
+            that.abnormal = res.data.abnormal;
+            that.poweroff = res.data.poweroff;
+            return where.data = option;
+          }, function (err) {
+            Http.get(that.localSource).then(function (res) {
+              res.data = res.data.data[0];
+
+              option.series[0].data = [{
                 name: '运行',
                 value: res.data.normal
               }, {
@@ -318,39 +370,13 @@
                 value: res.data.poweroff
               }];
 
-            var option = {
-              color: ['#57c550', '#ff9510', '#f45938'],
-              tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b}: {c} ({d}%)"
-              },
-              series: [{
-                name: this.title,
-                type: 'pie',
-                radius: [40, 55],
-                center: ['50%', '50%'],
-                data: seriesData,
-                label: {
-                  normal: {
-                    show: false
-                  }
-                },
-                labelLine: {
-                  normal: {
-                    show: false
-                  }
-                }
-              }]
-            };
-
-            this.data = option;
-            this.total = res.data.normal + res.data.abnormal + res.data.poweroff;
-            this.normal = res.data.normal;
-            this.abnormal = res.data.abnormal;
-            this.poweroff = res.data.poweroff;
-            return where.data = option;
-          }.bind(this), function (err) {
-            console.log(err);
+              that.data = option;
+              that.total = res.data.normal + res.data.abnormal + res.data.poweroff;
+              that.normal = res.data.normal;
+              that.abnormal = res.data.abnormal;
+              that.poweroff = res.data.poweroff;
+              return where.data = option;
+            });
           });
         }
       };
@@ -425,7 +451,7 @@
             this.data = option;
             return where.data = option;
           }.bind(this), function (err) {
-            console.log(err);
+            // console.log(err);
           });
         }
       };

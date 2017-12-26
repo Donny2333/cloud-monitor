@@ -1,0 +1,26 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "json": [
+    {
+      "name": "wsdzb-2-webServer1",
+      "value": 50
+    },
+    {
+      "name": "wsdzb-2-webServer2",
+      "value": 42
+    },
+    {
+      "name": "wsdzb-2-fileServer",
+      "value": 35
+    },
+    {
+      "name": "wsdzb-2-dbServer1",
+      "value": 28
+    },
+    {
+      "name": "wsdzb-2-dbServer2",
+      "value": 20
+    }
+  ]
+}

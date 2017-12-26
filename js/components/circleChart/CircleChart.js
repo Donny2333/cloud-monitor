@@ -19,7 +19,7 @@
             cy = 150,
             r = 120;
 
-          ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100;
+          ctrl.percent = ctrl.detail.percent;
 
           function drawsvg() {
             var updateP = svg.selectAll('path').data([ctrl.percent]),
@@ -57,7 +57,8 @@
           scope.$watch(function () {
             return ctrl.detail.usageValue;
           }, function (value) {
-            ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100;
+            console.log(ctrl.detail)
+            ctrl.percent = ctrl.detail.percent;
             drawsvg();
           });
         },

@@ -5,13 +5,13 @@
     <text x="150" y="150" text-anchor="middle">
       <tspan x="150" dy="-20" class="gray" style="font-size: 25px">分配比例</tspan>
       <tspan x="150" dy="60" class="yellow" style="font-size: 30px">
-        {{CircleChartCtrl.percent.toFixed(1)}}%
+        {{CircleChartCtrl.detail.percent}}%
       </tspan>
     </text>
   </svg>
   <div class="info">
     <div class="title blue">{{CircleChartCtrl.title}}</div>
-    <div class="total gray">{{CircleChartCtrl.detail.totalName}}：{{CircleChartCtrl.detail.totalValue}}</div>
-    <div class="gray">{{CircleChartCtrl.detail.usageName}}：{{CircleChartCtrl.detail.usageValue}}</div>
+    <div class="total gray">{{CircleChartCtrl.detail.totalName}}：{{CircleChartCtrl.detail.totalValue}} {{CircleChartCtrl.detail.totalUnit}}</div>
+    <div class="gray">{{CircleChartCtrl.detail.usageName}}：{{CircleChartCtrl.detail.usageValue}} {{CircleChartCtrl.detail.usageUnit}}</div>
   </div>
 </div>

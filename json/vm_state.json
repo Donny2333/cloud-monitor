@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "msg": "请求成功",
+  "data": [
+    {
+      "abnormal": 0,
+      "normal": 78,
+      "poweroff": 0
+    }
+  ]
+}
