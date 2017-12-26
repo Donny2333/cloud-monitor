@@ -1,20 +1,21 @@
 <div class="alert">
   <div class="title blue">系统告警</div>
-  <div class="detail white">
-    <div class="disaster" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+  <div class="detail white" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+    <div class="disaster" ng-mouseenter="RightCtrl.calDetail(0)">
       {{RightCtrl.detail.disaster}}
     </div>
-    <div class="serious" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+    <div class="serious" ng-mouseenter="RightCtrl.calDetail(1)">
       {{RightCtrl.detail.serious}}
     </div>
-    <div class="warning" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+    <div class="warning" ng-mouseenter="RightCtrl.calDetail(2)">
       {{RightCtrl.detail.warning}}
     </div>
-    <div class="information" ng-mouseenter="RightCtrl.showDetail()" ng-mouseleave="RightCtrl.hideDetail()">
+    <div class="information" ng-mouseenter="RightCtrl.calDetail(3)">
       {{RightCtrl.detail.information}}
     </div>
-    <div class="detail-info" ng-style="RightCtrl.detailInfo.style" ng-if="RightCtrl.detailInfo.show">
-      <p>here is detail information</p>
+    <div class="detail-info" ng-style="RightCtrl.detailInfo.style" ng-show="RightCtrl.detailInfo.show">
+      <div class="tip" ng-style="RightCtrl.detailInfo.tipStyle"></div>
+      <table id="table"></table>
     </div>
   </div>
 </div>

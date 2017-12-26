@@ -16,6 +16,7 @@
     "jquery": "^3.2.1",
     "echarts": "^3.6.1",
     "d3": "^4.9.1",
-    "three.js": "^0.87.0"
+    "three.js": "^0.87.0",
+    "bootstrap-table": "^1.11.1"
   }
 }

@@ -13,14 +13,86 @@
       };
 
       that.detailInfo = {
-        show: true,
+        show: false,
         style: {
-          top: '150px'
+          top: '90%'
+        },
+        tipStyle: {
+          left: '70px'
         }
+      };
+
+      that.calDetail = function (index) {
+        that.detailInfo.style.top = index < 2 ? '30%' : '90%';
+        that.detailInfo.tipStyle.left = index % 2 ? '250px' : '70px';
+
+        var data = [{
+          id: 1 * index,
+          name: 'Item 1',
+          price: '$1'
+        }, {
+          id: 2 * index,
+          name: 'Item 2',
+          price: '$2'
+        }, {
+          id: 3 * index,
+          name: 'Item 3',
+          price: '$3'
+        }, {
+          id: 4 * index,
+          name: 'Item 4',
+          price: '$4'
+        }, {
+          id: 5 * index,
+          name: 'Item 5',
+          price: '$5'
+        }, {
+          id: 6 * index,
+          name: 'Item 6',
+          price: '$6'
+        }];
+
+        $('#table').bootstrapTable('load', data);
       };
 
       that.showDetail = function () {
         that.detailInfo.show = true;
+
+        $('#table').bootstrapTable({
+          height: 160,
+          classes: 'table-no-bordered',
+          columns: [{
+            field: 'id',
+            title: '#'
+          }, {
+            field: 'name',
+            title: '严重性',
+            cellStyle: function (value, row, index, field) {
+              return {
+                css: { "color": "#f45938", "font-size": "10px" }
+              };
+            }
+          }, {
+            field: 'price',
+            title: '状态'
+          }, {
+            field: 'price',
+            title: '修改时间'
+          }, {
+            field: 'price',
+            title: '历时'
+          }, {
+            field: 'price',
+            title: '告警对象'
+          }, {
+            field: 'price',
+            title: '告警名称'
+          }, {
+            field: 'price',
+            title: '告警描述'
+          }],
+          data: []
+        });
       };
 
       that.hideDetail = function () {
