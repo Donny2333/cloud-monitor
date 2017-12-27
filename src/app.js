@@ -1,5 +1,5 @@
 import angular from 'angular'
-import uiRouter from 'angular-ui-router'
+import uiRouter from '@uirouter/angularjs'
 import config from '@/config'
 import directives from '@/directives'
 import features from '@/features'
