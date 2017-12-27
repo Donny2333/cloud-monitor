@@ -10,10 +10,21 @@
         <span class="value yellow">{{LeftCtrl.charts[1].total}}</span>
         <my-chart data="LeftCtrl.charts[1].data" my-style="LeftCtrl.charts[1].style"></my-chart>
       </div>
-      <div class="detail">
+      <div class="detail" ng-mouseenter="LeftCtrl.showDetail()" ng-mouseleave="LeftCtrl.hideDetail()">
         <span class="running green">{{LeftCtrl.charts[1].normal || 0}}</span>
-        <span class="trouble orange">{{LeftCtrl.charts[1].abnormal || 0}}</span>
-        <span class="stopped red">{{LeftCtrl.charts[1].poweroff || 0}}</span>
+        <span class="trouble orange" ng-mouseover="LeftCtrl.calDetail('abnormal')"
+              ng-mouseleave="LeftCtrl.hideDetail()">
+          {{LeftCtrl.charts[1].abnormal || 0}}
+        </span>
+        <span class="stopped red" ng-mouseover="LeftCtrl.calDetail('poweroff')"
+              ng-mouseleave="LeftCtrl.hideDetail()">
+          {{LeftCtrl.charts[1].poweroff || 0}}
+        </span>
+        <div class="detail-info" ng-mouseenter="LeftCtrl.showDetail()" ng-style="LeftCtrl.detailInfo.style"
+             ng-show="LeftCtrl.detailInfo.show">
+          <div class="tip" ng-style="LeftCtrl.detailInfo.tipStyle"></div>
+          <table id="hostTable"></table>
+        </div>
       </div>
     </div>
     <div class="virtual">

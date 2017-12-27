@@ -36,14 +36,14 @@
 
           var data = _.filter(alarmDetail, { priority: priority.toString() });
 
-          $('#table').bootstrapTable('showLoading');
+          $('#alarmTable').bootstrapTable('showLoading');
           $timeout(function () {
-            $('#table').bootstrapTable('load', data)
+            $('#alarmTable').bootstrapTable('load', data)
               .bootstrapTable('hideLoading');
           }, 500);
         };
 
-        $('#table').bootstrapTable({
+        $('#alarmTable').bootstrapTable({
           height: 180,
           classes: 'table-no-bordered',
           columns: [{

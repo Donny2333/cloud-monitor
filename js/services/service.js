@@ -101,6 +101,9 @@
         vm_mem: function () {
           return Http.get(URL_CFG.api + 'vm_mem/topn');
         },
+        hostDetail: function () {
+          return Http.get(URL_CFG.api + 'host/details');
+        },
         alarmDetail: function () {
           return Http.get(URL_CFG.api + 'alarm/details');
         }
