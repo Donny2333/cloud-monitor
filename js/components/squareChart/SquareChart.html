@@ -14,8 +14,6 @@
   </svg>
   <div class="title blue">{{SquareChartCtrl.chart.title}}</div>
   <div class="x-ray">
-    <span ng-repeat="name in SquareChartCtrl.chart.names">
-      {{name}}
-    </span>
+    <span ng-repeat="name in SquareChartCtrl.chart.names" title="{{name}}">{{name}}</span>
   </div>
 </div>
