@@ -13,7 +13,7 @@
     };
 
   angular.module('cloud-monitor.config', [])
-    .constant('URL_CFG', Urls.Prod_Cfg)
+    .constant('URL_CFG', Urls.Dev_Cfg)
     .constant('OPEN_ANIMATION', false)
 
 })(angular);

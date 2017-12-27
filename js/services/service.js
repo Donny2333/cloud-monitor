@@ -100,6 +100,9 @@
         },
         vm_mem: function () {
           return Http.get(URL_CFG.api + 'vm_mem/topn');
+        },
+        alarmDetail: function () {
+          return Http.get(URL_CFG.api + 'alarm/details');
         }
       };
     }])

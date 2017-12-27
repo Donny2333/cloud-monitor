@@ -445,7 +445,6 @@ a {
   left: 0;
   width: 100%;
   padding: 20px 0 0;
-  overflow: hidden;
 }
 
 .detail .detail-info .tip {
@@ -476,7 +475,7 @@ a {
 .detail .detail-info .bootstrap-table {
   padding: 5px 2px;
   border: 1px solid rgb(5, 56, 97);
-  background-color: rgba(1, 14, 29, 0.902);
+  background-color: rgb(1, 14, 29);
   box-shadow: 0 5px 29px 0 rgba(1, 7, 16, 0.92);
 }
 
@@ -527,7 +526,7 @@ a {
   -ms-flex-pack: distribute;
   justify-content: space-around;
   height: 70%;
-  padding: 0 20% 5% 10%;
+  padding: 0 15% 5% 10%;
 }
 
 /******************* bottom *******************/
@@ -784,7 +783,7 @@ a {
 .fixed-table-container tbody td .th-inner,
 .fixed-table-container thead th .th-inner {
   font-size: 10px;
-  padding: 2px 8px;
+  padding: 2px 10px;
 }
 
 .fixed-table-container thead th,
@@ -801,9 +800,10 @@ a {
 }
 
 .fixed-table-container tbody td {
-  padding: 5px 0;
+  padding: 5px 10px;
   color: #a5a6bb;
   background-color: rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
 }
 
 .fixed-table-container tbody tr:hover {
@@ -812,4 +812,11 @@ a {
 
 .fixed-table-container tbody tr:hover td {
   color: white;
+}
+
+.fixed-table-container .fixed-table-loading {
+  font-size: 10px;
+  padding-top: 2px;
+  color: #a5a6bb;
+  background-color: rgb(1, 14, 29);
 }
