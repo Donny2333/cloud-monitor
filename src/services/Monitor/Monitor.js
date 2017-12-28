@@ -3,34 +3,34 @@ import { URL_CFG } from '@/api'
 export default class EChartsFactory {
   constructor(Http) {
     return {
-      systemState: function() {
+      systemState: () => {
         return Http.get(URL_CFG.api + 'systemstate/statistics')
       },
-      hostHealth: function() {
+      hostHealth: () => {
         return Http.get(URL_CFG.api + 'hosthealth/statistics/32')
       },
-      hostState: function() {
+      hostState: () => {
         return Http.get(URL_CFG.api + 'hoststate/statistics')
       },
-      vm: function() {
+      vm: () => {
         return Http.get(URL_CFG.api + 'vm/statistics')
       },
-      alarm: function() {
+      alarm: () => {
         return Http.get(URL_CFG.api + 'alarm/statistics')
       },
-      hypervisors: function() {
+      hypervisors: () => {
         return Http.get(URL_CFG.api + 'hypervisors/statistics')
       },
-      cpu: function() {
+      cpu: () => {
         return Http.get(URL_CFG.api + 'cpu/topn')
       },
-      mem: function() {
+      mem: () => {
         return Http.get(URL_CFG.api + 'mem/topn')
       },
-      vm_cpu: function() {
+      vm_cpu: () => {
         return Http.get(URL_CFG.api + 'vm_cpu/topn')
       },
-      vm_mem: function() {
+      vm_mem: () => {
         return Http.get(URL_CFG.api + 'vm_mem/topn')
       }
     }

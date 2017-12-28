@@ -12,7 +12,7 @@ export default class CircleChart {
         title: '=',
         detail: '='
       },
-      link: function(scope, element, attrs, ctrl) {
+      link: (scope, element, attrs, ctrl) => {
         const svg = d3.select(element[0]).selectAll('svg')
         const cx = 150
         const cy = 150
@@ -20,13 +20,13 @@ export default class CircleChart {
 
         ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100
 
-        function drawsvg() {
+        const drawSVG = () => {
           const updateP = svg.selectAll('path').data([ctrl.percent])
           const enterP = updateP.enter()
           const exitP = updateP.exit()
 
-          updateP.attr('d', function(d, i) {
-            var angle = 2 * Math.PI * d / 100
+          updateP.attr('d', (d, i) => {
+            const angle = 2 * Math.PI * d / 100
 
             return []
               .concat(
@@ -51,11 +51,11 @@ export default class CircleChart {
             .attr('stroke-width', 30)
             .attr('stroke-linecap', 'round')
             .attr('stroke-miterlimit', 10)
-            .attr('stroke', function(d, i) {
+            .attr('stroke', (d, i) => {
               return ctrl.color
             })
-            .attr('d', function(d, i) {
-              var angle = 2 * Math.PI * d / 100
+            .attr('d', (d, i) => {
+              const angle = 2 * Math.PI * d / 100
               return []
                 .concat(
                   ['M', cx + r, cy],
@@ -76,17 +76,14 @@ export default class CircleChart {
           exitP.remove()
         }
 
-        scope.$watch(
-          function() {
-            return ctrl.detail.usageValue
-          },
-          function(value) {
-            ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100
-            drawsvg()
-          }
-        )
+        scope.$watch(() => {
+          return ctrl.detail.usageValue
+        }, (value) => {
+          ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100
+          drawSVG()
+        })
       },
-      controller: function() {},
+      controller: () => {},
       controllerAs: 'CircleChartCtrl'
     }
   }

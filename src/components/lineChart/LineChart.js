@@ -123,8 +123,8 @@ export default class LineChart {
                   'M',
                   chart.text.width + chart.bar.radius + chart.bar.padding,
                   i * (2 * chart.bar.radius + chart.bar.deltaY) +
-                    chart.padding +
-                    chart.bar.padding
+                  chart.padding +
+                  chart.bar.padding
                 ],
                 [
                   'c',

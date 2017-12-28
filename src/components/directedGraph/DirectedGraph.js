@@ -11,7 +11,7 @@ export default class DirectedGraph {
         data: '='
       },
       bindToController: true,
-      link: function(scope, element, attrs, ctrl) {
+      link: (scope, element, attrs, ctrl) => {
         const svg = d3.select(element[0]).selectAll('svg.directed')
         const x0 = 20
         const y0 = 20
@@ -19,19 +19,19 @@ export default class DirectedGraph {
           $(element[0])
             .children('svg')
             .width() /
-            2 -
+          2 -
           x0
         const ry =
           $(element[0])
             .children('svg')
             .height() /
-            2 -
+          2 -
           y0
         const cr =
           $(element[0])
             .children('.radar-ball')
             .height() /
-            2 -
+          2 -
           20
         const r = 25
         const v = [
@@ -74,7 +74,7 @@ export default class DirectedGraph {
         let j
         let flag
 
-        function move() {
+        const move = () => {
           for (i = 0; i < v.length; i++) {
             _d[i] = []
             _d[i][0] = v[i][0] + (Math.random() - 1) % 0.1
@@ -85,13 +85,13 @@ export default class DirectedGraph {
               _d[i][j] =
                 _d[i][j] +
                 flag *
-                  Math.log(Math.abs(_d[i][j] - 1)) /
-                  Math.log(Math.pow(10, 50))
+                Math.log(Math.abs(_d[i][j] - 1)) /
+                Math.log(Math.pow(10, 50))
             }
           }
         }
 
-        function drawsvg() {
+        const drawSVG = () => {
           // circle
           const updateC = svg.selectAll('circle').data(_d)
           const enterC = updateC.enter()
@@ -101,13 +101,13 @@ export default class DirectedGraph {
             .transition()
             .duration(3000)
             .ease(d3.easeCubicOut)
-            .attr('cx', function(d, i) {
+            .attr('cx', (d, i) => {
               return rx * d[0] + x0
             })
-            .attr('cy', function(d, i) {
+            .attr('cy', (d, i) => {
               return ry * d[1] + y0
             })
-            .attr('r', function(d, i) {
+            .attr('r', (d, i) => {
               return (
                 r * Math.sqrt(Math.pow(d[0] - 1, 2) + Math.pow(d[1] - 1, 2))
               )
@@ -115,7 +115,7 @@ export default class DirectedGraph {
             .transition()
             .duration(2000)
             .ease(d3.easeCubicOut)
-            .attr('stroke', function(d, i) {
+            .attr('stroke', (d, i) => {
               if (dataList[i] < 20) {
                 return '#ff9510'
               } else if (dataList[i] < 80) {
@@ -124,7 +124,7 @@ export default class DirectedGraph {
                 return '#57c550'
               }
             })
-            .attr('fill', function(d, i) {
+            .attr('fill', (d, i) => {
               if (dataList[i] < 20) {
                 return 'url(#grad_orange)'
               } else if (dataList[i] < 80) {
@@ -137,21 +137,21 @@ export default class DirectedGraph {
           var circle = enterC.append('circle')
 
           circle
-            .attr('cx', function(d, i) {
+            .attr('cx', (d, i) => {
               return rx * d[0] + x0
             })
-            .attr('cy', function(d, i) {
+            .attr('cy', (d, i) => {
               return ry * d[1] + y0
             })
             .transition()
             .duration(1000)
             .ease(d3.easeCubicOut)
-            .attr('r', function(d, i) {
+            .attr('r', (d, i) => {
               return (
                 r * Math.sqrt(Math.pow(d[0] - 1, 2) + Math.pow(d[1] - 1, 2))
               )
             })
-            .attr('stroke', function(d, i) {
+            .attr('stroke', (d, i) => {
               if (dataList[i] < 20) {
                 return '#ff9510'
               } else if (dataList[i] < 80) {
@@ -160,7 +160,7 @@ export default class DirectedGraph {
                 return '#57c550'
               }
             })
-            .attr('fill', function(d, i) {
+            .attr('fill', (d, i) => {
               if (dataList[i] < 20) {
                 return 'url(#grad_orange)'
               } else if (dataList[i] < 80) {
@@ -174,8 +174,8 @@ export default class DirectedGraph {
             .append('animate')
             .attr('attributeName', 'r')
             .attr('dur', '5s')
-            .attr('values', function(d, i) {
-              var _r =
+            .attr('values', (d, i) => {
+              const _r =
                 r * Math.sqrt(Math.pow(d[0] - 1, 2) + Math.pow(d[1] - 1, 2))
               return [_r, 1.3 * _r, _r].join(';')
             })
@@ -192,7 +192,7 @@ export default class DirectedGraph {
             .transition()
             .duration(3000)
             .ease(d3.easeCubicOut)
-            .attr('d', function(d, i) {
+            .attr('d', (d, i) => {
               return [].concat(
                 ['M', rx * d[0] + x0, ry * d[1] + y0],
                 ['L', rx + cr * (d[0] - 1) + x0, ry + cr * (d[1] - 1) + y0]
@@ -201,7 +201,7 @@ export default class DirectedGraph {
             .transition()
             .duration(2000)
             .ease(d3.easeCubicOut)
-            .attr('stroke', function(d, i) {
+            .attr('stroke', (d, i) => {
               if (dataList[i] < 20) {
                 return '#ff9510'
               } else if (dataList[i] < 80) {
@@ -213,7 +213,7 @@ export default class DirectedGraph {
 
           enterL
             .append('path')
-            .attr('d', function(d, i) {
+            .attr('d', (d, i) => {
               return [].concat(
                 ['M', rx * d[0] + x0, ry * d[1] + y0],
                 ['L', rx + cr * (d[0] - 1) + x0, ry + cr * (d[1] - 1) + y0]
@@ -222,7 +222,7 @@ export default class DirectedGraph {
             .attr('style', 'opacity: 0.5')
             .attr('stroke-width', '2px')
             .attr('fill-rule', 'evenodd')
-            .attr('stroke', function(d, i) {
+            .attr('stroke', (d, i) => {
               if (dataList[i] < 20) {
                 return '#ff9510'
               } else if (dataList[i] < 80) {
@@ -243,25 +243,25 @@ export default class DirectedGraph {
             .transition()
             .duration(3000)
             .ease(d3.easeCubicOut)
-            .attr('x', function(d, i) {
+            .attr('x', (d, i) => {
               return rx * _d[i][0] + x0
             })
-            .attr('y', function(d, i) {
+            .attr('y', (d, i) => {
               return ry * _d[i][1] + 7 + y0
             })
             .transition()
             .duration(2000)
             .ease(d3.easeCubicOut)
-            .text(function(d, i) {
+            .text((d, i) => {
               return Math.floor(d)
             })
 
           enterT
             .append('text')
-            .attr('x', function(d, i) {
+            .attr('x', (d, i) => {
               return rx * _d[i][0] + x0
             })
-            .attr('y', function(d, i) {
+            .attr('y', (d, i) => {
               return ry * _d[i][1] + 7 + y0
             })
             .attr('text-anchor', 'middle')
@@ -270,7 +270,7 @@ export default class DirectedGraph {
             .transition()
             .duration(2000)
             .ease(d3.easeCubicOut)
-            .text(function(d, i) {
+            .text((d, i) => {
               return Math.floor(d)
             })
 
@@ -278,20 +278,17 @@ export default class DirectedGraph {
         }
 
         move()
-        drawsvg()
+        drawSVG()
 
-        scope.$watch(
-          function() {
-            return ctrl.data
-          },
-          function(value) {
-            dataList = value
-            move()
-            drawsvg()
-          }
-        )
+        scope.$watch(() => {
+          return ctrl.data
+        }, (value) => {
+          dataList = value
+          move()
+          drawSVG()
+        })
       },
-      controller: function() {},
+      controller: () => {},
       controllerAs: 'DirectedGraphCtrl'
     }
   }

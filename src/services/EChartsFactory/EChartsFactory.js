@@ -4,22 +4,22 @@ export default class EChartsFactory {
     eChart.type = {}
 
     // 柱状图
-    eChart.type.bar = function() {
+    eChart.type.bar = function () {
       let that = this
 
-      that.update = function(where) {
+      that.update = function (where) {
         Http.get(that.dataSource).then(
-          function(res) {
-            var xAxisData = []
-            var series = []
-            var legendData = []
-            var option
-            var temp = {}
+          function (res) {
+            const xAxisData = []
+            const series = []
+            const legendData = []
+            const temp = {}
+            let option
 
-            res.data.y.map(function(_y) {
+            res.data.y.map(function (_y) {
               temp[_y] = []
 
-              res.data.data.map(function(item) {
+              res.data.data.map(function (item) {
                 temp[_y].push(item[_y])
               })
 
@@ -33,7 +33,7 @@ export default class EChartsFactory {
               legendData.push(_y)
             })
 
-            res.data.data.map(function(item) {
+            res.data.data.map(function (item) {
               xAxisData.push(item[res.data.x])
             })
 
@@ -85,7 +85,7 @@ export default class EChartsFactory {
             that.data = option
             return (where.data = option)
           },
-          function(err) {
+          function (err) {
             console.log(err)
           }
         )
@@ -93,18 +93,18 @@ export default class EChartsFactory {
     }
 
     // 折线图
-    eChart.type.line = function() {
+    eChart.type.line = function () {
       let that = this
 
-      that.update = function(where) {
+      that.update = function (where) {
         Http.get(that.dataSource).then(
-          function(res) {
-            var xAxisData = []
-            var series = []
-            var seriesData = []
-            var option
+          function (res) {
+            const xAxisData = []
+            const series = []
+            let seriesData = []
+            let option
 
-            res.data.data.map(function(item) {
+            res.data.data.map(function (item) {
               xAxisData.push(item[res.data.x])
               seriesData.push(item[res.data.y])
             })
@@ -118,7 +118,7 @@ export default class EChartsFactory {
             option = {
               tooltip: {
                 trigger: 'axis',
-                position: function(pt) {
+                position: function (pt) {
                   return [pt[0], '10%']
                 }
               },
@@ -145,7 +145,7 @@ export default class EChartsFactory {
             that.data = option
             return where.push(that)
           },
-          function(err) {
+          function (err) {
             console.log(err)
           }
         )
@@ -153,10 +153,10 @@ export default class EChartsFactory {
     }
 
     // 仪表盘
-    eChart.type.gauge = function() {
+    eChart.type.gauge = function () {
       let that = this
 
-      that.update = function(where) {
+      that.update = function (where) {
         let option = {
           toolbox: {
             feature: {
@@ -214,7 +214,7 @@ export default class EChartsFactory {
             return (where.data = option)
           },
           _ => {
-            Http.get(that.localSource).then(function(res) {
+            Http.get(that.localSource).then(function (res) {
               option.series[0].data = res.data.data
 
               that.data = option
@@ -226,7 +226,7 @@ export default class EChartsFactory {
     }
 
     // 饼图
-    eChart.type.pie = function() {
+    eChart.type.pie = function () {
       let that = this
       let option = {
         color: ['#57c550', '#ff9510', '#f45938'],
@@ -254,7 +254,7 @@ export default class EChartsFactory {
         ]
       }
 
-      that.update = function(where) {
+      that.update = function (where) {
         Http.get(that.dataSource).then(
           res => {
             option.series[0].data = [
@@ -280,7 +280,7 @@ export default class EChartsFactory {
             return (where.data = option)
           },
           _ => {
-            Http.get(that.localSource).then(function(res) {
+            Http.get(that.localSource).then(function (res) {
               res.data = res.data.data[0]
 
               option.series[0].data = [
@@ -312,19 +312,19 @@ export default class EChartsFactory {
     }
 
     // 地图
-    eChart.type.map = function() {
+    eChart.type.map = function () {
       let that = this
 
-      that.update = function(where) {
+      that.update = function (where) {
         Http.get(that.dataSource).then(
           res => {
-            var series = []
-            var seriesData = []
+            const series = []
+            let seriesData = []
 
-            res.data.y.map(function(_y) {
+            res.data.y.map(function (_y) {
               seriesData = []
 
-              res.data.data.map(function(item) {
+              res.data.data.map(function (item) {
                 seriesData.push({
                   name: item.country,
                   value: item[_y]
@@ -343,7 +343,7 @@ export default class EChartsFactory {
               })
             })
 
-            var option = {
+            const option = {
               legend: {
                 orient: 'vertical',
                 left: 'right',
