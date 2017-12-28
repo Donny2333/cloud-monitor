@@ -12,15 +12,38 @@ export default class DashBoard {
       },
       link: (scope, element, attrs, ctrl) => {
         const svg = d3.select(element[0]).selectAll('svg')
-        const dataList = [60]
+        const chart = {
+          height: 120,
+          width: 200,
+          center: [100, 100],
+          xRay: {
+            number: 53,
+            colorList: ['#45E8FF', '#0098FF', '#FF5B00', '#0A52BF']
+          }
+        }
+        const dataList = []
 
-        // const updatePointer = svg.selectAll('path').data(dataList)
-        // const enterPointer = updatePointer.enter()
-        // const exitPointer = updatePointer.exit()
+        for (let i = 0; i < chart.xRay.number; i++) {
+          dataList.push(i)
+        }
 
-        // enterPointer.append('path')
+        const updateX = svg.selectAll('path.xRay').data(dataList)
+        const enterX = updateX.enter()
+        const exitX = updateX.exit()
 
-        // exitPointer.remove()
+        enterX.append('path')
+          .attr('class', 'xRay')
+          .attr('fill', (d, i) => {
+            return chart.xRay.colorList[0]
+          })
+          .attr('opacity', (d, i) => {
+            return 1
+          })
+          .attr('d', (d, i) => {
+            return [].concat(['M', 0, 0]).join(' ')
+          })
+
+        exitX.remove()
       },
       controller: () => {},
       controllerAs: 'DashBoardCtrl'

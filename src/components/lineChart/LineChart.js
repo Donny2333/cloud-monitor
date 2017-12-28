@@ -33,11 +33,11 @@ export default class LineChart {
         const svg = d3.select(element[0]).selectAll('svg')
         const data = ctrl.data
 
-        const updatePointer = svg.selectAll('g.raw').data(data)
-        const enterPointer = updatePointer.enter()
-        const exitPointer = updatePointer.exit()
+        const updateRaw = svg.selectAll('g.raw').data(data)
+        const enterRaw = updateRaw.enter()
+        const exitRaw = updateRaw.exit()
 
-        const raw = enterPointer.append('g').attr('class', 'raw')
+        const raw = enterRaw.append('g').attr('class', 'raw')
 
         // background of bar
         raw
@@ -186,7 +186,7 @@ export default class LineChart {
             return `${d.value}%`
           })
 
-        exitPointer.remove()
+        exitRaw.remove()
       },
       controller: () => {},
       controllerAs: 'LineChartCtrl'
