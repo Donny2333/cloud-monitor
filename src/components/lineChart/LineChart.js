@@ -13,8 +13,8 @@ export default class LineChart {
       },
       link: (scope, element, attrs, ctrl) => {
         const chart = {
-          height: 180,
-          width: 400,
+          height: 160,
+          width: 380,
           padding: 16,
           text: {
             color: '#A5A6BB',
@@ -25,7 +25,7 @@ export default class LineChart {
           bar: {
             color: '#F39800',
             radius: 8,
-            deltaY: 16,
+            deltaY: 13,
             padding: 2
           },
           colorList: ['#2EC667', '#AB14B2', '#F04B09', '#FCB212', '#1E69D2']
@@ -52,7 +52,8 @@ export default class LineChart {
                   'M',
                   chart.width - 2 * chart.bar.radius,
                   i * (2 * chart.bar.radius + chart.bar.deltaY) + chart.padding
-                ], [
+                ],
+                [
                   'c',
                   2 * chart.bar.radius,
                   0,
@@ -60,11 +61,18 @@ export default class LineChart {
                   2 * chart.bar.radius,
                   0,
                   2 * chart.bar.radius
-                ], ['H', chart.text.width + chart.bar.radius], [
-                  'c', -2 * chart.bar.radius,
-                  0, -2 * chart.bar.radius, -2 * chart.bar.radius,
-                  0, -2 * chart.bar.radius
-                ], ['z']
+                ],
+                ['H', chart.text.width + chart.bar.radius],
+                [
+                  'c',
+                  -2 * chart.bar.radius,
+                  0,
+                  -2 * chart.bar.radius,
+                  -2 * chart.bar.radius,
+                  0,
+                  -2 * chart.bar.radius
+                ],
+                ['z']
               )
               .join(' ')
           })
@@ -79,8 +87,10 @@ export default class LineChart {
           .attr('x1', chart.text.width)
           .attr('y1', 0)
           .attr('x2', (d, i) => {
-            return chart.text.width +
+            return (
+              chart.text.width +
               d.value * (chart.width - chart.text.width) / 100
+            )
           })
           .attr('y2', 0)
 
@@ -112,29 +122,45 @@ export default class LineChart {
                 [
                   'M',
                   chart.text.width + chart.bar.radius + chart.bar.padding,
-                  i * (2 * chart.bar.radius + chart.bar.deltaY) + chart.padding + chart.bar.padding
-                ], [
-                  'c', -2 * chart.bar.radius,
-                  0, -2 * chart.bar.radius,
+                  i * (2 * chart.bar.radius + chart.bar.deltaY) +
+                    chart.padding +
+                    chart.bar.padding
+                ],
+                [
+                  'c',
+                  -2 * chart.bar.radius,
+                  0,
+                  -2 * chart.bar.radius,
                   2 * (chart.bar.radius - chart.bar.padding),
                   0,
                   2 * (chart.bar.radius - chart.bar.padding)
-                ], ['h', d.value * (chart.width - chart.text.width) / 100], [
+                ],
+                ['h', d.value * (chart.width - chart.text.width) / 100],
+                [
                   'c',
                   2 * chart.bar.radius,
                   0,
-                  2 * chart.bar.radius, -2 * (chart.bar.radius - chart.bar.padding),
-                  0, -2 * (chart.bar.radius - chart.bar.padding)
-                ], ['z']
+                  2 * chart.bar.radius,
+                  -2 * (chart.bar.radius - chart.bar.padding),
+                  0,
+                  -2 * (chart.bar.radius - chart.bar.padding)
+                ],
+                ['z']
               )
               .join(' ')
           })
 
         // name of bar
-        raw.append('text')
+        raw
+          .append('text')
           .attr('x', 0)
           .attr('y', (d, i) => {
-            return i * (2 * chart.bar.radius + chart.bar.deltaY) + chart.padding + chart.bar.padding + chart.text.fontSize
+            return (
+              i * (2 * chart.bar.radius + chart.bar.deltaY) +
+              chart.padding +
+              chart.bar.padding +
+              chart.text.fontSize
+            )
           })
           .attr('fill', chart.text.color)
           .attr('font-size', chart.text.fontSize)
@@ -143,10 +169,16 @@ export default class LineChart {
           })
 
         // percent of bar
-        raw.append('text')
+        raw
+          .append('text')
           .attr('x', chart.width - 30)
           .attr('y', (d, i) => {
-            return i * (2 * chart.bar.radius + chart.bar.deltaY) + chart.padding + chart.bar.padding + chart.text.fontSize
+            return (
+              i * (2 * chart.bar.radius + chart.bar.deltaY) +
+              chart.padding +
+              chart.bar.padding +
+              chart.text.fontSize
+            )
           })
           .attr('fill', '#F39800')
           .attr('font-size', chart.text.fontSize)
