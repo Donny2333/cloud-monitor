@@ -107,6 +107,9 @@
 
           Monitor.hostDetail().then(function (res) {
             hostDetail = res.data;
+            that.detailInfo.priority = -1;
+          }, function(err) {
+            that.detailInfo.priority = -1;
           });
         }
 

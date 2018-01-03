@@ -4,14 +4,16 @@
   "description": "",
   "scripts": {
     "dev": "gulp",
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Donny",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.18.8",
+    "browser-sync": "^2.23.2",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
-    "gulp-uglify": "^2.1.2"
+    "gulp-uglify": "^3.0.0"
   }
 }

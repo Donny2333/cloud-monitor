@@ -200,6 +200,8 @@
           Monitor.alarmDetail().then(function (res) {
             alarmDetail = res.data;
             that.detailInfo.priority = -1;
+          }, function(err) {
+            that.detailInfo.priority = -1;
           });
         }
 
