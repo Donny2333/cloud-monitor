@@ -1,27 +1,32 @@
 .count-board {
   display: flex;
+  height: 60px;
+  width: 100%;
+  max-width: 280px;
   border: 1px solid rgb(14, 105, 135);
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 0.8;
   box-shadow: 0 6px 24px 3px rgba(11, 38, 77, 0.77) inset, 0px -6px 24px 3px rgba(10, 60, 72, 0.43) inset;
   .label {
-    height: 60px;
-    width: 140px;
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
     font-size: 16px;
     letter-spacing: 2px;
     font-weight: 300;
-    line-height: 60px;
     text-align: center;
     color: rgb(255, 255, 255);
     box-shadow: 0 8px 30px 20px rgba(0, 152, 255, 0.25) inset, 0 -8px 30px 20px rgba(0, 152, 255, 0.25) inset;
   }
   .value {
-    height: 60px;
-    width: 140px;
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
     font-size: 40px;
     letter-spacing: 5px;
     font-weight: 500;
-    line-height: 60px;
     color: rgb(91, 249, 255);
     text-align: center;
   }
