@@ -1,115 +1,60 @@
 .directedGraph {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   height: 100%;
   width: 100%;
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-
-  .radar-ball {
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    background-image: url('../../common/img/icosahedron.png');
-    background-size: 100% 100%;
-  }
-
-  .directedGraph svg {
+  .label {
     position: absolute;
     left: 0;
     top: 10px;
+    color: rgb(15, 158, 229);
   }
-
-  .directedGraph-circle {
-    background: transparent;
+  .outer {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -130px;
-    margin-top: -130px;
-    width: 260px;
-    height: 260px;
-    border: 5px solid transparent;
-    border-left-color: rgba(225, 231, 240, 0.12);
-    border-right-color: rgba(225, 231, 240, 0.12);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: directedGraph-circle 10s infinite linear;
-    -webkit-animation: directedGraph-circle 10s infinite linear;
-    -moz-animation: directedGraph-circle 10s infinite linear;
-  }
-
-  @keyframes directedGraph-circle {
-    from {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-    to {
-      -webkit-transform: rotate(-360deg);
-      transform: rotate(-360deg);
+    height: 100%;
+    width: 100%;
+    background-image: url('../../common/img/outer.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: rotate 5s infinite linear;
+    @keyframes rotate {
+      from {
+        transform: rotate(0);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
   }
-
-  .directedGraph-circle1 {
-    background: transparent;
+  .cloud {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -110px;
-    margin-top: -110px;
-    width: 220px;
-    height: 220px;
-    border: 10px solid transparent;
-    border-left-color: rgba(225, 231, 240, 0.12);
-    border-right-color: rgba(225, 231, 240, 0.12);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: directedGraph-circle1 5s infinite linear;
-    -webkit-animation: directedGraph-circle1 5s infinite linear;
-    -moz-animation: directedGraph-circle1 5s infinite linear;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../common/img/cloud.png');
+    background-size: 26%;
+    background-repeat: no-repeat;
+    background-position: center;
   }
-
-  @keyframes directedGraph-circle1 {
-    from {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-    to {
-      -webkit-transform: rotate(180deg);
-      transform: rotate(180deg);
-    }
-  }
-
-  .radar {
+  .shadow {
     position: absolute;
-    display: inline-block;
-    left: 50%;
-    top: 50%;
-    margin-left: -300px;
-    margin-top: -300px;
-    width: 600px;
-    height: 600px;
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    -webkit-animation: myRotate 20s infinite linear;
-    animation: myRotate 20s infinite linear;
-    background-image: url('../../common/img/radar.png');
-    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../common/img/shadow.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
   }
-
-  @keyframes myRotate {
-    from {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-    to {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
+  svg {
+    position: absolute;
+    left: 0;
+    top: 10px;
   }
 }
