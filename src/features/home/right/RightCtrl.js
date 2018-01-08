@@ -1,6 +1,5 @@
 export default class RightCtrl {
   constructor() {
-    console.log('RightCtrl mounted.')
     let that = this
     that.charts = [
       {

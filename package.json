@@ -6,6 +6,7 @@
     "dev": "node ./build/dev-server",
     "build": "node build/build.js",
     "start": "npm run dev",
+    "clean": "rm -rf static/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pm2": "pm2 start build/dev-server.js -i max --watch --no-daemon"
   },
@@ -58,6 +59,7 @@
     "d3": "^4.12.2",
     "echarts": "^3.8.5",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "pm2": "^2.8.0",
     "three.js": "^0.77.1"
   }

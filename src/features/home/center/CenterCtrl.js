@@ -1,17 +1,35 @@
-export default class CenterCtrl {
-  constructor() {
+class CenterCtrl {
+  constructor($interval) {
     const that = this
-    that.data = []
 
     const equipData = n => {
-      for (var i = 0, list = []; i < n; i++) {
-        list[i] = Math.random() * 20 + 78
+      let list = []
+      let i = 0
+      for (; i < n; i++) {
+        list[i] = Math.random() * 100
       }
       return list
     }
 
-    that.data = equipData(32)
+    const init = () => {
+      that.data = {
+        num_excellent: Math.ceil(Math.random() * 100),
+        num_good: Math.ceil(Math.random() * 100),
+        num_poor: Math.ceil(Math.random() * 100),
+        detail: equipData(36)
+      }
+    }
+
+    init()
+
+    $interval(() => {
+      init()
+    }, 3000)
+
     that.label = '物理云主机健康度'
-    console.log('CenterCtrl mounted.')
   }
 }
+
+CenterCtrl.$inject = ['$interval']
+
+export default CenterCtrl

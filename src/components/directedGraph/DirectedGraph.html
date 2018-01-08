@@ -19,17 +19,32 @@
       </radialGradient>
     </g>
     <g>
-      <rect x="190" y="-250" width="40" height="15" style="fill:rgba(87,197,80,.4);stroke-width:1;stroke:rgb(87,197,80)" />
-      <rect x="190" y="-230" width="40" height="15" style="fill:rgba(36,131,207,.4);stroke-width:1;stroke:rgb(36,131,207)" />
-      <rect x="190" y="-210" width="40" height="15" style="fill:rgba(255,149,16,.4);stroke-width:1;stroke:rgb(255,149,16)" />
-      <text x="195" y="-240" font-size="6" style="fill:rgba(255,255,255,0.8)">健康数</text>
-      <text x="195" y="-220" font-size="6" style="fill:rgba(255,255,255,0.8)">良好数</text>
-      <text x="195" y="-200" font-size="6" style="fill:rgba(255,255,255,0.8)">不健康数</text>
+      <rect class="box orange" x="190" y="-200" width="50" height="15"></rect>
+      <rect class="box blue" x="190" y="-220" width="50" height="15"></rect>
+      <rect class="box green" x="190" y="-240" width="50" height="15"></rect>
+      <text class="text green" x="195" y="-230">
+        <tspan>健康数</tspan>
+        <tspan font-size="10px" x="235" dy="1px" text-anchor="end">
+          {{DirectedGraphCtrl.data.num_excellent}}
+        </tspan>
+      </text>
+      <text class="text blue" x="195" y="-210">
+        <tspan>良好数</tspan>
+        <tspan font-size="10px" x="235" dy="1px" text-anchor="end">
+          {{DirectedGraphCtrl.data.num_good}}
+        </tspan>
+      </text>
+      <text class="text orange" x="195" y="-190">
+        <tspan>不健康数</tspan>
+        <tspan font-size="10px" x="235" dy="1px" text-anchor="end">
+          {{DirectedGraphCtrl.data.num_poor}}
+        </tspan>
+      </text>
     </g>
-    <g>
-      <rect x="178" y="-250" width="4" height="55" style="fill:#ff9510;stroke-width:1;stroke:#ff9510" />
-      <rect x="178" y="-250" width="4" height="20" style="fill:#2483cf;stroke-width:1;stroke:#2483cf" />
-      <rect x="178" y="-250" width="4" height="10" style="fill:#57c550;stroke-width:1;stroke:#57c550" />
-    </g>
+    <!--<g>-->
+    <!--<rect class="line orange" x="178" y="-240" width="4" height="55"></rect>-->
+    <!--<rect class="line blue" x="178" y="-240" width="4" height="20"></rect>-->
+    <!--<rect class="line green" x="178" y="-240" width="4" height="10"></rect>-->
+    <!--</g>-->
   </svg>
 </div>
