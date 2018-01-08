@@ -34,7 +34,9 @@
           that.detailInfo.style.top = priority < 2 ? '30%' : '90%';
           that.detailInfo.tipStyle.left = priority % 2 ? '250px' : '70px';
 
-          var data = _.filter(alarmDetail, { priority: priority.toString() });
+          var data = _.filter(alarmDetail, function (o) {
+            return _.includes([["5"], ["4"], ["2", "3"], ["0", "1"]][priority], o.priority.toString());
+          });
 
           $('#alarmTable').bootstrapTable('showLoading');
           $timeout(function () {
@@ -200,7 +202,7 @@
           Monitor.alarmDetail().then(function (res) {
             alarmDetail = res.data;
             that.detailInfo.priority = -1;
-          }, function(err) {
+          }, function (err) {
             that.detailInfo.priority = -1;
           });
         }

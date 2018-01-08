@@ -1,6 +1,6 @@
 .idea
 .DS_Store
-/bower_components/
-/node_modules/
-/build/
-/js/config
+bower_components/
+node_modules/
+build/
+static/
