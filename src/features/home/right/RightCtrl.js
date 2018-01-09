@@ -1,6 +1,7 @@
 export default class RightCtrl {
-  constructor() {
+  constructor(Monitor) {
     let that = this
+
     that.charts = [
       {
         label: 'CPU最大利用率TOP5',

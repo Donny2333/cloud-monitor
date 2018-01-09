@@ -8,42 +8,23 @@ export default class DashBoard {
       replace: true,
       bindToController: true,
       scope: {
-        data: '='
+        label: '=',
+        value: '='
       },
       link: (scope, element, attrs, ctrl) => {
         const svg = d3.select(element[0]).selectAll('svg')
-        const chart = {
-          height: 120,
-          width: 200,
-          center: [100, 100],
-          xRay: {
-            number: 53,
-            colorList: ['#45E8FF', '#0098FF', '#FF5B00', '#0A52BF']
-          }
-        }
-        const dataList = []
+        const pointer = svg.select('polygon.pointer')
 
-        for (let i = 0; i < chart.xRay.number; i++) {
-          dataList.push(i)
-        }
+        const angle = d3
+          .scaleLinear()
+          .domain([0, 100])
+          .range([-195, 10])
 
-        const updateX = svg.selectAll('path.xRay').data(dataList)
-        const enterX = updateX.enter()
-        const exitX = updateX.exit()
-
-        enterX.append('path')
-          .attr('class', 'xRay')
-          .attr('fill', (d, i) => {
-            return chart.xRay.colorList[0]
+        pointer
+          .style('transform-origin', '100px 100px')
+          .attr('transform', () => {
+            return `rotate(${angle(ctrl.value)})`
           })
-          .attr('opacity', (d, i) => {
-            return 1
-          })
-          .attr('d', (d, i) => {
-            return [].concat(['M', 0, 0]).join(' ')
-          })
-
-        exitX.remove()
       },
       controller: () => {},
       controllerAs: 'DashBoardCtrl'

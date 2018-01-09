@@ -6,7 +6,8 @@ export default ($urlRouterProvider, $stateProvider) => {
     .state('app', {
       abstract: true,
       template: require('@/features/app/App.html'),
-      controller: 'AppCtrl'
+      controller: 'AppCtrl',
+      controllerAs: 'AppCtrl'
     })
     .state('app.home', {
       url: '/app',

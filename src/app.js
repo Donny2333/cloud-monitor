@@ -3,6 +3,7 @@ import uiRouter from '@uirouter/angularjs'
 import config from '@/config'
 import directives from '@/directives'
 import features from '@/features'
+import redux from '@/redux'
 import routers from '@/routers'
 import services from '@/services'
 
@@ -13,6 +14,7 @@ angular.module('cloud-monitor', [
   config,
   directives,
   features,
+  redux,
   routers,
   services
 ])

@@ -1,4 +1,4 @@
-class CenterCtrl {
+export default class CenterCtrl {
   constructor($interval) {
     const that = this
 
@@ -24,12 +24,10 @@ class CenterCtrl {
 
     $interval(() => {
       init()
-    }, 3000)
+    }, 10000)
 
     that.label = '物理云主机健康度'
   }
 }
 
 CenterCtrl.$inject = ['$interval']
-
-export default CenterCtrl
