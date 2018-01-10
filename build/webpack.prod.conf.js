@@ -43,6 +43,10 @@ module.exports = {
         })
       },
       {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!less-loader'
+      },
+      {
         test: /\.html$/,
         loader: 'html-loader'
       },
@@ -50,8 +54,16 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 500000,
+          limit: 5000,
           name: 'static/images/[name].[ext]'
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 5000,
+          name: 'static/fonts/[name].[ext]'
         }
       }
     ]

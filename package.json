@@ -6,7 +6,7 @@
     "dev": "node ./build/dev-server",
     "build": "node build/build.js",
     "start": "npm run dev",
-    "clean": "rm -rf static/",
+    "clean": "rm -rf dist/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pm2": "pm2 start build/dev-server.js -i max --watch --no-daemon"
   },
