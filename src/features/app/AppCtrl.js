@@ -6,12 +6,18 @@ export default class AppCtrl {
       this
     )
     $scope.$on('$destroy', unsubscribe)
+    this.init($ngRedux, Monitor)
   }
 
-  // Which part of the Redux global state does our component want to receive?
   mapStateToThis(state) {
     return {
-      value: state.counter
+      detail: state.counter
     }
+  }
+
+  init($ngRedux, Monitor) {
+    Monitor.detail().then(res => {
+      this.set(res.data.result)
+    })
   }
 }

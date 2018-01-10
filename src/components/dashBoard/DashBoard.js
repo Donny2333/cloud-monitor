@@ -19,11 +19,24 @@ export default class DashBoard {
           .domain([0, 100])
           .range([-195, 10])
 
-        pointer
-          .style('transform-origin', '100px 100px')
-          .attr('transform', () => {
-            return `rotate(${angle(ctrl.chart.value)})`
-          })
+        const drawSVG = () => {
+          pointer
+            .style('transform-origin', '100px 100px')
+            .attr('transform', () => {
+              return `rotate(${angle(ctrl.chart.value)})`
+            })
+        }
+
+        scope.$watch(
+          () => {
+            return ctrl.chart && ctrl.chart.value
+          },
+          value => {
+            if (value) {
+              drawSVG()
+            }
+          }
+        )
       },
       controller: () => {},
       controllerAs: 'DashBoardCtrl'

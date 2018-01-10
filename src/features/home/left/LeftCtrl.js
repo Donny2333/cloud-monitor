@@ -1,11 +1,13 @@
-import * as CounterActions from '@/redux/actions/counter'
-
 export default class LeftCtrl {
-  // Which part of the Redux global state does our component want to receive?
-  mapStateToThis(state) {
-    return {
-      value: state.counter
-    }
+  constructor($ngRedux, $scope, Monitor, Http) {
+    this.init(Http)
+    this.load(Monitor)
+
+    $ngRedux.subscribe(() => {
+      let state = $ngRedux.getState()
+      this.countsOfHost.value = state.counter.sum
+      this.systemHealth.value = state.counter.system_score
+    })
   }
 
   bytesToSize(mebibytes, unit) {
@@ -25,30 +27,23 @@ export default class LeftCtrl {
     }
   }
 
-  constructor($ngRedux, $scope, Monitor, Http) {
-    const unsubscribe = $ngRedux.connect(this.mapStateToThis, CounterActions)(
-      this
-    )
-
-    $scope.$on('$destroy', unsubscribe)
-
-    this.init(Http)
-    this.load(Monitor)
-
-    this.countsOfHost = {
-      label: '物理云主机数',
-      value: 124
-    }
-
-    this.systemHealth = {
-      label: '系统健康度',
-      value: 78
-    }
-  }
-
   init(Http) {
     Http.load('json/hypervisors.json').then(res => {
       this.usage = res.data.result
+    })
+
+    Http.load('json/counts_of_host.json').then(res => {
+      this.countsOfHost = {
+        label: '物理云主机数',
+        value: res.data.result.value
+      }
+    })
+
+    Http.load('json/system_health.json').then(res => {
+      this.systemHealth = {
+        label: '系统健康度',
+        value: res.data.result.value
+      }
     })
   }
 
