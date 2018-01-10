@@ -6,8 +6,7 @@ export default class CountBoard {
       replace: true,
       bindToController: true,
       scope: {
-        label: '=',
-        value: '='
+        chart: '='
       },
       link: (scope, element, attrs, ctrl) => {},
       controller: () => {},

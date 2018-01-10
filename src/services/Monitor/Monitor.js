@@ -10,7 +10,9 @@ export default class Monitor {
         return Http.get(URL_CFG.api + 'rs_statics')
       },
       topN: params => {
-        return Http.get(URL_CFG.api + `topN/${params.metric}/${params.num}`)
+        return Http.get(
+          URL_CFG.api + `topN/${params.metric}/${params.num || 5}`
+        )
       }
     }
   }

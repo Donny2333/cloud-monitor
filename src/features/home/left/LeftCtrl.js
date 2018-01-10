@@ -26,25 +26,40 @@ export default class LeftCtrl {
   }
 
   constructor($ngRedux, $scope, Monitor, Http) {
-    let that = this
-
     const unsubscribe = $ngRedux.connect(this.mapStateToThis, CounterActions)(
       this
     )
 
     $scope.$on('$destroy', unsubscribe)
 
-    Http.get('json/hypervisors.json').then(res => {
-      that.usage = res.data.result
-    })
+    this.init(Http)
+    this.load(Monitor)
 
+    this.countsOfHost = {
+      label: '物理云主机数',
+      value: 124
+    }
+
+    this.systemHealth = {
+      label: '系统健康度',
+      value: 78
+    }
+  }
+
+  init(Http) {
+    Http.load('json/hypervisors.json').then(res => {
+      this.usage = res.data.result
+    })
+  }
+
+  load(Monitor) {
     Monitor.rs_statics().then(
       res => {
-        that.usage.cpu.detail.total.value = res.data.vcpus
-        that.usage.cpu.detail.usage.value = res.data.vcpus_used
-        that.usage.cpu.detail.percent = res.data.vcpus_used / res.data.vcpus
+        this.usage.cpu.detail.total.value = res.data.vcpus
+        this.usage.cpu.detail.usage.value = res.data.vcpus_used
+        this.usage.cpu.detail.percent = res.data.vcpus_used / res.data.vcpus
 
-        that.usage.memory.detail = {
+        this.usage.memory.detail = {
           total: {
             value: this.bytesToSize(res.data.memory_mb).value,
             unit: this.bytesToSize(res.data.memory_mb).unit
@@ -56,7 +71,7 @@ export default class LeftCtrl {
           percent: res.data.memory_mb_used / res.data.memory_mb
         }
 
-        that.usage.disk.detail = {
+        this.usage.disk.detail = {
           total: {
             value: this.bytesToSize(res.data.local_gb).value,
             unit: this.bytesToSize(res.data.local_gb).unit
@@ -72,15 +87,5 @@ export default class LeftCtrl {
         console.log(err)
       }
     )
-
-    that.countsOfHost = {
-      label: '物理云主机数',
-      value: 124
-    }
-
-    that.systemHealth = {
-      label: '系统健康度',
-      value: 78
-    }
   }
 }

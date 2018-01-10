@@ -8,8 +8,7 @@ export default class DashBoard {
       replace: true,
       bindToController: true,
       scope: {
-        label: '=',
-        value: '='
+        chart: '='
       },
       link: (scope, element, attrs, ctrl) => {
         const svg = d3.select(element[0]).selectAll('svg')
@@ -23,7 +22,7 @@ export default class DashBoard {
         pointer
           .style('transform-origin', '100px 100px')
           .attr('transform', () => {
-            return `rotate(${angle(ctrl.value)})`
+            return `rotate(${angle(ctrl.chart.value)})`
           })
       },
       controller: () => {},

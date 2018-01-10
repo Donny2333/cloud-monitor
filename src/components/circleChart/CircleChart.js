@@ -8,9 +8,7 @@ export default class CircleChart {
       replace: true,
       bindToController: true,
       scope: {
-        color: '=',
-        title: '=',
-        detail: '='
+        chart: '='
       },
       link: (scope, element, attrs, ctrl) => {
         const svg = d3.select(element[0]).selectAll('svg')
@@ -19,7 +17,9 @@ export default class CircleChart {
         const r = 120
 
         const drawSVG = () => {
-          const updateP = svg.selectAll('path').data([ctrl.detail.percent * 100])
+          const updateP = svg
+            .selectAll('path')
+            .data([ctrl.chart.detail.percent * 100])
           const enterP = updateP.enter()
           const exitP = updateP.exit()
 
@@ -50,7 +50,7 @@ export default class CircleChart {
             .attr('stroke-linecap', 'round')
             .attr('stroke-miterlimit', 10)
             .attr('stroke', (d, i) => {
-              return ctrl.color
+              return ctrl.chart.color
             })
             .attr('d', (d, i) => {
               const angle = 2 * Math.PI * d / 100
@@ -76,7 +76,7 @@ export default class CircleChart {
 
         scope.$watch(
           () => {
-            return ctrl.detail
+            return ctrl.chart && ctrl.chart.detail
           },
           value => {
             if (value) {
