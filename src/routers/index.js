@@ -22,11 +22,6 @@ export default ($urlRouterProvider, $stateProvider) => {
           controller: 'MainCtrl',
           controllerAs: 'MainCtrl'
         },
-        bottom: {
-          template: require('@/features/home/bottom/Bottom.html'),
-          controller: 'BottomCtrl',
-          controllerAs: 'BottomCtrl'
-        },
         left: {
           template: require('@/features/home/left/Left.html'),
           controller: 'LeftCtrl',
