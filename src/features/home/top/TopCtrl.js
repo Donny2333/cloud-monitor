@@ -6,3 +6,5 @@ export default class TopCtrl {
     }, 1000)
   }
 }
+
+TopCtrl.$inject = ['$interval']
