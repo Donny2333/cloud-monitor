@@ -81,8 +81,4 @@ export default class RightCtrl {
       }
     )
   }
-
-  getLocal(name) {
-    return require(`@/common/json/${name}`)
-  }
 }

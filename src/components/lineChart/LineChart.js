@@ -78,6 +78,13 @@ export default class LineChart {
             })
 
           // gradient of bar
+          updateRaw.select('linearGradient').attr('x2', (d, i) => {
+            return (
+              chart.text.width +
+              d.value * (chart.width - chart.text.width) / 100
+            )
+          })
+
           const gradient = raw
             .append('linearGradient')
             .attr('id', (d, i) => {
@@ -109,8 +116,43 @@ export default class LineChart {
             })
 
           // inner of bar
+          updateRaw.select('path.inner').attr('d', (d, i) => {
+            return []
+              .concat(
+                [
+                  'M',
+                  chart.text.width + chart.bar.radius + chart.bar.padding,
+                  i * (2 * chart.bar.radius + chart.bar.deltaY) +
+                    chart.padding +
+                    chart.bar.padding
+                ],
+                [
+                  'c',
+                  -2 * chart.bar.radius,
+                  0,
+                  -2 * chart.bar.radius,
+                  2 * (chart.bar.radius - chart.bar.padding),
+                  0,
+                  2 * (chart.bar.radius - chart.bar.padding)
+                ],
+                ['h', d.value * (chart.width - chart.text.width - 30) / 100],
+                [
+                  'c',
+                  2 * chart.bar.radius,
+                  0,
+                  2 * chart.bar.radius,
+                  -2 * (chart.bar.radius - chart.bar.padding),
+                  0,
+                  -2 * (chart.bar.radius - chart.bar.padding)
+                ],
+                ['z']
+              )
+              .join(' ')
+          })
+
           raw
             .append('path')
+            .attr('class', 'inner')
             .attr('opacity', 0.8)
             .attr('fill', (d, i) => {
               return `url(#LineChartLinearGradient_${i})`
@@ -135,7 +177,7 @@ export default class LineChart {
                     0,
                     2 * (chart.bar.radius - chart.bar.padding)
                   ],
-                  ['h', d.value * (chart.width - chart.text.width) / 100],
+                  ['h', d.value * (chart.width - chart.text.width - 30) / 100],
                   [
                     'c',
                     2 * chart.bar.radius,
@@ -151,8 +193,13 @@ export default class LineChart {
             })
 
           // name of bar
+          updateRaw.select('text.name').text((d, i) => {
+            return d.name
+          })
+
           raw
             .append('text')
+            .attr('class', 'name')
             .attr('x', 0)
             .attr('y', (d, i) => {
               return (
@@ -169,9 +216,14 @@ export default class LineChart {
             })
 
           // percent of bar
+          updateRaw.select('text.percent').text((d, i) => {
+            return `${d.value}%`
+          })
+
           raw
             .append('text')
-            .attr('x', chart.width - 30)
+            .attr('class', 'percent')
+            .attr('x', chart.width - 38)
             .attr('y', (d, i) => {
               return (
                 i * (2 * chart.bar.radius + chart.bar.deltaY) +
@@ -195,6 +247,7 @@ export default class LineChart {
           },
           value => {
             if (value) {
+              // console.log(value)
               drawSVG()
             }
           }
