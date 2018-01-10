@@ -18,10 +18,8 @@ export default class CircleChart {
         const cy = 150
         const r = 120
 
-        ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100
-
         const drawSVG = () => {
-          const updateP = svg.selectAll('path').data([ctrl.percent])
+          const updateP = svg.selectAll('path').data([ctrl.detail.percent * 100])
           const enterP = updateP.enter()
           const exitP = updateP.exit()
 
@@ -76,12 +74,16 @@ export default class CircleChart {
           exitP.remove()
         }
 
-        scope.$watch(() => {
-          return ctrl.detail.usageValue
-        }, (value) => {
-          ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100
-          drawSVG()
-        })
+        scope.$watch(
+          () => {
+            return ctrl.detail
+          },
+          value => {
+            if (value) {
+              drawSVG()
+            }
+          }
+        )
       },
       controller: () => {},
       controllerAs: 'CircleChartCtrl'

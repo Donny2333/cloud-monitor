@@ -1,0 +1,57 @@
+{
+  "status": "200",
+  "msg": "请求成功",
+  "result": {
+    "cpu": {
+      "title": "CPU使用情况",
+      "color": "#58c84d",
+      "detail": {
+        "total": {
+          "name": "总数",
+          "value": 256,
+          "unit": "核"
+        },
+        "usage": {
+          "name": "已分配",
+          "value": 128,
+          "unit": "核"
+        },
+        "percent": 0.5
+      }
+    },
+    "memory": {
+      "title": "内存使用情况",
+      "color": "#ff9b0a",
+      "detail": {
+        "total": {
+          "name": "总数",
+          "value": 7.68,
+          "unit": "GB"
+        },
+        "usage": {
+          "name": "已分配",
+          "value": 3.6,
+          "unit": "GB"
+        },
+        "percent": 0.469
+      }
+    },
+    "disk": {
+      "title": "存储使用情况",
+      "color": "#09c8f4",
+      "detail": {
+        "total": {
+          "name": "总数",
+          "value": 81.92,
+          "unit": "GB"
+        },
+        "usage": {
+          "name": "已分配",
+          "value": 35.34,
+          "unit": "GB"
+        },
+        "percent": 0.431
+      }
+    }
+  }
+}
