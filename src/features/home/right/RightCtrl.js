@@ -82,3 +82,5 @@ export default class RightCtrl {
     )
   }
 }
+
+RightCtrl.$inject = ['Monitor', 'Http']

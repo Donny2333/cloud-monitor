@@ -1,5 +1,5 @@
 export default class LeftCtrl {
-  constructor($ngRedux, $scope, Monitor, Http) {
+  constructor($ngRedux, Monitor, Http) {
     this.init(Http)
     this.load(Monitor)
 
@@ -84,3 +84,5 @@ export default class LeftCtrl {
     )
   }
 }
+
+LeftCtrl.$inject = ['$ngRedux', 'Monitor', 'Http']
