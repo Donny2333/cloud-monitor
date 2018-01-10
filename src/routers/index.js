@@ -1,6 +1,10 @@
-export default ($urlRouterProvider, $stateProvider) => {
+import { ENV } from '@/api'
+
+export default ($urlRouterProvider, $stateProvider, $locationProvider) => {
   $urlRouterProvider.otherwise('/app')
-  // $locationProvider.html5Mode(true)
+  if (ENV === 'product') {
+    $locationProvider.html5Mode(true)
+  }
 
   $stateProvider
     .state('app', {

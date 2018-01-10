@@ -9,4 +9,5 @@ const Urls = {
   }
 }
 
-export const URL_CFG = Urls.Dev_Cfg
+export const ENV = window.env
+export const URL_CFG = ENV === 'product' ? Urls.Prod_Cfg : Urls.Dev_Cfg

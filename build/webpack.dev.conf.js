@@ -67,8 +67,9 @@ module.exports = {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
-      inject: true
+      template: 'index.ejs',
+      inject: true,
+      env: 'develop'
     }),
     new FriendlyErrorsPlugin()
   ]

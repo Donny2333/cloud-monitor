@@ -6,7 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>党建云大屏展示系统</title>
-  <!-- <base href="/"> -->
+  <% if (htmlWebpackPlugin.options.env === 'product') { %>
+    <base href="/">
+    <script>
+      window.env = 'product'
+    </script>
+  <% } %>
 </head>
 
 <body ng-app="cloud-monitor">
