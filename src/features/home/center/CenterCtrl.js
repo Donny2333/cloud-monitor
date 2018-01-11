@@ -2,15 +2,15 @@ export default class CenterCtrl {
   constructor($ngRedux, Http) {
     this.init(Http)
 
-    // $ngRedux.subscribe(() => {
-    //   let state = $ngRedux.getState()
-    //   this.data = {
-    //     num_excellent: state.counter.num_excellent,
-    //     num_good: state.counter.num_good,
-    //     num_poor: state.counter.num_poor,
-    //     detail: state.counter.detail
-    //   }
-    // })
+    $ngRedux.subscribe(() => {
+      let state = $ngRedux.getState()
+      this.data = {
+        num_excellent: state.counter.num_excellent,
+        num_good: state.counter.num_good,
+        num_poor: state.counter.num_poor,
+        detail: state.counter.detail
+      }
+    })
   }
 
   init(Http) {

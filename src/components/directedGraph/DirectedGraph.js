@@ -252,7 +252,7 @@ export default class DirectedGraph {
               ctrl.segments.check = 0
 
               const num = Math.floor(ctrl.data.detail.length / 36)
-              for (let i = 0; i <= num; i++) {
+              for (let i = 0; i < ctrl.data.detail.length / 36; i++) {
                 ctrl.segments.list.push({
                   id: i,
                   text: `${36 * i + 1} - ${
