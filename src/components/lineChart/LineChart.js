@@ -247,7 +247,6 @@ export default class LineChart {
           },
           value => {
             if (value) {
-              // console.log(value)
               drawSVG()
             }
           }

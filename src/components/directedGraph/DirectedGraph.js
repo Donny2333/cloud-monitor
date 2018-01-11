@@ -126,7 +126,6 @@ export default class DirectedGraph {
                 .split(',')[1]
             })
             .attr('r', (d, i) => {
-              console.log(i)
               return [8, 10, 14][Math.floor(i / 12)]
             })
             .attr('fill', (d, i) => {
