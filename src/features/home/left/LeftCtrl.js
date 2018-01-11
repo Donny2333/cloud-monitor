@@ -3,14 +3,14 @@ export default class LeftCtrl {
     this.init(Http)
     this.load(Monitor)
 
-    $ngRedux.subscribe(() => {
+    $ngRedux.subscribe(_ => {
       let state = $ngRedux.getState()
       this.countsOfHost.value = state.counter.sum
       this.systemHealth.value = state.counter.system_score
     })
   }
 
-  bytesToSize(mebibytes, unit) {
+  static bytesToSize(mebibytes) {
     const k = 1000 // or 1024
     const sizes = ['MB', 'GB', 'TB', 'PB']
     const i = Math.floor(Math.log(mebibytes) / Math.log(k))
@@ -56,24 +56,24 @@ export default class LeftCtrl {
 
         this.usage.memory.detail = {
           total: {
-            value: this.bytesToSize(res.data.memory_mb).value,
-            unit: this.bytesToSize(res.data.memory_mb).unit
+            value: LeftCtrl.bytesToSize(res.data.memory_mb).value,
+            unit: LeftCtrl.bytesToSize(res.data.memory_mb).unit
           },
           usage: {
-            value: this.bytesToSize(res.data.memory_mb_used).value,
-            unit: this.bytesToSize(res.data.memory_mb_used).unit
+            value: LeftCtrl.bytesToSize(res.data.memory_mb_used).value,
+            unit: LeftCtrl.bytesToSize(res.data.memory_mb_used).unit
           },
           percent: res.data.memory_mb_used / res.data.memory_mb
         }
 
         this.usage.disk.detail = {
           total: {
-            value: this.bytesToSize(res.data.local_gb).value,
-            unit: this.bytesToSize(res.data.local_gb).unit
+            value: LeftCtrl.bytesToSize(res.data.local_gb).value,
+            unit: LeftCtrl.bytesToSize(res.data.local_gb).unit
           },
           usage: {
-            value: this.bytesToSize(res.data.local_gb_used).value,
-            unit: this.bytesToSize(res.data.local_gb_used).unit
+            value: LeftCtrl.bytesToSize(res.data.local_gb_used).value,
+            unit: LeftCtrl.bytesToSize(res.data.local_gb_used).unit
           },
           percent: res.data.local_gb_used / res.data.local_gb
         }

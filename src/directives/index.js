@@ -3,7 +3,7 @@ import echarts from 'echarts'
 
 const directives = angular
   .module('cloud-monitor.directives', [])
-  .directive('myChart', function() {
+  .directive('myChart', () => {
     return {
       restrict: 'E',
       template: '<div ng-style="myStyle"></div>',
@@ -13,7 +13,7 @@ const directives = angular
         data: '=',
         myStyle: '='
       },
-      link: function(scope, element, attrs) {
+      link: (scope, element, attrs) => {
         let myChat = null
 
         if (scope.data) {
@@ -25,7 +25,7 @@ const directives = angular
         }
 
         // 监听DOM元素
-        scope.$watch('data', function(value) {
+        scope.$watch('data', value => {
           if (value && value.hasOwnProperty('series')) {
             if (!myChat) {
               // echarts实例未准备好
@@ -38,7 +38,7 @@ const directives = angular
           }
         })
 
-        scope.$watch('myStyle', function(value) {
+        scope.$watch('myStyle', value => {
           if (value && myChat) {
             myChat.resize()
           }

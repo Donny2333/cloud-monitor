@@ -52,6 +52,28 @@
     background-position: center;
     z-index: -1;
   }
+  .page {
+    position: absolute;
+    bottom: -5px;
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    .segment {
+      height: 30px;
+      width: 80px;
+      color: #b8f4fd;
+      text-align: center;
+      line-height: 30px;
+      font-size: 10px;
+      background-image: url('../../common/img/button_down.png');
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      &.active {
+        background-image: url('../../common/img/button_up.png');
+      }
+    }
+  }
   svg {
     position: absolute;
     left: 0;
@@ -74,15 +96,15 @@
     .box {
       stroke-width: 1;
       &.green {
-        fill: rgba(87, 197, 80, .4);
+        fill: rgba(87, 197, 80, 0.4);
         stroke: rgb(87, 197, 80);
       }
       &.blue {
-        fill: rgba(36, 131, 207, .4);
+        fill: rgba(36, 131, 207, 0.4);
         stroke: rgb(36, 131, 207);
       }
       &.orange {
-        fill: rgba(255, 149, 16, .4);
+        fill: rgba(255, 149, 16, 0.4);
         stroke: rgb(255, 149, 16);
       }
     }

@@ -9,50 +9,50 @@ function parseParams(url, params) {
 export default class EChartsFactory {
   constructor($q, $http, $sce) {
     return {
-      get: function(url) {
+      get: function (url) {
         const deferred = $q.defer()
 
         $http.get(url).then(
-          function(res) {
+          function (res) {
             deferred.resolve(res)
           },
-          function(err) {
+          function (err) {
             deferred.reject(err)
           }
         )
 
         return deferred.promise
       },
-      post: function(url, params) {
+      post: function (url, params) {
         const deferred = $q.defer()
 
         $http.post(url, params).then(
-          function(res) {
+          function (res) {
             deferred.resolve(res)
           },
-          function(err) {
+          function (err) {
             deferred.reject(err)
           }
         )
 
         return deferred.promise
       },
-      jsonp: function(url, params) {
+      jsonp: function (url, params) {
         const deferred = $q.defer()
         const _url = parseParams(url, params)
 
         $http.jsonp($sce.trustAsResourceUrl(_url)).then(
-          function(res) {
+          function (res) {
             deferred.resolve(res)
           },
-          function(err) {
+          function (err) {
             deferred.reject(err)
           }
         )
 
         return deferred.promise
       },
-      load: function(filename) {
+      load: function (filename) {
         const deferred = $q.defer()
 
         try {

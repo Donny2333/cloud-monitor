@@ -1,31 +1,37 @@
 export default class CenterCtrl {
-  constructor($interval) {
-    const equipData = n => {
-      let list = []
-      let i = 0
-      for (; i < n; i++) {
-        list[i] = Math.random() * 100
-      }
-      return list
-    }
+  constructor($ngRedux, Http) {
+    this.init(Http)
 
-    const init = () => {
-      this.data = {
-        num_excellent: Math.ceil(Math.random() * 100),
-        num_good: Math.ceil(Math.random() * 100),
-        num_poor: Math.ceil(Math.random() * 100),
-        detail: equipData(36)
-      }
-    }
+    // $ngRedux.subscribe(() => {
+    //   let state = $ngRedux.getState()
+    //   this.data = {
+    //     num_excellent: state.counter.num_excellent,
+    //     num_good: state.counter.num_good,
+    //     num_poor: state.counter.num_poor,
+    //     detail: state.counter.detail
+    //   }
+    // })
+  }
 
-    init()
-
-    $interval(() => {
-      init()
-    }, 10000)
-
+  init(Http) {
     this.label = '物理云主机健康度'
+
+    Http.load('json/host_health.json').then(res => {
+      this.data = res.data.result
+    })
+  }
+
+  static equipData(n) {
+    let list = []
+    let i = 0
+    for (; i < n; i++) {
+      list[i] = {
+        name: `vm_${i}`,
+        score: (Math.random() * 100).toFixed(0)
+      }
+    }
+    return list
   }
 }
 
-CenterCtrl.$inject = ['$interval']
+CenterCtrl.$inject = ['$ngRedux', 'Http']
