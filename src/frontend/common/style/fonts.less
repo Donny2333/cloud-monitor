@@ -1,0 +1,16 @@
+@source-font-path: '../fonts';
+
+.source-font(@type, @weight, @style) {
+  @font-face {
+    font-family: 'SourceHanSansCN';
+    src: url('@{source-font-path}/SourceHanSansCN-@{type}.otf') format('truetype');
+    font-weight: @weight;
+    font-style: @style;
+  }
+}
+
+.source-font-one(@type, @weight, @style) {
+  .source-font('@{type}', @weight, @style);
+}
+
+.source-font-one('Regular', 400, normal);

@@ -1,8 +1,10 @@
 'use strict'
 
-const ora = require('ora')
-const rm = require('rimraf')
 const chalk = require('chalk')
+const ora = require('ora')
+const path = require('path')
+const rm = require('rimraf')
+const shell = require('shelljs')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.prod.conf')
 
@@ -11,7 +13,7 @@ spinner.start()
 
 rm('/dist', err => {
   if (err) throw err
-  webpack(webpackConfig, function(err, stats) {
+  webpack(webpackConfig, function (err, stats) {
     spinner.stop()
     if (err) throw err
     process.stdout.write(
@@ -24,17 +26,18 @@ rm('/dist', err => {
       }) + '\n\n'
     )
 
-    if (stats.hasErrors()) {
-      console.log(chalk.red('  Build failed with errors.\n'))
-      process.exit(1)
-    }
+    shell.cd(path.resolve(__dirname, '../src/backend'))
+    shell.exec('go build -o ../../dist/cloud-monitor/dashboard', {silent: true}, function (code, stdout, stderr) {
+      if (stats.hasErrors() || code !== 0) {
+        console.log(chalk.red(
+          `  Exit code: ${code}\n` +
+          `  Program stderr:\n    ${stderr}\n` +
+          `  Build failed with errors.\n`
+        ))
+        process.exit(1)
+      }
 
-    console.log(chalk.cyan('  Build complete.\n'))
-    console.log(
-      chalk.yellow(
-        '  Tip: built files are meant to be served over an HTTP server.\n' +
-          "  Opening index.html over file:// won't work.\n"
-      )
-    )
+      console.log(chalk.cyan('  Build complete.\n'))
+    })
   })
 })

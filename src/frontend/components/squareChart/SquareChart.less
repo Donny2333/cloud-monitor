@@ -1,0 +1,48 @@
+.squareChartBox {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  .squareChart {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .squareChartBox .title {
+    top: 10%;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+  }
+
+  .squareChart .y-ray,
+  .squareChart .x-ray {
+    fill: #a5a6bb;
+  }
+
+  .x-ray {
+    position: absolute;
+    display: flex;
+    bottom: 8%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    color: #a5a6bb;
+    font-size: 12px;
+    padding-left: 12%;
+    padding-right: 5%;
+  }
+
+  .x-ray span {
+    display: block;
+    width: 20%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+  }
+}

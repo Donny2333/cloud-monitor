@@ -1,0 +1,80 @@
+html,
+body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #000a11;
+  background-image: url('../img/bg.png');
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  font-family: 'SourceHanSansCN', sans-serif;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.blue {
+  color: #0f9ee5;
+  fill: #0f9ee5;
+  stroke: #0f9ee5;
+  fill-rule: evenodd;
+}
+
+.white {
+  color: white;
+  fill: white;
+}
+
+.gray {
+  color: #a5a6bb;
+  fill: #a5a6bb;
+}
+
+.yellow {
+  color: #ffde00;
+  fill: #ffde00;
+}
+
+.green {
+  color: #57c550;
+  fill: #57c550;
+  stroke: #57c550;
+  fill-rule: evenodd;
+  stroke-width: 2px;
+}
+
+.red {
+  color: #f45938;
+  fill: #f45938;
+  stroke: #f45938;
+  fill-rule: evenodd;
+  stroke-width: 2px;
+}
+
+.orange {
+  color: #ff9510;
+  fill: #ff9510;
+  stroke: #ff9510;
+  fill-rule: evenodd;
+  stroke-width: 2px;
+}
+
+.breath {
+  position: relative;
+  transform-origin: 50% 50%;
+  animation: breath-keyframes 5s infinite;
+  @keyframes breath-keyframes {
+    50% {
+      transform: scale(1.5, 1.5);
+    }
+  }
+}

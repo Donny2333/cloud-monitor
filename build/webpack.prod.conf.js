@@ -6,17 +6,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/app'],
+  entry: ['./src/frontend/app'],
   devtool: '#source-map',
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist/cloud-monitor/public/zh'),
     filename: 'static/js/[name].[chunkhash].js',
     chunkFilename: 'static/js/[id].[chunkhash].js'
   },
   resolve: {
     extensions: ['.js'],
     alias: {
-      '@': path.resolve(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src/frontend')
     }
   },
   module: {
@@ -25,7 +25,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: ['./src'],
+        include: ['./src/frontend'],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -89,8 +89,8 @@ module.exports = {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, '../dist/index.html'),
-      template: 'index.ejs',
+      filename: path.resolve(__dirname, '../dist/cloud-monitor/public/zh/index.html'),
+      template: path.resolve(__dirname, '../src/frontend/index.ejs'),
       inject: true,
       minify: {
         removeComments: true,
