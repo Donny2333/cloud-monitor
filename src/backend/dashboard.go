@@ -32,8 +32,7 @@ func main() {
 
 	iniPortal, err := ini.LoadConfiguration("portal.ini")
 	if err != nil {
-		//
-		print(err)
+    log.Fatal(err)
 	}
 
 	iport := iniPortal.IntegerFromSection("monitor", "port", 9090)
@@ -45,17 +44,12 @@ func main() {
 
 	apiHandler, err := handler.CreateHTTPAPIHandler()
 	if err != nil {
-		//
+    log.Fatal(err)
 	}
 	// Run a HTTP server that serves static public files from './public' and handles API calls.
-	// TODO(bryk): Disable directory listing.
-	localHander := handler.MakeGzipHandler(handler.CreateLocaleHandler())
-	http.Handle("/", localHander)
+	http.Handle("/", handler.MakeGzipHandler(handler.CreateLocaleHandler()))
 	http.Handle("/monitor_api/", apiHandler)
-	// TODO(maciaszczykm): Move to /appConfig.json as it was discussed in #640.
 	http.Handle("/monitor_api/appConfig.json", handler.AppHandler(handler.ConfigHandler))
-	//http.Handle("/api/sockjs/", handler.CreateAttachHandler("/api/sockjs"))
-	//http.Handle("/metrics", prometheus.Handler())
 
 	// Listen for http or https
 	log.Printf("ip:%s", ip)

@@ -37,6 +37,9 @@ rm('/dist', err => {
         process.exit(1)
       }
 
+      shell.cp(path.resolve(__dirname, '../src/backend/locale_conf.json'), path.resolve(__dirname, '../dist/cloud-monitor/'))
+      shell.cp(path.resolve(__dirname, '../src/backend/portal.ini'), path.resolve(__dirname, '../dist/cloud-monitor/'))
+
       console.log(chalk.cyan('  Build complete.\n'))
     })
   })
