@@ -6,6 +6,7 @@
     "dev": "node ./build/dev-server",
     "build": "node build/build.js",
     "start": "npm run dev",
+    "clean": "rm -rf dist/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pm2": "pm2 start build/dev-server.js -i max --watch --no-daemon"
   },
@@ -39,6 +40,8 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.3.0",
@@ -50,13 +53,16 @@
     "webpack-hot-middleware": "^2.19.1"
   },
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.12",
     "angular": "^1.6.7",
     "angular-animate": "^1.6.7",
-    "angular-ui-router": "^0.4.3",
-    "d3": "^4.12.0",
+    "d3": "^4.12.2",
     "echarts": "^3.8.5",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "ng-redux": "^3.5.2",
     "pm2": "^2.8.0",
+    "redux-thunk": "^2.2.0",
     "three.js": "^0.77.1"
   }
 }

@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import $ from 'jquery'
+import * as _ from 'lodash'
 
 export default class DirectedGraph {
   constructor() {
@@ -8,290 +8,277 @@ export default class DirectedGraph {
       template: require('./DirectedGraph.html'),
       replace: true,
       scope: {
+        label: '=',
         data: '='
       },
       bindToController: true,
-      link: function(scope, element, attrs, ctrl) {
-        const svg = d3.select(element[0]).selectAll('svg.directed')
-        const x0 = 20
-        const y0 = 20
-        const rx =
-          $(element[0])
-            .children('svg')
-            .width() /
-            2 -
-          x0
-        const ry =
-          $(element[0])
-            .children('svg')
-            .height() /
-            2 -
-          y0
-        const cr =
-          $(element[0])
-            .children('.radar-ball')
-            .height() /
-            2 -
-          20
-        const r = 25
-        const v = [
-          [0.5, 0.25],
-          [0.75, 0.18],
-          [1, 0.15],
-          [1.25, 0.18],
-          [1.5, 0.25],
-          [0.3, 0.4],
-          [0.5, 0.5],
-          [0.75, 0.35],
-          [1.25, 0.35],
-          [1.5, 0.5],
-          [1.7, 0.4],
-          [0.18, 0.7],
-          [0.35, 0.75],
-          [1.65, 0.75],
-          [1.88, 0.7],
-          [0.15, 1],
-          [1.85, 1],
-          [0.18, 1.3],
-          [0.35, 1.25],
-          [1.7, 1.25],
-          [1.88, 1.3],
-          [0.3, 1.6],
-          [0.45, 1.5],
-          [0.75, 1.65],
-          [1.25, 1.65],
-          [1.5, 1.5],
-          [1.7, 1.6],
-          [0.5, 1.75],
-          [0.75, 1.82],
-          [1, 1.85],
-          [1.25, 1.82],
-          [1.5, 1.75]
-        ]
-        let _d = []
-        let dataList = ctrl.data
-        let i
-        let j
-        let flag
+      link: (scope, element, attrs, ctrl) => {
+        const svg = d3.select(element[0]).selectAll('svg')
+        let timer = null
 
-        function move() {
-          for (i = 0; i < v.length; i++) {
-            _d[i] = []
-            _d[i][0] = v[i][0] + (Math.random() - 1) % 0.1
-            _d[i][1] = v[i][1] + (Math.random() - 1) % 0.1
+        let CirclePos = []
+        const stats = {
+          x: 168,
+          y: -240,
+          height: 55,
+          barWidth: 4,
+          colorList: ['orange', 'blue', 'green']
+        }
 
-            for (j = 0; j < _d[i].length; j++) {
-              flag = _d[i][j] < 1 ? 1 : -1
-              _d[i][j] =
-                _d[i][j] +
-                flag *
-                  Math.log(Math.abs(_d[i][j] - 1)) /
-                  Math.log(Math.pow(10, 50))
-            }
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 12; j++) {
+            CirclePos.push([j, 0.5 + 0.25 * i])
           }
         }
 
-        function drawsvg() {
+        const angle = d3
+          .scaleLinear()
+          .domain([0, 12])
+          .range([0, 2 * Math.PI])
+
+        const r = d3
+          .scaleLinear()
+          .domain([0, 1])
+          .range([0, 200])
+
+        const line = d3
+          .radialLine()
+          .angle(d => {
+            return angle(d[0])
+          })
+          .radius(d => {
+            return r(d[1])
+          })
+
+        ctrl.segments = {
+          list: [],
+          check: 0
+        }
+
+        const drawSVG = () => {
+          let detail = ctrl.data.detail
+
+          stats.dataList = [
+            ctrl.data.num_excellent,
+            ctrl.data.num_good,
+            ctrl.data.num_poor
+          ]
+
+          // stats
+          const updateS = svg.selectAll('rect.line').data(stats.dataList)
+          const enterS = updateS.enter()
+          const exitS = updateS.exit()
+
+          updateS
+            .attr('class', (d, i) => {
+              return `line ${stats.colorList[i]}`
+            })
+            .attr('x', stats.x)
+            .attr('y', stats.y)
+            .attr('width', stats.barWidth)
+            .attr('height', (d, i) => {
+              return (
+                _.sum(stats.dataList.slice(0, stats.dataList.length - i)) /
+                _.sum(stats.dataList) *
+                55
+              )
+            })
+
+          enterS
+            .append('rect')
+            .attr('class', (d, i) => {
+              return `line ${stats.colorList[i]}`
+            })
+            .attr('x', stats.x)
+            .attr('y', stats.y)
+            .attr('width', stats.barWidth)
+            .attr('height', (d, i) => {
+              return (
+                _.sum(stats.dataList.slice(0, stats.dataList.length - i)) /
+                _.sum(stats.dataList) *
+                55
+              )
+            })
+
+          exitS.remove()
+
           // circle
-          const updateC = svg.selectAll('circle').data(_d)
+          const updateC = svg
+            .selectAll('circle')
+            .data(
+              detail.slice(
+                36 * ctrl.segments.check,
+                (ctrl.segments.check + 1) * 36
+              )
+            )
           const enterC = updateC.enter()
           const exitC = updateC.exit()
 
           updateC
-            .transition()
-            .duration(3000)
-            .ease(d3.easeCubicOut)
-            .attr('cx', function(d, i) {
-              return rx * d[0] + x0
+            .attr('cx', (d, i) => {
+              return line([CirclePos[i]])
+                .slice(1)
+                .split(',')[0]
             })
-            .attr('cy', function(d, i) {
-              return ry * d[1] + y0
+            .attr('cy', (d, i) => {
+              return line([CirclePos[i]])
+                .slice(1, -1)
+                .split(',')[1]
             })
-            .attr('r', function(d, i) {
-              return (
-                r * Math.sqrt(Math.pow(d[0] - 1, 2) + Math.pow(d[1] - 1, 2))
-              )
+            .attr('r', (d, i) => {
+              return [8, 10, 14][Math.floor(i / 12)]
             })
-            .transition()
-            .duration(2000)
-            .ease(d3.easeCubicOut)
-            .attr('stroke', function(d, i) {
-              if (dataList[i] < 20) {
-                return '#ff9510'
-              } else if (dataList[i] < 80) {
-                return '#0f9ee5'
-              } else {
-                return '#57c550'
-              }
-            })
-            .attr('fill', function(d, i) {
-              if (dataList[i] < 20) {
+            .attr('fill', (d, i) => {
+              if (d.score < 20) {
                 return 'url(#grad_orange)'
-              } else if (dataList[i] < 80) {
+              } else if (d.score < 80) {
                 return 'url(#grad_blue)'
               } else {
                 return 'url(#grad_green)'
               }
             })
+            .attr('style', (d, i) => {
+              // fix firefox and safari transform-origin cannot set to percent
+              return `transform-origin:${
+                line([CirclePos[i]])
+                  .slice(1)
+                  .split(',')[0]
+              }px ${
+                line([CirclePos[i]])
+                  .slice(1, -1)
+                  .split(',')[1]
+              }px`
+            })
+            .attr('class', 'breath')
 
-          var circle = enterC.append('circle')
-
-          circle
-            .attr('cx', function(d, i) {
-              return rx * d[0] + x0
+          enterC
+            .append('circle')
+            .attr('cx', (d, i) => {
+              return line([CirclePos[i]])
+                .slice(1)
+                .split(',')[0]
             })
-            .attr('cy', function(d, i) {
-              return ry * d[1] + y0
+            .attr('cy', (d, i) => {
+              return line([CirclePos[i]])
+                .slice(1, -1)
+                .split(',')[1]
             })
-            .transition()
-            .duration(1000)
-            .ease(d3.easeCubicOut)
-            .attr('r', function(d, i) {
-              return (
-                r * Math.sqrt(Math.pow(d[0] - 1, 2) + Math.pow(d[1] - 1, 2))
-              )
+            .attr('r', (d, i) => {
+              return [8, 10, 14][Math.floor(i / 12)]
             })
-            .attr('stroke', function(d, i) {
-              if (dataList[i] < 20) {
-                return '#ff9510'
-              } else if (dataList[i] < 80) {
-                return '#0f9ee5'
-              } else {
-                return '#57c550'
-              }
-            })
-            .attr('fill', function(d, i) {
-              if (dataList[i] < 20) {
+            .attr('fill', (d, i) => {
+              if (d.score < 20) {
                 return 'url(#grad_orange)'
-              } else if (dataList[i] < 80) {
+              } else if (d.score < 80) {
                 return 'url(#grad_blue)'
               } else {
                 return 'url(#grad_green)'
               }
             })
-
-          circle
-            .append('animate')
-            .attr('attributeName', 'r')
-            .attr('dur', '5s')
-            .attr('values', function(d, i) {
-              var _r =
-                r * Math.sqrt(Math.pow(d[0] - 1, 2) + Math.pow(d[1] - 1, 2))
-              return [_r, 1.3 * _r, _r].join(';')
+            .attr('style', (d, i) => {
+              // fix firefox and safari transform-origin cannot set to percent
+              return `transform-origin:${
+                line([CirclePos[i]])
+                  .slice(1)
+                  .split(',')[0]
+              }px ${
+                line([CirclePos[i]])
+                  .slice(1, -1)
+                  .split(',')[1]
+              }px`
             })
-            .attr('repeatCount', 'indefinite')
+            .attr('class', 'breath')
 
           exitC.remove()
 
-          // line
-          const updateL = svg.selectAll('path').data(_d)
-          const enterL = updateL.enter()
-          const exitL = updateL.exit()
-
-          updateL
-            .transition()
-            .duration(3000)
-            .ease(d3.easeCubicOut)
-            .attr('d', function(d, i) {
-              return [].concat(
-                ['M', rx * d[0] + x0, ry * d[1] + y0],
-                ['L', rx + cr * (d[0] - 1) + x0, ry + cr * (d[1] - 1) + y0]
-              ).join(' ')
-            })
-            .transition()
-            .duration(2000)
-            .ease(d3.easeCubicOut)
-            .attr('stroke', function(d, i) {
-              if (dataList[i] < 20) {
-                return '#ff9510'
-              } else if (dataList[i] < 80) {
-                return '#0f9ee5'
-              } else {
-                return '#57c550'
-              }
-            })
-
-          enterL
-            .append('path')
-            .attr('d', function(d, i) {
-              return [].concat(
-                ['M', rx * d[0] + x0, ry * d[1] + y0],
-                ['L', rx + cr * (d[0] - 1) + x0, ry + cr * (d[1] - 1) + y0]
-              ).join(' ')
-            })
-            .attr('style', 'opacity: 0.5')
-            .attr('stroke-width', '2px')
-            .attr('fill-rule', 'evenodd')
-            .attr('stroke', function(d, i) {
-              if (dataList[i] < 20) {
-                return '#ff9510'
-              } else if (dataList[i] < 80) {
-                return '#0f9ee5'
-              } else {
-                return '#57c550'
-              }
-            })
-
-          exitL.remove()
-
           // text
-          const updateT = svg.selectAll('text').data(dataList)
+          const updateT = svg
+            .selectAll('text.detail')
+            .data(
+              detail.slice(
+                36 * ctrl.segments.check,
+                (ctrl.segments.check + 1) * 36
+              )
+            )
           const enterT = updateT.enter()
           const exitT = updateT.exit()
 
           updateT
-            .transition()
-            .duration(3000)
-            .ease(d3.easeCubicOut)
-            .attr('x', function(d, i) {
-              return rx * _d[i][0] + x0
+            .attr('class', 'detail')
+            .attr('dy', '4px')
+            .attr('transform', (d, i) => {
+              const coors = line([CirclePos[i]])
+                .slice(1)
+                .slice(0, -1)
+              return 'translate(' + coors + ')'
             })
-            .attr('y', function(d, i) {
-              return ry * _d[i][1] + 7 + y0
+            .attr('text-anchor', 'middle')
+            .attr('style', (d, i) => {
+              return `fill:white;font-size:${[8, 10, 12][Math.floor(i / 12)]}px`
             })
-            .transition()
-            .duration(2000)
-            .ease(d3.easeCubicOut)
-            .text(function(d, i) {
-              return Math.floor(d)
+            .text((d, i) => {
+              return Math.ceil(d.score)
             })
 
           enterT
             .append('text')
-            .attr('x', function(d, i) {
-              return rx * _d[i][0] + x0
-            })
-            .attr('y', function(d, i) {
-              return ry * _d[i][1] + 7 + y0
+            .attr('class', 'detail')
+            .attr('dy', '4px')
+            .attr('transform', (d, i) => {
+              const coors = line([CirclePos[i]])
+                .slice(1)
+                .slice(0, -1)
+              return 'translate(' + coors + ')'
             })
             .attr('text-anchor', 'middle')
-            .style('fill', 'white')
-            .style('font-size', '14px')
-            .transition()
-            .duration(2000)
-            .ease(d3.easeCubicOut)
-            .text(function(d, i) {
-              return Math.floor(d)
+            .attr('style', (d, i) => {
+              return `fill:white;font-size:${[8, 10, 12][Math.floor(i / 12)]}px`
+            })
+            .text((d, i) => {
+              return Math.ceil(d.score)
             })
 
           exitT.remove()
         }
 
-        move()
-        drawsvg()
-
         scope.$watch(
-          function() {
-            return ctrl.data
+          () => {
+            return ctrl.data && ctrl.data.detail
           },
-          function(value) {
-            dataList = value
-            move()
-            drawsvg()
+          value => {
+            if (value) {
+              ctrl.segments.list = []
+              ctrl.segments.check = 0
+
+              const num = Math.floor(ctrl.data.detail.length / 36)
+              for (let i = 0; i < ctrl.data.detail.length / 36; i++) {
+                ctrl.segments.list.push({
+                  id: i,
+                  text: `${36 * i + 1} - ${
+                    i === num ? ctrl.data.detail.length : (i + 1) * 36
+                  }`,
+                  active: i === ctrl.segments.check
+                })
+              }
+
+              drawSVG()
+
+              timer && window.clearInterval(timer)
+
+              timer = setInterval(() => {
+                ctrl.segments.list[ctrl.segments.check].active = false
+                ctrl.segments.check =
+                  (ctrl.segments.check + 1) % ctrl.segments.list.length
+                ctrl.segments.list[ctrl.segments.check].active = true
+
+                drawSVG()
+                scope.$apply()
+              }, 3000)
+            }
           }
         )
       },
-      controller: function() {},
+      controller: () => {},
       controllerAs: 'DirectedGraphCtrl'
     }
   }

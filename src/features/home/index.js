@@ -1,7 +1,8 @@
 import angular from 'angular'
-import left from './left'
+import top from './top'
 import main from './main'
+import left from './left'
+import center from './center'
 import right from './right'
-import bottom from './bottom'
 
-export default angular.module('home', [left, main, right, bottom]).name
+export default angular.module('home', [top, center, left, main, right]).name

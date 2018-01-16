@@ -1,0 +1,126 @@
+.directedGraph {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  .label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: rgb(15, 158, 229);
+  }
+  .outer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../common/img/outer.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: rotate 9s infinite linear;
+    @keyframes rotate {
+      from {
+        transform: rotate(0);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  .cloud {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../common/img/cloud.png');
+    background-size: 26%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .shadow {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../common/img/shadow.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+  }
+  .page {
+    position: absolute;
+    bottom: -5px;
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    .segment {
+      height: 30px;
+      width: 80px;
+      color: #b8f4fd;
+      text-align: center;
+      line-height: 30px;
+      font-size: 10px;
+      background-image: url('../../common/img/button_down.png');
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      &.active {
+        background-image: url('../../common/img/button_up.png');
+      }
+    }
+  }
+  svg {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    .line {
+      stroke-width: 1;
+      &.green {
+        fill: #57c550;
+        stroke: #57c550;
+      }
+      &.blue {
+        fill: #2483cf;
+        stroke: #2483cf;
+      }
+      &.orange {
+        fill: #ff9510;
+        stroke: #ff9510;
+      }
+    }
+    .box {
+      stroke-width: 1;
+      &.green {
+        fill: rgba(87, 197, 80, 0.4);
+        stroke: rgb(87, 197, 80);
+      }
+      &.blue {
+        fill: rgba(36, 131, 207, 0.4);
+        stroke: rgb(36, 131, 207);
+      }
+      &.orange {
+        fill: rgba(255, 149, 16, 0.4);
+        stroke: rgb(255, 149, 16);
+      }
+    }
+    .text {
+      font-size: 6px;
+      fill: rgba(255, 255, 255, 0.8);
+      stroke: none;
+      &.green {
+        fill: #8bfc8b;
+      }
+      &.blue {
+        fill: #77caff;
+      }
+      &.orange {
+        fill: #ffbc1c;
+      }
+    }
+  }
+}

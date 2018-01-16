@@ -1,90 +1,86 @@
 export default class RightCtrl {
-  constructor(Monitor, Http, $interval) {
-    console.log('RightCtrl mounted.')
-    var that = this
+  constructor(Monitor, Http) {
+    this.usage = {}
 
-    that = that || {}
+    this.init(Http)
+    this.load(Monitor)
+  }
 
-    that.detail = {
-      disaster: 0,
-      serious: 0,
-      warning: 0,
-      information: 0
-    }
-
-    that.usageList = [
-      {
-        title: 'CPU使用情况',
-        color: '#58c84d',
-        detail: {
-          totalName: '总数',
-          totalValue: 100,
-          usageName: '已分配',
-          usageValue: 0
-        }
-      },
-      {
-        title: '内存使用情况',
-        color: '#ff9b0a',
-        detail: {
-          totalName: '总数',
-          totalValue: 100,
-          usageName: '已分配',
-          usageValue: 0
-        }
-      },
-      {
-        title: '存储使用情况',
-        color: '#09c8f4',
-        detail: {
-          totalName: '总数',
-          totalValue: 100,
-          usageName: '已分配',
-          usageValue: 0
-        }
+  init(Http) {
+    Http.load('json/top5_cpu_usage.json').then(res => {
+      this.usage.cpu = {
+        label: 'CPU利用率TOP5',
+        data: res.data.result
       }
-    ]
+    })
 
-    function reload() {
-      Monitor.alarm().then(
-        res => {
-          that.detail = {
-            disaster: res.data.disaster,
-            serious: res.data.serious,
-            warning: res.data.warning,
-            information: res.data.information
-          }
-        },
-        _ => {
-          Http.get('json/alarm.json').then(function(res) {
-            that.detail = res.data.data[0]
-          })
-        }
-      )
+    Http.load('json/top5_memory_usage.json').then(res => {
+      this.usage.memory = {
+        label: '内存利用率TOP5',
+        data: res.data.result
+      }
+    })
 
-      Monitor.hypervisors().then(
-        res => {
-          that.usageList[0].detail.totalValue = res.data.vcpus && 240
-          that.usageList[0].detail.usageValue = res.data.vcpus_used
+    Http.load('json/top5_network_usage.json').then(res => {
+      this.usage.network = {
+        label: '网络流量TOP5',
+        data: res.data.result
+      }
+    })
 
-          that.usageList[1].detail.totalValue = res.data.memory_mb
-          that.usageList[1].detail.usageValue = res.data.memory_mb_used
+    Http.load('json/top5_load_usage.json').then(res => {
+      this.usage.load = {
+        label: '系统负载TOP5',
+        data: res.data.result
+      }
+    })
+  }
 
-          that.usageList[2].detail.totalValue = res.data.local_gb
-          that.usageList[2].detail.usageValue = res.data.local_gb_used
-        },
-        _ => {
-          Http.get('json/hypervisors.json').then(function(res) {
-            that.usageList = res.data.data
-          })
-        }
-      )
-    }
+  load(Monitor) {
+    Monitor.topN({
+      metric: 'hardware.cpu.util'
+    }).then(
+      res => {
+        this.usage.cpu.data = res.data.result
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
-    reload()
+    Monitor.topN({
+      metric: 'hardware.memory.util'
+    }).then(
+      res => {
+        this.usage.memory.data = res.data.result
+      },
+      err => {
+        console.log(err)
+      }
+    )
 
-    // $interval(function() {
-    //   reload()
-    // }, 30000)
+    Monitor.topN({
+      metric: 'hardware.network.io.bytes'
+    }).then(
+      res => {
+        this.usage.network.data = res.data.result
+      },
+      err => {
+        console.log(err)
+      }
+    )
+
+    Monitor.topN({
+      metric: 'hardware.cpu.load.5min'
+    }).then(
+      res => {
+        this.usage.load.data = res.data.result
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 }
+
+RightCtrl.$inject = ['Monitor', 'Http']

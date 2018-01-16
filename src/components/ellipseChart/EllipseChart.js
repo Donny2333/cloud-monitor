@@ -11,7 +11,7 @@ export default class EllipseChart {
         chart: '='
       },
       bindToController: true,
-      link: function(scope, element, attrs, ctrl) {
+      link: function (scope, element, attrs, ctrl) {
         const svg = d3.select(element[0]).selectAll('.ellipseChart')
         const rx = parseFloat(attrs.rx)
         const ry = parseFloat(attrs.ry)
@@ -21,11 +21,11 @@ export default class EllipseChart {
         const deltaX = parseFloat(attrs.deltaX)
         const deltaH = parseFloat(attrs.deltaH)
 
-        var dataList, colorList, barColorList
+        let dataList, colorList, barColorList
 
         function drawText() {}
 
-        function drawsvg() {
+        function drawSVG() {
           // ellipse.bottom
           const updateE1 = svg.selectAll('ellipse.bottom').data(dataList)
           const enterE1 = updateE1.enter()
@@ -35,25 +35,25 @@ export default class EllipseChart {
             .transition()
             .duration(1000)
             .ease(d3.easeCubicOut)
-            .attr('cy', function(d, i) {
+            .attr('cy', (d, i) => {
               return y0 + h - d
             })
 
           enterE1
             .append('ellipse')
-            .attr('cx', function(d, i) {
+            .attr('cx', (d, i) => {
               return x0 + rx + i * deltaX
             })
-            .attr('cy', function(d, i) {
+            .attr('cy', (d, i) => {
               return y0 + h - d
             })
-            .attr('rx', function(d, i) {
+            .attr('rx', (d, i) => {
               return rx
             })
-            .attr('ry', function(d, i) {
+            .attr('ry', (d, i) => {
               return ry
             })
-            .attr('fill', function(d, i) {
+            .attr('fill', (d, i) => {
               return colorList[i]
             })
             .attr('class', 'bottom')
@@ -69,7 +69,7 @@ export default class EllipseChart {
             .transition()
             .duration(1000)
             .ease(d3.easeCubicOut)
-            .attr('d', function(d, i) {
+            .attr('d', (d, i) => {
               return [].concat(
                 ['M', x0 + 2 * rx + deltaX * i, h + y0],
                 ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h + y0],
@@ -80,10 +80,10 @@ export default class EllipseChart {
 
           enterP1
             .append('path')
-            .attr('fill', function(d, i) {
+            .attr('fill', (d, i) => {
               return barColorList[i]
             })
-            .attr('d', function(d, i) {
+            .attr('d', (d, i) => {
               return [].concat(
                 ['M', x0 + 2 * rx + deltaX * i, h + y0],
                 ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h + y0],
@@ -102,16 +102,16 @@ export default class EllipseChart {
 
           enterE2
             .append('ellipse')
-            .attr('cx', function(d, i) {
+            .attr('cx', (d, i) => {
               return x0 + rx + i * deltaX
             })
-            .attr('cy', function(d, i) {
+            .attr('cy', (d, i) => {
               return y0 + ry
             })
-            .attr('rx', function(d, i) {
+            .attr('rx', (d, i) => {
               return rx
             })
-            .attr('ry', function(d, i) {
+            .attr('ry', (d, i) => {
               return ry
             })
             .attr('fill', '#F7F7F8')
@@ -129,7 +129,7 @@ export default class EllipseChart {
             .transition()
             .duration(1000)
             .ease(d3.easeCubicOut)
-            .attr('d', function(d, i) {
+            .attr('d', (d, i) => {
               return [].concat(
                 ['M', x0 + 2 * rx + deltaX * i, h - d + deltaH + y0],
                 ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h - d + deltaH + y0],
@@ -142,7 +142,7 @@ export default class EllipseChart {
             .append('path')
             .attr('fill', '#AEADB3')
             .attr('opacity', 0.3)
-            .attr('d', function(d, i) {
+            .attr('d', (d, i) => {
               return [].concat(
                 ['M', x0 + 2 * rx + deltaX * i, h - d + deltaH + y0],
                 ['A', rx, ry, 0, 0, 1, x0 + deltaX * i, h - d + deltaH + y0],
@@ -155,20 +155,17 @@ export default class EllipseChart {
           exitP2.remove()
         }
 
-        scope.$watch(
-          function() {
-            return ctrl.chart
-          },
-          function(value) {
-            dataList = value.dataList
-            colorList = value.colorList
-            barColorList = value.barColorList
-            drawText()
-            drawsvg()
-          }
-        )
+        scope.$watch(() => {
+          return ctrl.chart
+        }, (value) => {
+          dataList = value.dataList
+          colorList = value.colorList
+          barColorList = value.barColorList
+          drawText()
+          drawSVG()
+        })
       },
-      controller: function() {},
+      controller: function () {},
       controllerAs: 'EllipseChartCtrl'
     }
   }
