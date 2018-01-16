@@ -11,7 +11,7 @@ export default class SquareChart {
         chart: '='
       },
       bindToController: true,
-      link: function(scope, element, attrs, ctrl) {
+      link: function (scope, element, attrs, ctrl) {
         const svg = d3.select(element[0]).selectAll('.squareChart')
         const a = parseFloat(attrs.a)
         const b = parseFloat(attrs.b)
@@ -21,10 +21,10 @@ export default class SquareChart {
         const deltaX = parseFloat(attrs.deltaX)
         const deltaH = parseFloat(attrs.deltaH)
 
-        var dataList, colorList, barColorList
+        let dataList, colorList, barColorList
 
-        function drawsvg() {
-          var updateP, enterP, exitP, _i
+        function drawSVG() {
+          let updateP, enterP, exitP, _i
 
           // polygon.bottom
           for (_i = 0; _i <= 2; _i++) {
@@ -36,8 +36,8 @@ export default class SquareChart {
               .transition()
               .duration(1000)
               .ease(d3.easeCubicOut)
-              .attr('points', function(d, i) {
-                var points = []
+              .attr('points', (d, i) => {
+                let points = []
                 switch (_i) {
                   case 0:
                     points = [].concat(
@@ -74,11 +74,11 @@ export default class SquareChart {
 
             enterP
               .append('polygon')
-              .attr('fill', function(d, i) {
+              .attr('fill', (d, i) => {
                 return barColorList[i][_i]
               })
-              .attr('points', function(d, i) {
-                var points = []
+              .attr('points', (d, i) => {
+                let points = []
                 switch (_i) {
                   case 0:
                     points = [].concat(
@@ -127,8 +127,8 @@ export default class SquareChart {
               .transition()
               .duration(1000)
               .ease(d3.easeCubicOut)
-              .attr('points', function(d, i) {
-                var points = []
+              .attr('points', (d, i) => {
+                let points = []
                 switch (_i) {
                   case 0:
                     points = [].concat(
@@ -165,12 +165,12 @@ export default class SquareChart {
 
             enterP
               .append('polygon')
-              .attr('fill', function(d, i) {
+              .attr('fill', (d, i) => {
                 return colorList[_i]
               })
               .attr('opacity', 0.3)
-              .attr('points', function(d, i) {
-                var points = []
+              .attr('points', (d, i) => {
+                let points = []
                 switch (_i) {
                   case 0:
                     points = [].concat(
@@ -210,19 +210,16 @@ export default class SquareChart {
           }
         }
 
-        scope.$watch(
-          function() {
-            return ctrl.chart
-          },
-          function(value) {
-            dataList = value.dataList
-            colorList = value.colorList
-            barColorList = value.barColorList
-            drawsvg()
-          }
-        )
+        scope.$watch(() => {
+          return ctrl.chart
+        }, (value) => {
+          dataList = value.dataList
+          colorList = value.colorList
+          barColorList = value.barColorList
+          drawSVG()
+        })
       },
-      controller: function() {},
+      controller: function () {},
       controllerAs: 'SquareChartCtrl'
     }
   }

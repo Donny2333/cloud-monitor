@@ -8,25 +8,23 @@ export default class CircleChart {
       replace: true,
       bindToController: true,
       scope: {
-        color: '=',
-        title: '=',
-        detail: '='
+        chart: '='
       },
-      link: function(scope, element, attrs, ctrl) {
+      link: (scope, element, attrs, ctrl) => {
         const svg = d3.select(element[0]).selectAll('svg')
         const cx = 150
         const cy = 150
         const r = 120
 
-        ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100
-
-        function drawsvg() {
-          const updateP = svg.selectAll('path').data([ctrl.percent])
+        const drawSVG = () => {
+          const updateP = svg
+            .selectAll('path')
+            .data([ctrl.chart.detail.percent * 100])
           const enterP = updateP.enter()
           const exitP = updateP.exit()
 
-          updateP.attr('d', function(d, i) {
-            var angle = 2 * Math.PI * d / 100
+          updateP.attr('d', (d, i) => {
+            const angle = 2 * Math.PI * d / 100
 
             return []
               .concat(
@@ -51,40 +49,43 @@ export default class CircleChart {
             .attr('stroke-width', 30)
             .attr('stroke-linecap', 'round')
             .attr('stroke-miterlimit', 10)
-            .attr('stroke', function(d, i) {
-              return ctrl.color
+            .attr('stroke', (d, i) => {
+              return ctrl.chart.color
             })
-            .attr('d', function(d, i) {
-              var angle = 2 * Math.PI * d / 100
-              return [].concat(
-                ['M', cx + r, cy],
-                [
-                  'A',
-                  r,
-                  r,
-                  0,
-                  Math.floor(d / 50),
-                  1,
-                  cx + Math.cos(angle) * r,
-                  cy + Math.sin(angle) * r
-                ]
-              ).join(' ')
+            .attr('d', (d, i) => {
+              const angle = 2 * Math.PI * d / 100
+              return []
+                .concat(
+                  ['M', cx + r, cy],
+                  [
+                    'A',
+                    r,
+                    r,
+                    0,
+                    Math.floor(d / 50),
+                    1,
+                    cx + Math.cos(angle) * r,
+                    cy + Math.sin(angle) * r
+                  ]
+                )
+                .join(' ')
             })
 
           exitP.remove()
         }
 
         scope.$watch(
-          function() {
-            return ctrl.detail.usageValue
+          () => {
+            return ctrl.chart && ctrl.chart.detail
           },
-          function(value) {
-            ctrl.percent = ctrl.detail.usageValue / ctrl.detail.totalValue * 100
-            drawsvg()
+          value => {
+            if (value) {
+              drawSVG()
+            }
           }
         )
       },
-      controller: function() {},
+      controller: () => {},
       controllerAs: 'CircleChartCtrl'
     }
   }

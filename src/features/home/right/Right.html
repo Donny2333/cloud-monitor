@@ -1,12 +1,4 @@
-<div class="alert">
-  <div class="title blue">系统告警</div>
-  <div class="detail white">
-    <div class="disaster">{{RightCtrl.detail.disaster}}</div>
-    <div class="serious">{{RightCtrl.detail.serious}}</div>
-    <div class="warning">{{RightCtrl.detail.warning}}</div>
-    <div class="information">{{RightCtrl.detail.information}}</div>
-  </div>
-</div>
-<div class="usage">
-  <circle-chart ng-repeat="usage in RightCtrl.usageList" title="usage.title" color="usage.color" detail="usage.detail"></circle-chart>
-</div>
+<line-chart chart="RightCtrl.usage.cpu"></line-chart>
+<line-chart chart="RightCtrl.usage.memory"></line-chart>
+<line-chart chart="RightCtrl.usage.network"></line-chart>
+<line-chart chart="RightCtrl.usage.load"></line-chart>

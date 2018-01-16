@@ -1,64 +1,88 @@
-import angular from 'angular'
-import { URL_CFG } from '@/api'
-
 export default class LeftCtrl {
-  constructor(EChartsFactory, $interval) {
-    console.log('LeftCtrl mounted.')
-    let that = this
+  constructor($ngRedux, Monitor, Http) {
+    this.init(Http)
+    this.load(Monitor)
 
-    that = that || {}
-    that.charts = []
+    $ngRedux.subscribe(_ => {
+      let state = $ngRedux.getState()
+      this.countsOfHost.value = state.counter.sum
+      this.systemHealth.value = state.counter.system_score
+    })
+  }
 
-    const charts = [
-      {
-        type: 'gauge',
-        id: 0,
-        title: '系统健康度',
-        dataSource: URL_CFG.api + 'systemstate/statistics',
-        localSource: 'json/system_health.json',
-        style: {
-          height: '100%',
-          width: '100%'
-        }
-      },
-      {
-        type: 'pie',
-        id: 1,
-        title: '主机状态',
-        dataSource: URL_CFG.api + 'hoststate/statistics',
-        localSource: 'json/host_state.json',
-        style: {
-          height: '100%',
-          width: '100%'
-        }
-      },
-      {
-        type: 'pie',
-        id: 3,
-        title: '虚拟机状态',
-        dataSource: URL_CFG.api + 'vm/statistics',
-        localSource: 'json/vm_state.json',
-        style: {
-          height: '100%',
-          width: '100%'
-        }
+  static bytesToSize(mebibytes) {
+    const k = 1000 // or 1024
+    const sizes = ['MB', 'GB', 'TB', 'PB']
+    const i = Math.floor(Math.log(mebibytes) / Math.log(k))
+
+    if (mebibytes === 0) {
+      return {
+        value: 0,
+        unit: sizes[0]
       }
-    ]
-
-    function reload() {
-      charts.map(function(chart) {
-        var newChart = EChartsFactory(chart.type)
-
-        angular.merge(newChart, chart)
-        newChart.update(chart)
-        that.charts.push(newChart)
-      })
     }
+    return {
+      value: (mebibytes / Math.pow(k, i)).toPrecision(3),
+      unit: sizes[i]
+    }
+  }
 
-    reload()
+  init(Http) {
+    Http.load('json/hypervisors.json').then(res => {
+      this.usage = res.data.result
+    })
 
-    // $interval(function() {
-    //   reload()
-    // }, 30000)
+    Http.load('json/counts_of_host.json').then(res => {
+      this.countsOfHost = {
+        label: '物理云主机数',
+        value: res.data.result.value
+      }
+    })
+
+    Http.load('json/system_health.json').then(res => {
+      this.systemHealth = {
+        label: '系统健康度',
+        value: res.data.result.value
+      }
+    })
+  }
+
+  load(Monitor) {
+    Monitor.rs_statics().then(
+      res => {
+        this.usage.cpu.detail.total.value = res.data.vcpus
+        this.usage.cpu.detail.usage.value = res.data.vcpus_used
+        this.usage.cpu.detail.percent = res.data.vcpus_used / res.data.vcpus
+
+        this.usage.memory.detail = {
+          total: {
+            value: LeftCtrl.bytesToSize(res.data.memory_mb).value,
+            unit: LeftCtrl.bytesToSize(res.data.memory_mb).unit
+          },
+          usage: {
+            value: LeftCtrl.bytesToSize(res.data.memory_mb_used).value,
+            unit: LeftCtrl.bytesToSize(res.data.memory_mb_used).unit
+          },
+          percent: res.data.memory_mb_used / res.data.memory_mb
+        }
+
+        this.usage.disk.detail = {
+          total: {
+            value: LeftCtrl.bytesToSize(res.data.local_gb).value,
+            unit: LeftCtrl.bytesToSize(res.data.local_gb).unit
+          },
+          usage: {
+            value: LeftCtrl.bytesToSize(res.data.local_gb_used).value,
+            unit: LeftCtrl.bytesToSize(res.data.local_gb_used).unit
+          },
+          percent: res.data.local_gb_used / res.data.local_gb
+        }
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 }
+
+LeftCtrl.$inject = ['$ngRedux', 'Monitor', 'Http']
