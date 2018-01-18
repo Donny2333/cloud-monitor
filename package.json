@@ -6,6 +6,7 @@
     "dev": "node ./build/dev-server",
     "build": "node build/build.js",
     "start": "npm run dev",
+    "serve": "node src/server/bin/www",
     "clean": "rm -rf dist/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pm2": "pm2 start build/dev-server.js -i max --watch --no-daemon"
@@ -34,7 +35,6 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "eventsource-polyfill": "^0.9.6",
-    "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
@@ -57,13 +57,21 @@
     "@uirouter/angularjs": "^1.0.12",
     "angular": "^1.6.7",
     "angular-animate": "^1.6.7",
+    "body-parser": "^1.18.2",
     "d3": "^4.12.2",
+    "debug": "^3.1.0",
     "echarts": "^3.8.5",
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
+    "morgan": "^1.9.0",
     "ng-redux": "^3.5.2",
     "pm2": "^2.8.0",
+    "read-ini-file": "^1.0.0",
     "redux-thunk": "^2.2.0",
+    "request-promise": "^4.2.2",
+    "serve-favicon": "^2.4.5",
     "three.js": "^0.77.1"
   }
 }
