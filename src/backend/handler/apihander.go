@@ -107,7 +107,7 @@ func (u APIHander) detail(request *restful.Request, response *restful.Response) 
     "num_excellent": 82,
     "num_good": 18,
     "num_poor": 8,
-    "detail": [`
+    "details": [`
   i := 0
   jsonState := ""
   for i < 108 {
