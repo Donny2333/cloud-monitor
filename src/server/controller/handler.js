@@ -9,7 +9,7 @@ const topN = (req, res) => {
   })
 }
 
-const detail = async(req, res) => {
+const detail = async (req, res) => {
   res.json({
     title: 'monitor',
     body: 'detail'
@@ -19,16 +19,19 @@ const detail = async(req, res) => {
 const rsStatics = (req, res, next) => {
   const gnocchi = new Gnocchi()
 
-  gnocchi.getStatics().then(resp => {
-    res.json({
-      title: 'monitor',
-      body: resp
+  gnocchi
+    .getStatics()
+    .then(
+      resp => {
+        res.json(resp.hypervisor_statistics)
+      },
+      err => {
+        throw err
+      }
+    )
+    .catch(err => {
+      res.send(err)
     })
-  }, err => {
-    throw err
-  }).catch(err => {
-    res.send(err)
-  })
 }
 
 module.exports = {

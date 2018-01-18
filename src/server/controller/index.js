@@ -1,7 +1,7 @@
-const handle = require('./handle')
-const monitor = require('./monitor')
+const render = require('./render')
+const handler = require('./handler')
 
 module.exports = {
-  ...handle,
-  ...monitor
+  handler,
+  render
 }

@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controller')
+const handler = require('../controller').handler
 
-router.get('/topN/:metric/:num', controller.topN)
-router.get('/detail', controller.detail)
-router.get('/rs_statics', controller.rsStatics)
+router.get('/topN/:metric/:num', handler.topN)
+router.get('/detail', handler.detail)
+router.get('/rs_statics', handler.rsStatics)
 
 module.exports = router

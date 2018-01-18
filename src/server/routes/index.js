@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controller')
+const render = require('../controller').render
 
-router.get('/', controller.echo)
-  .post('/', controller.msg)
+router.get('/', render.echo)
 
 module.exports = router
