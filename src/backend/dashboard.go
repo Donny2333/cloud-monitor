@@ -15,47 +15,41 @@
 package main
 
 import (
-	"flag"
-	"fmt"
-	"log"
-	"net/http"
-	"os"
+  "fmt"
+  "log"
+  "net/http"
+  "os"
 
-	"github.com/fiberhome/cloud-monitor/src/backend/handler"
-	"github.com/fiberhome/cloud-monitor/src/backend/ini"
-	"github.com/spf13/pflag"
+  "github.com/fiberhome/cloud-monitor/src/backend/handler"
+  "github.com/fiberhome/cloud-monitor/src/backend/ini"
 )
 
 func main() {
-	// Set logging output to standard console out
-	log.SetOutput(os.Stdout)
+  // Set logging output to standard console out
+  log.SetOutput(os.Stdout)
 
-	iniPortal, err := ini.LoadConfiguration("portal.ini")
-	if err != nil {
+  iniPortal, err := ini.LoadConfiguration("portal.ini")
+  if err != nil {
     log.Fatal(err)
-	}
+  }
 
-	iport := iniPortal.IntegerFromSection("monitor", "port", 9090)
-	ip := iniPortal.StringFromSection("monitor", "ip", "0.0.0.0")
+  iport := iniPortal.IntegerFromSection("monitor.js.js", "port", 9090)
+  ip := iniPortal.StringFromSection("monitor.js.js", "ip", "0.0.0.0")
 
-	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
-	pflag.Parse()
-	flag.CommandLine.Parse(make([]string, 0)) // Init for glog calls in kubernetes packages
-
-	apiHandler, err := handler.CreateHTTPAPIHandler()
-	if err != nil {
+  apiHandler, err := handler.CreateHTTPAPIHandler()
+  if err != nil {
     log.Fatal(err)
-	}
-	// Run a HTTP server that serves static public files from './public' and handles API calls.
-	http.Handle("/", handler.MakeGzipHandler(handler.CreateLocaleHandler()))
-	http.Handle("/monitor_api/", apiHandler)
-	http.Handle("/monitor_api/appConfig.json", handler.AppHandler(handler.ConfigHandler))
+  }
+  // Run a HTTP server that serves static public files from './public' and handles API calls.
+  http.Handle("/", handler.MakeGzipHandler(handler.CreateLocaleHandler()))
+  http.Handle("/monitor_api/", apiHandler)
+  http.Handle("/monitor_api/appConfig.json", handler.AppHandler(handler.ConfigHandler))
 
-	// Listen for http or https
-	log.Printf("ip:%s", ip)
-	log.Printf("Serving insecurely on HTTP : port: %d", iport)
-	addr := fmt.Sprintf("%s:%d", ip, iport)
-	go func() { log.Fatal(http.ListenAndServe(addr, nil)) }()
+  // Listen for http or https
+  log.Printf("ip:%s", ip)
+  log.Printf("Serving insecurely on HTTP : port: %d", iport)
+  addr := fmt.Sprintf("%s:%d", ip, iport)
+  go func() { log.Fatal(http.ListenAndServe(addr, nil)) }()
 
-	select {}
+  select {}
 }

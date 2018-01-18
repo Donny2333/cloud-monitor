@@ -15,20 +15,20 @@
 package errors
 
 import (
-	"errors"
-	"strings"
+  "errors"
+  "strings"
 
-	jose "gopkg.in/square/go-jose.v2"
+  jose "gopkg.in/square/go-jose.v2"
 )
 
 // Errors that can be used directly without localizing
 const (
-	MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR    = "MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR"
-	MSG_DEPLOY_EMPTY_NAMESPACE_ERROR       = "MSG_DEPLOY_EMPTY_NAMESPACE_ERROR"
-	MSG_LOGIN_UNAUTHORIZED_ERROR           = "MSG_LOGIN_UNAUTHORIZED_ERROR"
-	MSG_ENCRYPTION_KEY_CHANGED             = "MSG_ENCRYPTION_KEY_CHANGED"
-	MSG_DASHBOARD_EXCLUSIVE_RESOURCE_ERROR = "MSG_DASHBOARD_EXCLUSIVE_RESOURCE_ERROR"
-	MSG_TOKEN_EXPIRED_ERROR                = "MSG_TOKEN_EXPIRED_ERROR"
+  MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR    = "MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR"
+  MSG_DEPLOY_EMPTY_NAMESPACE_ERROR       = "MSG_DEPLOY_EMPTY_NAMESPACE_ERROR"
+  MSG_LOGIN_UNAUTHORIZED_ERROR           = "MSG_LOGIN_UNAUTHORIZED_ERROR"
+  MSG_ENCRYPTION_KEY_CHANGED             = "MSG_ENCRYPTION_KEY_CHANGED"
+  MSG_DASHBOARD_EXCLUSIVE_RESOURCE_ERROR = "MSG_DASHBOARD_EXCLUSIVE_RESOURCE_ERROR"
+  MSG_TOKEN_EXPIRED_ERROR                = "MSG_TOKEN_EXPIRED_ERROR"
 )
 
 // This file contains all errors that should be kept in sync with:
@@ -40,23 +40,23 @@ const (
 // 		   pattern MSG_<VIEW>_<CAUSE_OF_ERROR>_ERROR
 //		   <VIEW> - optional
 var partialsToErrorsMap = map[string]string{
-	"does not match the namespace":                               MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR,
-	"empty namespace may not be set":                             MSG_DEPLOY_EMPTY_NAMESPACE_ERROR,
-	"the server has asked for the client to provide credentials": MSG_LOGIN_UNAUTHORIZED_ERROR,
-	jose.ErrCryptoFailure.Error():                                MSG_ENCRYPTION_KEY_CHANGED,
+  "does not match the namespace":                               MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR,
+  "empty namespace may not be set":                             MSG_DEPLOY_EMPTY_NAMESPACE_ERROR,
+  "the server has asked for the client to provide credentials": MSG_LOGIN_UNAUTHORIZED_ERROR,
+  jose.ErrCryptoFailure.Error():                                MSG_ENCRYPTION_KEY_CHANGED,
 }
 
 // LocalizeError returns error code (string) that can be used by frontend to localize error message.
 func LocalizeError(err error) error {
-	if err == nil {
-		return nil
-	}
+  if err == nil {
+    return nil
+  }
 
-	for partial, errString := range partialsToErrorsMap {
-		if strings.Contains(err.Error(), partial) {
-			return errors.New(errString)
-		}
-	}
+  for partial, errString := range partialsToErrorsMap {
+    if strings.Contains(err.Error(), partial) {
+      return errors.New(errString)
+    }
+  }
 
-	return err
+  return err
 }

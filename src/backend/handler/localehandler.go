@@ -15,120 +15,120 @@
 package handler
 
 import (
-	"encoding/json"
-	"io/ioutil"
-	"net/http"
-	"os"
-	"strings"
+  "encoding/json"
+  "io/ioutil"
+  "net/http"
+  "os"
+  "strings"
 
-	"github.com/golang/glog"
-	"golang.org/x/text/language"
+  "github.com/golang/glog"
+  "golang.org/x/text/language"
 )
 
 const defaultDir = "./public/zh"
 
 // Localization is a spec for the localization configuration of dashboard.
 type Localization struct {
-	Translations []Translation `json:"translations"`
+  Translations []Translation `json:"translations"`
 }
 
 // Translation is a single translation definition spec.
 type Translation struct {
-	File string `json:"file"`
-	Key  string `json:"key"`
+  File string `json:"file"`
+  Key  string `json:"key"`
 }
 
 // LocaleHandler serves different localized versions of the frontend application
 // based on the Accept-Language header.
 type LocaleHandler struct {
-	SupportedLocales []language.Tag
+  SupportedLocales []language.Tag
 }
 
 // CreateLocaleHandler loads the localization configuration and constructs a LocaleHandler.
 func CreateLocaleHandler() *LocaleHandler {
-	locales, err := getSupportedLocales("./locale_conf.json")
-	if err != nil {
-		glog.Warningf("Error when loading the localization configuration. Dashboard will not be localized. %s", err)
-		locales = []language.Tag{}
-	}
-	return &LocaleHandler{SupportedLocales: locales}
+  locales, err := getSupportedLocales("./locale_conf.json")
+  if err != nil {
+    glog.Warningf("Error when loading the localization configuration. Dashboard will not be localized. %s", err)
+    locales = []language.Tag{}
+  }
+  return &LocaleHandler{SupportedLocales: locales}
 }
 
 func getSupportedLocales(configFile string) ([]language.Tag, error) {
-	// read config file
-	localesFile, err := ioutil.ReadFile(configFile)
-	if err != nil {
-		return []language.Tag{}, err
-	}
+  // read config file
+  localesFile, err := ioutil.ReadFile(configFile)
+  if err != nil {
+    return []language.Tag{}, err
+  }
 
-	// unmarshall
-	localization := Localization{}
-	err = json.Unmarshal(localesFile, &localization)
-	if err != nil {
-		glog.Warningf("%s %s", string(localesFile), err)
-	}
+  // unmarshall
+  localization := Localization{}
+  err = json.Unmarshal(localesFile, &localization)
+  if err != nil {
+    glog.Warningf("%s %s", string(localesFile), err)
+  }
 
-	// filter locale keys
-	result := []language.Tag{}
-	for _, translation := range localization.Translations {
-		result = append(result, language.Make(translation.Key))
-	}
-	return result, nil
+  // filter locale keys
+  result := []language.Tag{}
+  for _, translation := range localization.Translations {
+    result = append(result, language.Make(translation.Key))
+  }
+  return result, nil
 }
 
 // LocaleHandler serves different html versions based on the Accept-Language header.
 func (handler *LocaleHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if r.RequestURI == "/app" || r.RequestURI == "/static" {
-		//r.RequestURI = "/"
-		r.URL.Path = "/"
-	}
+  if r.RequestURI == "/app" || r.RequestURI == "/static" {
+    //r.RequestURI = "/"
+    r.URL.Path = "/"
+  }
 
-	if r.URL.EscapedPath() == "/" || r.URL.EscapedPath() == "/index.html" {
-		// Do not store the html page in the cache. If the user is to click on 'switch language',
-		// we want a different index.html (for the right locale) to be served when the page refreshes.
-		w.Header().Add("Cache-Control", "no-store")
-	}
+  if r.URL.EscapedPath() == "/" || r.URL.EscapedPath() == "/index.html" {
+    // Do not store the html page in the cache. If the user is to click on 'switch language',
+    // we want a different index.html (for the right locale) to be served when the page refreshes.
+    w.Header().Add("Cache-Control", "no-store")
+  }
 
-	acceptLanguage := os.Getenv("ACCEPT_LANGUAGE")
-	if acceptLanguage == "" {
-		acceptLanguage = r.Header.Get("Accept-Language")
-	}
-	dirName := handler.determineLocalizedDir(acceptLanguage)
-	http.FileServer(http.Dir(dirName)).ServeHTTP(w, r)
+  acceptLanguage := os.Getenv("ACCEPT_LANGUAGE")
+  if acceptLanguage == "" {
+    acceptLanguage = r.Header.Get("Accept-Language")
+  }
+  dirName := handler.determineLocalizedDir(acceptLanguage)
+  http.FileServer(http.Dir(dirName)).ServeHTTP(w, r)
 }
 
 func (handler *LocaleHandler) determineLocalizedDir(locale string) string {
-	tags, _, err := language.ParseAcceptLanguage(locale)
-	if (err != nil) || (len(tags) == 0) {
-		return defaultDir
-	}
+  tags, _, err := language.ParseAcceptLanguage(locale)
+  if (err != nil) || (len(tags) == 0) {
+    return defaultDir
+  }
 
-	locales := handler.SupportedLocales
-	tag, _, confidence := language.NewMatcher(locales).Match(tags...)
-	matchedLocale := strings.ToLower(tag.String())
-	if confidence != language.Exact {
-		matchedLocale = ""
-		for _, l := range locales {
-			base, _ := tag.Base()
-			if l.String() == base.String() {
-				matchedLocale = l.String()
-			}
-		}
-	}
+  locales := handler.SupportedLocales
+  tag, _, confidence := language.NewMatcher(locales).Match(tags...)
+  matchedLocale := strings.ToLower(tag.String())
+  if confidence != language.Exact {
+    matchedLocale = ""
+    for _, l := range locales {
+      base, _ := tag.Base()
+      if l.String() == base.String() {
+        matchedLocale = l.String()
+      }
+    }
+  }
 
-	localeDir := "./public/" + matchedLocale
-	if matchedLocale != "" && handler.dirExists(localeDir) {
-		return localeDir
-	}
-	return defaultDir
+  localeDir := "./public/" + matchedLocale
+  if matchedLocale != "" && handler.dirExists(localeDir) {
+    return localeDir
+  }
+  return defaultDir
 }
 
 func (handler *LocaleHandler) dirExists(name string) bool {
-	if _, err := os.Stat(name); err != nil {
-		if os.IsNotExist(err) {
-			glog.Warningf(name)
-			return false
-		}
-	}
-	return true
+  if _, err := os.Stat(name); err != nil {
+    if os.IsNotExist(err) {
+      glog.Warningf(name)
+      return false
+    }
+  }
+  return true
 }

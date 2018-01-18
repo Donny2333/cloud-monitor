@@ -15,37 +15,37 @@
 package errors
 
 import (
-	"errors"
-	"reflect"
-	"testing"
+  "errors"
+  "reflect"
+  "testing"
 )
 
 func TestLocalizeError(t *testing.T) {
-	cases := []struct {
-		err      error
-		expected error
-	}{
-		{
-			nil,
-			nil,
-		},
-		{
-			errors.New("some unknown error"),
-			errors.New("some unknown error"),
-		},
-		{
-			errors.New("does not match the namespace"),
-			errors.New("MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR"),
-		},
-		{
-			errors.New("empty namespace may not be set"),
-			errors.New("MSG_DEPLOY_EMPTY_NAMESPACE_ERROR"),
-		},
-	}
-	for _, c := range cases {
-		actual := LocalizeError(c.err)
-		if !reflect.DeepEqual(actual, c.expected) {
-			t.Errorf("LocalizeError(%+v) == %+v, expected %+v", c.err, actual, c.expected)
-		}
-	}
+  cases := []struct {
+    err      error
+    expected error
+  }{
+    {
+      nil,
+      nil,
+    },
+    {
+      errors.New("some unknown error"),
+      errors.New("some unknown error"),
+    },
+    {
+      errors.New("does not match the namespace"),
+      errors.New("MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR"),
+    },
+    {
+      errors.New("empty namespace may not be set"),
+      errors.New("MSG_DEPLOY_EMPTY_NAMESPACE_ERROR"),
+    },
+  }
+  for _, c := range cases {
+    actual := LocalizeError(c.err)
+    if !reflect.DeepEqual(actual, c.expected) {
+      t.Errorf("LocalizeError(%+v) == %+v, expected %+v", c.err, actual, c.expected)
+    }
+  }
 }
