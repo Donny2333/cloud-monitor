@@ -5,7 +5,7 @@
     "num_excellent": 25,
     "num_good": 7,
     "num_poor": 3,
-    "detail": [
+    "details": [
       { "name": "host_name", "score": 53 },
       { "name": "host_name", "score": 26 },
       { "name": "host_name", "score": 27 },

@@ -17,7 +17,7 @@ export default class AppCtrl {
 
   init($ngRedux, Monitor) {
     Monitor.detail().then(res => {
-      this.set(res.data.result)
+      this.set(res.data.result || {})
     })
   }
 }
