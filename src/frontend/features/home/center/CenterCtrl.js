@@ -8,7 +8,7 @@ export default class CenterCtrl {
         num_excellent: state.counter.num_excellent,
         num_good: state.counter.num_good,
         num_poor: state.counter.num_poor,
-        detail: state.counter.detail
+        details: state.counter.details
       }
     })
   }

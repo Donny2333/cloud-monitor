@@ -56,7 +56,7 @@ export default class DirectedGraph {
         }
 
         const drawSVG = () => {
-          let detail = ctrl.data.detail
+          let detail = ctrl.data.details
 
           stats.dataList = [
             ctrl.data.num_excellent,
@@ -245,19 +245,19 @@ export default class DirectedGraph {
 
         scope.$watch(
           () => {
-            return ctrl.data && ctrl.data.detail
+            return ctrl.data && ctrl.data.details
           },
           value => {
             if (value) {
               ctrl.segments.list = []
               ctrl.segments.check = 0
 
-              const num = Math.floor(ctrl.data.detail.length / 36)
-              for (let i = 0; i < ctrl.data.detail.length / 36; i++) {
+              const num = Math.floor(ctrl.data.details.length / 36)
+              for (let i = 0; i < ctrl.data.details.length / 36; i++) {
                 ctrl.segments.list.push({
                   id: i,
                   text: `${36 * i + 1} - ${
-                    i === num ? ctrl.data.detail.length : (i + 1) * 36
+                    i === num ? ctrl.data.details.length : (i + 1) * 36
                   }`,
                   active: i === ctrl.segments.check
                 })
