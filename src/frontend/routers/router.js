@@ -10,7 +10,7 @@
         $stateProvider
           .state('app', {
             abstract: true,
-            templateUrl: 'js/components/app/App.html',
+            templateUrl: 'src/frontend/components/app/App.html',
             controller: 'AppCtrl'
 
           })
@@ -18,22 +18,22 @@
             url: '/app',
             views: {
               left: {
-                templateUrl: 'js/components/left/Left.html',
+                templateUrl: 'src/frontend/components/left/Left.html',
                 controller: 'LeftCtrl',
                 controllerAs: 'LeftCtrl'
               },
               main: {
-                templateUrl: 'js/components/main/Main.html',
+                templateUrl: 'src/frontend/components/main/Main.html',
                 controller: 'MainCtrl',
                 controllerAs: 'MainCtrl'
               },
               right: {
-                templateUrl: 'js/components/right/Right.html',
+                templateUrl: 'src/frontend/components/right/Right.html',
                 controller: 'RightCtrl',
                 controllerAs: 'RightCtrl'
               },
               bottom: {
-                templateUrl: 'js/components/bottom/Bottom.html',
+                templateUrl: 'src/frontend/components/bottom/Bottom.html',
                 controller: 'BottomCtrl',
                 controllerAs: 'BottomCtrl'
               }

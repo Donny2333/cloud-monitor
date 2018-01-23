@@ -69,7 +69,7 @@
           "id": 0,
           "title": "系统健康度",
           "dataSource": URL_CFG.api + "systemstate/statistics",
-          "localSource": "json/system_health.json",
+          "localSource": "src/frontend/common/json/system_health.json",
           "style": {
             "height": "100%",
             "width": "100%"
@@ -79,7 +79,7 @@
           "id": 1,
           "title": "主机状态",
           "dataSource": URL_CFG.api + "hoststate/statistics",
-          "localSource": "json/host_state.json",
+          "localSource": "src/frontend/common/json/host_state.json",
           "style": {
             "height": "100%",
             "width": "100%"
@@ -89,7 +89,7 @@
           "id": 3,
           "title": "虚拟机状态",
           "dataSource": URL_CFG.api + "vm/statistics",
-          "localSource": "json/vm_state.json",
+          "localSource": "src/frontend/common/json/vm_state.json",
           "style": {
             "height": "100%",
             "width": "100%"

@@ -145,7 +145,7 @@
               information: res.data.information
             };
           }, function (err) {
-            Http.get('json/alarm.json').then(function (res) {
+            Http.get('src/frontend/common/json/alarm.json').then(function (res) {
               that.detail = res.data.data[0];
             });
           });
@@ -169,7 +169,7 @@
             that.usageList[2].detail.usageUnit = bytesToSize(res.data.local_gb_used).unit;
             that.usageList[2].detail.percent = (res.data.local_gb_used / res.data.local_gb * 100).toFixed(1);
           }, function (err) {
-            Http.get('json/hypervisors.json').then(function (res) {
+            Http.get('src/frontend/common/json/hypervisors.json').then(function (res) {
               var data = res.data.data;
               data[0].detail.totalUnit = '核';
               data[0].detail.usageUnit = '核';

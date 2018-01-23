@@ -1,50 +1,56 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var clean = require('gulp-clean');
+const gulp = require('gulp')
+const bs = require('browser-sync').create()
+const concat = require('gulp-concat')
+const uglify = require('gulp-uglify')
+const clean = require('gulp-clean')
 
 gulp.task('js', function () {
   return gulp
-    .src(['./js/**/*.js', './js/*.js'])
+    .src([
+      'src/frontend/directives/*.js',
+      'src/frontend/components/**/*.js',
+      'src/frontend/config/*.js',
+      'src/frontend/routers/*.js',
+      'src/frontend/services/*.js',
+      'src/frontend/app.js'
+    ])
     .pipe(concat('bundle.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('./build'));
-});
+    .pipe(gulp.dest('./bundle'))
+})
 
 // 静态服务器
 gulp.task('serve', ['js'], function () {
-  browserSync.init({
+  bs.init({
     server: {
       baseDir: './'
     },
     port: '3000'
-  });
+  })
 
-  gulp.watch(['*.html', 'js/**/*.html', 'js/components/**/*.html'], ['reload']);
-  gulp.watch(['*.js', 'js/**/*.js', 'js/components/**/*.js'], ['js', 'reload']);
-  gulp.watch('css/*.css', ['reload']);
-});
+  gulp.watch(['*.html', 'src/frontend/**.html'], ['reload'])
+  gulp.watch(['src/frontend/*.js', 'src/frontend/**/*.js'], ['js', 'reload'])
+  gulp.watch(['src/frontend/**/*.css'], ['reload'])
+})
 
 gulp.task('reload', function () {
-  browserSync.reload();
-});
+  bs.reload()
+})
 
 gulp.task('clean', function () {
-  gulp.src('./static').pipe(clean({ force: true }));
-});
+  gulp.src('./dist').pipe(clean({ force: true }))
+})
 
 gulp.task('build', ['clean', 'js'], function () {
-  gulp
-    .src(['bower_components/**/*.min.js', 'bower_components/**/*.min.css'])
-    .pipe(gulp.dest('static/bower_components'));
-  gulp.src('build/**').pipe(gulp.dest('static/build'));
-  gulp.src('css/**').pipe(gulp.dest('static/css'));
-  gulp.src('images/**').pipe(gulp.dest('static/images'));
-  gulp.src('js/components/**/*.html').pipe(gulp.dest('static/js/components'));
-  gulp.src('json/**').pipe(gulp.dest('static/json'));
-  gulp.src('lib/**').pipe(gulp.dest('static/lib'));
-  gulp.src('index.html').pipe(gulp.dest('static'));
-});
+  gulp.src([
+    'bower_components/**/*.min.js',
+    'bower_components/**/*.min.css'
+  ]).pipe(gulp.dest('dist/bower_components'))
+  gulp.src('src/frontend/common/**').pipe(gulp.dest('dist/common'))
+  gulp.src('src/frontend/components/**/*.html').pipe(gulp.dest('dist/components'))
+  gulp.src('bundle/**').pipe(gulp.dest('dist/bundle'))
+  gulp.src('vendor/**').pipe(gulp.dest('dist/vendor'))
+  gulp.src('index.html').pipe(gulp.dest('dist'))
+})
 
-gulp.task('default', ['serve']);
+gulp.task('default', ['serve'])
