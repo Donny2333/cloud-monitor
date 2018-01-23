@@ -68,6 +68,7 @@
     "morgan": "^1.9.0",
     "ng-redux": "^3.5.2",
     "pm2": "^2.8.0",
+    "pug": "^2.0.0-rc.4",
     "read-ini-file": "^1.0.0",
     "redux-thunk": "^2.2.0",
     "request-promise": "^4.2.2",

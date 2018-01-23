@@ -1,4 +1,4 @@
-const response = require('request')
+const request = require('request')
 const config = require('../config')
 const Url = require('./url')
 
@@ -10,7 +10,7 @@ class Token {
   generate() {
     const url = new Url()
     return new Promise((resolve, reject) => {
-      response.post({
+      request.post({
         url: url.auth,
         json: true,
         body: {
