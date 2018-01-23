@@ -60,7 +60,7 @@
             barColorList: barColorList1
           }
         }, function (err) {
-          Http.get('src/frontend/common/json/top5_cpu_usage.json').then(function (res) {
+          Http.get('common/json/top5_cpu_usage.json').then(function (res) {
             var names = [];
             var dataList = [];
 
@@ -96,7 +96,7 @@
             barColorList: barColorList2
           }
         }, function (err) {
-          Http.get('src/frontend/common/json/top5_memory_usage.json').then(function (res) {
+          Http.get('common/json/top5_memory_usage.json').then(function (res) {
             var names = [];
             var dataList = [];
 
@@ -132,7 +132,7 @@
             barColorList: barColorList1
           }
         }, function (err) {
-          Http.get('src/frontend/common/json/top5_vm_cpu_usage.json').then(function (res) {
+          Http.get('common/json/top5_vm_cpu_usage.json').then(function (res) {
             var names = [];
             var dataList = [];
 
@@ -168,7 +168,7 @@
             barColorList: barColorList2
           }
         }, function (err) {
-          Http.get('src/frontend/common/json/top5_vm_memory_usage.json').then(function (res) {
+          Http.get('common/json/top5_vm_memory_usage.json').then(function (res) {
             var names = [];
             var dataList = [];
 

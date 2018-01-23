@@ -5,7 +5,7 @@
     .directive('directedGraph', ['$interval', function ($interval) {
       return {
         restrict: 'E',
-        templateUrl: 'src/frontend/components/directedGraph/DirectedGraph.html',
+        templateUrl: 'components/directedGraph/DirectedGraph.html',
         replace: true,
         scope: {
           data: '='

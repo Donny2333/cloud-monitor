@@ -5,7 +5,7 @@
     .directive('circleChart', ['$interval', function ($interval) {
       return {
         restrict: 'E',
-        templateUrl: 'src/frontend/components/circleChart/CircleChart.html',
+        templateUrl: 'components/circleChart/CircleChart.html',
         replace: true,
         bindToController: true,
         scope: {
