@@ -5,6 +5,6 @@ import rootReducer from './reducers/index.js'
 
 export default angular
   .module('services.Redux', [ngRedux])
-  .config($ngReduxProvider => {
+  .config(['$ngReduxProvider', $ngReduxProvider => {
     $ngReduxProvider.createStoreWith(rootReducer, [thunk])
-  }).name
+  }]).name

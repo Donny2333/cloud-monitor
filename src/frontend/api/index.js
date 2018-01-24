@@ -1,6 +1,6 @@
 const prodURL = ''
 const devURL = 'http://10.127.1.32:9091/'
-const localURL = 'http://localhost:4000/'
+const testURL = 'http://192.168.130.11:9091/'
 const Urls = {
   Prod_Cfg: {
     api: prodURL + 'monitor_api/v1/'
@@ -8,10 +8,10 @@ const Urls = {
   Dev_Cfg: {
     api: devURL + 'monitor_api/v1/'
   },
-  Local_Cfg: {
-    api: localURL + 'monitor_api/v1/'
+  Test_Cfg: {
+    api: testURL + 'monitor_api/v1/'
   }
 }
 
-export const ENV = window.env
-export const URL_CFG = ENV === 'product' ? Urls.Prod_Cfg : Urls.Local_Cfg
+export const ENV = process.env.NODE_ENV
+export const URL_CFG = ENV === 'production' ? Urls.Prod_Cfg : Urls.Dev_Cfg

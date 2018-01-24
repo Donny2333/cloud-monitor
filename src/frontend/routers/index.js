@@ -1,6 +1,6 @@
 import { ENV } from '@/api'
 
-export default ($urlRouterProvider, $stateProvider, $locationProvider) => {
+const router = ($urlRouterProvider, $stateProvider, $locationProvider) => {
   $urlRouterProvider.otherwise('/app')
   if (ENV === 'product') {
     $locationProvider.html5Mode(true)
@@ -44,3 +44,7 @@ export default ($urlRouterProvider, $stateProvider, $locationProvider) => {
       }
     })
 }
+
+router.$inject = ['$urlRouterProvider', '$stateProvider', '$locationProvider']
+
+module.exports = router

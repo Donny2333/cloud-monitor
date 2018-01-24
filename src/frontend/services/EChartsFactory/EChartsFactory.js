@@ -396,3 +396,5 @@ export default class EChartsFactory {
     }
   }
 }
+
+EChartsFactory.$inject = ['Http']

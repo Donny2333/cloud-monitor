@@ -17,3 +17,5 @@ export default class Monitor {
     }
   }
 }
+
+Monitor.$inject = ['Http']

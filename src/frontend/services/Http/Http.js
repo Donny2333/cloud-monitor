@@ -6,7 +6,7 @@ function parseParams(url, params) {
   return url + p.join('&')
 }
 
-export default class EChartsFactory {
+export default class Http {
   constructor($q, $http, $sce) {
     return {
       get: function (url) {
@@ -73,3 +73,5 @@ export default class EChartsFactory {
     }
   }
 }
+
+Http.$inject = ['$q', '$http', '$sce']
