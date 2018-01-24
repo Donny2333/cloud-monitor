@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/app', './build/dev-client'],
+  entry: ['./src/frontend/app', './build/dev-client'],
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
@@ -13,7 +13,7 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      '@': path.resolve(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src/frontend')
     }
   },
   module: {
@@ -22,7 +22,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: ['./src'],
+        include: ['./src/frontend'],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -64,10 +64,13 @@ module.exports = {
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    }),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.ejs',
+      template: path.resolve(__dirname, '../src/frontend/index.ejs'),
       inject: true,
       env: 'develop'
     }),

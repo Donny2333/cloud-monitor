@@ -1,0 +1,23 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+}
+
+a {
+    color: #00B7FF
+}
+
+.form .form-item {
+    display: block;
+    margin-bottom: 10px
+}
+
+.form .form-item span {
+    display: inline-block;
+    width: 100px
+}
+
+.form input,
+.form button {
+    outline: none
+}

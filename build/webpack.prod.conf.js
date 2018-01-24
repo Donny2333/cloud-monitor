@@ -6,17 +6,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/app'],
+  entry: ['./src/frontend/app'],
   devtool: '#source-map',
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist/cloud-monitor/public/zh'),
     filename: 'static/js/[name].[chunkhash].js',
     chunkFilename: 'static/js/[id].[chunkhash].js'
   },
   resolve: {
     extensions: ['.js'],
     alias: {
-      '@': path.resolve(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src/frontend')
     }
   },
   module: {
@@ -25,7 +25,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: ['./src'],
+        include: ['./src/frontend'],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -70,12 +70,15 @@ module.exports = {
   },
   plugins: [
     // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   },
-    //   sourceMap: true
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      sourceMap: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+    }),
     // extract css into its own file
     new ExtractTextPlugin('static/css/[name].[contenthash].css'),
     // Compress extracted CSS. We are using this plugin so that possible
@@ -89,8 +92,8 @@ module.exports = {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, '../dist/index.html'),
-      template: 'index.ejs',
+      filename: path.resolve(__dirname, '../dist/cloud-monitor/public/zh/index.html'),
+      template: path.resolve(__dirname, '../src/frontend/index.ejs'),
       inject: true,
       minify: {
         removeComments: true,
@@ -108,7 +111,7 @@ module.exports = {
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: function(module) {
+      minChunks: function (module) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&

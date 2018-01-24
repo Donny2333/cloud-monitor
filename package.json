@@ -6,6 +6,7 @@
     "dev": "node ./build/dev-server",
     "build": "node build/build.js",
     "start": "npm run dev",
+    "serve": "node src/server/bin/www",
     "clean": "rm -rf dist/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pm2": "pm2 start build/dev-server.js -i max --watch --no-daemon"
@@ -45,6 +46,7 @@
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.3.0",
     "rimraf": "^2.6.2",
+    "shelljs": "^0.7.8",
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
@@ -55,13 +57,22 @@
     "@uirouter/angularjs": "^1.0.12",
     "angular": "^1.6.7",
     "angular-animate": "^1.6.7",
+    "body-parser": "^1.18.2",
     "d3": "^4.12.2",
+    "debug": "^3.1.0",
     "echarts": "^3.8.5",
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
+    "morgan": "^1.9.0",
     "ng-redux": "^3.5.2",
     "pm2": "^2.8.0",
+    "pug": "^2.0.0-rc.4",
+    "read-ini-file": "^1.0.0",
     "redux-thunk": "^2.2.0",
+    "request-promise": "^4.2.2",
+    "serve-favicon": "^2.4.5",
     "three.js": "^0.77.1"
   }
 }
