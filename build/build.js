@@ -8,7 +8,8 @@ const shell = require('shelljs')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.prod.conf')
 
-const spinner = ora('building for production...')
+const platform = process.platform
+const spinner = ora(`building for ${platform} production...`)
 spinner.start()
 
 rm('/dist', err => {
@@ -26,8 +27,9 @@ rm('/dist', err => {
       }) + '\n\n'
     )
 
+    const outputName = platform === 'win32' ? 'dashboard.exe' : 'dashboard'
     shell.cd(path.resolve(__dirname, '../src/backend'))
-    shell.exec('go build -o ../../dist/cloud-monitor/dashboard', {silent: true}, function (code, stdout, stderr) {
+    shell.exec(`go build -o ../../dist/cloud-monitor/${outputName}`, {silent: true}, function (code, stdout, stderr) {
       if (stats.hasErrors() || code !== 0) {
         console.log(chalk.red(
           `  Exit code: ${code}\n` +

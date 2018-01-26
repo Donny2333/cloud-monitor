@@ -1,3 +1,4 @@
+const ip = require('ip')
 const opn = require('opn')
 const path = require('path')
 const express = require('express')
@@ -35,7 +36,7 @@ devMiddleware.waitUntilValid(() => {
   opn(uri).then(_ => {
     console.log('> Listening at ' + uri + '\n')
   }, _ => {
-    console.log('> Cannot open window but Listening at ' + uri + '\n')
+    console.log('> Cannot open window but server for http://' + ip.address() + ':3000' + '\n')
   })
 })
 app.listen(3000)
