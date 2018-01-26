@@ -1,3 +1,4 @@
+const ip = require('ip')
 const opn = require('opn')
 const path = require('path')
 const express = require('express')
@@ -32,7 +33,10 @@ const uri = 'http://localhost:3000'
 
 console.log('> Starting dev server...')
 devMiddleware.waitUntilValid(() => {
-  console.log('> Listening at ' + uri + '\n')
-  opn(uri)
+  opn(uri).then(_ => {
+    console.log('> Listening at ' + uri + '\n')
+  }, _ => {
+    console.log('> Cannot open window but server for http://' + ip.address() + ':3000' + '\n')
+  })
 })
 app.listen(3000)
