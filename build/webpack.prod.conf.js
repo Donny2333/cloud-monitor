@@ -88,11 +88,11 @@ module.exports = {
         safe: true
       }
     }),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
+    // generate dist index.ejs with correct asset hash for caching.
+    // you can customize output by editing /index.ejs
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, '../dist/cloud-monitor/public/zh/index.html'),
+      filename: path.resolve(__dirname, '../dist/cloud-monitor/public/zh/index.ejs'),
       template: path.resolve(__dirname, '../src/frontend/index.ejs'),
       inject: true,
       minify: {

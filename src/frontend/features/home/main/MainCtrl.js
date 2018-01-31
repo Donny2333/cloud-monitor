@@ -1,3 +1,1 @@
-export default class MainCtrl {
-  constructor() {}
-}
+export default class MainCtrl {}
