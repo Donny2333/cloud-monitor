@@ -5,17 +5,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
-  entry: [
-    `${config.dev.srcRoot}/main`,
-    './build/dev-client'
-  ],
+  entry: [`${config.dev.srcRoot}/main`, './build/dev-client'],
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.jsx', '.less'],
     alias: {
       '@': config.dev.srcRoot
     }
@@ -32,7 +29,7 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/
       },
@@ -69,7 +66,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      'process.env.NODE_ENV': JSON.stringify(
+        process.env.NODE_ENV || 'development'
+      )
     }),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({

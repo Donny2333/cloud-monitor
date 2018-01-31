@@ -23,7 +23,7 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    srcRoot: path.resolve(__dirname, '../src/frontend'),
+    srcRoot: path.resolve(__dirname, '../src/react'),
     port: 3000,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
