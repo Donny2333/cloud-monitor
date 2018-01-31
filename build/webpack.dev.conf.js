@@ -1,10 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
+const config = require('../config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/frontend/app', './build/dev-client'],
+  entry: [
+    `${config.dev.srcRoot}/main`,
+    './build/dev-client'
+  ],
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
@@ -13,7 +17,7 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      '@': path.resolve(__dirname, '../src/frontend')
+      '@': config.dev.srcRoot
     }
   },
   module: {
@@ -22,7 +26,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: ['./src/frontend'],
+        include: [config.dev.srcRoot],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -70,7 +74,7 @@ module.exports = {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.resolve(__dirname, '../src/frontend/index.ejs'),
+      template: `${config.dev.srcRoot}/index.ejs`,
       inject: true,
       env: 'develop'
     }),
