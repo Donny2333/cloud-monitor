@@ -32,7 +32,7 @@ const uri = 'http://localhost:3000'
 
 console.log('> Starting dev server...')
 devMiddleware.waitUntilValid(() => {
-  console.log('> Listening at ' + uri + '\n')
+  console.log(`> Listening at ${uri}\n`)
   opn(uri)
 })
 app.listen(3000)

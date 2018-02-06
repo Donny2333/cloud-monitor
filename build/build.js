@@ -11,9 +11,9 @@ spinner.start()
 
 rm('/dist', err => {
   if (err) throw err
-  webpack(webpackConfig, function (err, stats) {
+  webpack(webpackConfig, (error, stats) => {
     spinner.stop()
-    if (err) throw err
+    if (error) throw error
     process.stdout.write(
       stats.toString({
         colors: true,
