@@ -1,6 +1,12 @@
 import React from 'react'
 import reactDOM from 'react-dom'
-import Hello from './components/Hello'
+import LineChart from './components/LineChart/'
 import '@/common/style'
 
-reactDOM.render(<Hello />, document.getElementById('app'))
+class App extends React.Component {
+  render() {
+    return <LineChart name="React" />
+  }
+}
+
+reactDOM.render(<App />, document.getElementById('app'))
