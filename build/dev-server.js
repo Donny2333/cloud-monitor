@@ -34,7 +34,7 @@ const uri = 'http://localhost:3000'
 console.log('> Starting dev server...')
 devMiddleware.waitUntilValid(() => {
   opn(uri).then(_ => {
-    console.log('> Listening at ' + uri + '\n')
+    console.log(`> Listening at ${uri}\n`)
   }, _ => {
     console.log('> Cannot open window but server for http://' + ip.address() + ':3000' + '\n')
   })
