@@ -22,8 +22,10 @@
     "babel-eslint": "^8.0.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-lodash": "^3.3.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^6.26.0",
     "chalk": "^2.3.0",
     "copy-webpack-plugin": "^4.2.3",
     "css-loader": "^0.28.7",
@@ -62,6 +64,7 @@
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "d3": "^4.12.2",
     "debug": "^3.1.0",

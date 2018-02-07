@@ -1,13 +1,19 @@
-const rp = require('request-promise')
+import axios from 'axios'
 
-export default class Http {
+class Http {
   constructor() {
     this.baseUrl = ''
   }
   get(url, params) {
-    return rp.get({
-      url: this.baseUrl + url,
+    return axios.get(this.baseUrl + url, {
       params
     })
   }
+  post(url, data) {
+    return axios.post(this.baseUrl + url, {
+      data
+    })
+  }
 }
+
+module.exports = new Http()

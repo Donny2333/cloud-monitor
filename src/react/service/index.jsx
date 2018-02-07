@@ -1,5 +1,5 @@
 const Http = require('./Http')
 
-module.export = {
+module.exports = {
   Http
 }
