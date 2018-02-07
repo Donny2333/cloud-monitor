@@ -2,6 +2,9 @@ import '@/common/style'
 import React from 'react'
 import reactDOM from 'react-dom'
 import LineChart from './components/LineChart/'
+import { Http } from './service'
+
+Http.get('http://www.baidu.com')
 
 const getChart = () => {
   const chart = {
