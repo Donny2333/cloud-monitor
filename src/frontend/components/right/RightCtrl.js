@@ -113,7 +113,7 @@
             totalName: '总数',
             totalValue: 100,
             totalUnit: 'GB',
-            usageName: '已分配',
+            usageName: '已使用',
             usageValue: 0,
             usageUnit: 'GB',
             percent: '0'
@@ -121,7 +121,7 @@
         }];
 
         function bytesToSize(gigabytes, unit) {
-          var k = 1000, // or 1024
+          var k = 1024, // or 1024
             sizes = ['MB', 'GB', 'TB', 'PB'],
             i = Math.floor(Math.log(gigabytes) / Math.log(k));
 

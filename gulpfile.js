@@ -15,7 +15,7 @@ gulp.task('js', function () {
       'src/frontend/app.js'
     ])
     .pipe(concat('bundle.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('src/frontend/bundle'))
 })
 

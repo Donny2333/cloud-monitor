@@ -33,7 +33,7 @@
         "totalName": "总数",
         "totalValue": 81920,
         "totalUnit": "GB",
-        "usageName": "已分配",
+        "usageName": "已使用",
         "usageValue": 35340,
         "usageUnit": "GB"
       }

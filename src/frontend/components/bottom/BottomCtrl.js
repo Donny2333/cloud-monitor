@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('cloud-monitor.controllers')
-    .controller('BottomCtrl', ['$interval', 'Monitor', 'Http', function ($interval, Monitor, Http) {
+    .controller('BottomCtrl', ['$interval', 'Monitor', 'Http', 'OPEN_ANIMATION', function ($interval, Monitor, Http, OPEN_ANIMATION) {
       var that = this;
 
       var colorList1 = ['#F7F7F8', '#AEADB3', '#D8D9DD'],
@@ -190,10 +190,8 @@
 
       reload();
 
-      // $interval(function () {
-      //   reload();
-      // }, 30000);
-    }
-
-    ])
+      OPEN_ANIMATION && $interval(function () {
+        reload();
+      }, 30000);
+    }])
 })(angular);
